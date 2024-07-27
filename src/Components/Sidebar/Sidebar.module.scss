@@ -1,0 +1,81 @@
+.navBar{
+    height: calc(100vh - 100px );
+    width: 340px;
+    padding: 10px;
+    position: sticky;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid rgb(241, 235, 235);
+    .logo{
+        font-size: 3rem;
+        font-weight: 600;
+        color: grey
+    }
+    ul{
+        padding: 0;
+        padding-top: 2rem;
+        .navBarItem{
+            color: #a5a5a5;
+            list-style: none;
+            padding: 0.5rem 0.7rem;
+            cursor: pointer;
+            align-items: center;
+            margin-bottom: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            div{
+                margin-left: 10px;
+            }
+            .navBarItemText{
+                display: flex;
+                align-items: center;
+                p{
+                    font-size: 2rem;
+                }
+                .navIcon{
+                    font-size: 2.5rem;
+                    margin-right: 10px;
+
+                }
+
+            }
+        }
+        .active{
+            border-left: 4px solid #1ed760;
+            padding: 0.5rem calc(0.7rem - 4px);
+            color: black;
+            font-weight: 600;
+        }
+    }
+    .userPlayListContainer{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-top: 1px solid #ccc;
+        .playListItem{
+            display: flex;
+            margin-bottom: 10px;
+            img{
+                height: 45px;
+                width: 45px;
+                border-radius: 5px;
+                margin-right: 10px;
+            }
+            .playListDescription{
+                    display: flex;
+                    flex-direction: column;
+                .playListDescription{
+                    font-size: 1.2rem;
+                }
+                .songQuantity{
+                    font-size: 0.8em;
+                    color:#a5a5a5;
+                }
+            }
+        }
+    }
+    a{
+        text-decoration: none;
+    }
+}
