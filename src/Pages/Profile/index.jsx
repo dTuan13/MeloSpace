@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
-import Header from '~/Components/Components/Header';
-import Footer from '~/Components/Components/Footer';
+import Header from '~/Components/Header';
+import Footer from '~/Components/Footer';
 import styles from './Profile.module.scss';
 
 const cx = classNames.bind(styles);

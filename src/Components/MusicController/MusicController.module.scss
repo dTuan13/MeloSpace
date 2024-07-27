@@ -1,0 +1,71 @@
+.musicControl{
+    background-color: #282828;
+    text-align: center;
+    display: flex;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+    position: absolute;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    padding: 1rem;
+    .musicControlLeft{
+        display: flex;
+        align-items: end;
+        .musicControllThumb{
+            height: 60px;
+            width: 60px;
+            margin-right: 10px;
+            img{
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            };
+        }
+        .musicControllSub{
+            list-style: none;
+            text-align: left;
+            .musicControllSongName{
+
+            }
+            .musicControllSongArtist{
+                font-size: 14px;
+                color: grey;
+            }
+        }
+
+    }
+    .musicControlCenter{
+        display: flex;
+        flex-direction: column;
+        .musicControllBtn{
+            display: flex;
+            justify-content: center;
+            margin-bottom: 5px;
+            .musicControllBtnItem{
+                margin-right: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                svg{
+                    height: 35px;
+                    width: 35px;
+                }
+            }
+            .playStopIcon{
+                padding: 0.5rem;
+                background-color:#1ed760 ;
+                border-radius: 50%;
+            }
+        }
+        .musicControllTimeline{
+            input{
+                width: 700px;
+                height: 5px;
+            }
+        }
+    }
+
+}
