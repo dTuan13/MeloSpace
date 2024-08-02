@@ -11,13 +11,9 @@ export const Contexts = {
 
 const Providers = ({children}) => {
     return(
-        <AuthProvider>
-            <SongProvider>
-                <PlaylistProvider>
-                    {children}
-                </PlaylistProvider>
-            </SongProvider>
-        </AuthProvider>
+            <PlaylistProvider>
+                        {children}
+            </PlaylistProvider>
     )
    
 }

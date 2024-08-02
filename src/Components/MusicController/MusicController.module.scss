@@ -81,6 +81,28 @@
                 border-radius: 50%;
             }
         }
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none; 
+            width: 100%;
+            cursor: pointer;
+            outline: none;
+            border-radius: 15px;
+            height: 3px;
+            background: #ccc;
+          }
+          input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            height: 10px;
+            width: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: .2s ease-in-out;
+            border: none;
+            position: relative;
+
+          }
         .musicControllTimeline{
             display: flex;
             align-items: center;
@@ -99,5 +121,4 @@
     .musicControlRight{
         width: 300px;
     }
-
 }
