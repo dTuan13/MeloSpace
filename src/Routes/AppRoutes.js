@@ -7,8 +7,9 @@ import Test from '../Components/Test/Test'
 import Search from '../Components/Search/index'
 
 const index = () => {
-    const PublicRoutes = [
-    
+    const PublicRoutes = 
+    [
+        
     ]
     return (
         <Routes>

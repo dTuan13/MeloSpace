@@ -1,43 +1,92 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import styles from './MusicController.module.scss'
-import { PlayCircleFilled, PauseCircleFilled, SkipNext, SkipPrevious  } from '@mui/icons-material'
+import instance from '../../api'
+import {Contexts} from '../../Context'
+import { PlayCircleFilled, PauseCircleFilled, SkipNext, SkipPrevious, ContentCutSharp  } from '@mui/icons-material'
 const MusicControl = () => {
-    const [currentSong, setCurrentSong] = useState('')
+    const [duration, setDuration] = useState(0)
+    const [currentTime, setCurrentTime] = useState(0)
     const [isPlaying, togglePlaying] = useState(false)
     const [value, setValue] = useState(0)
     const [onUpdate, setUpdate] = useState(1)
+    const getPlaylistContext = useContext(Contexts.PlaylistContext)
+    const getSongContext = useContext(Contexts.SongContext)
+
+    const convertToMinutes = (seconds) =>{
+        if(seconds){
+            let result = ''
+            let minutes = Math.floor(seconds / 60);
+            let extraSeconds = parseInt(seconds % 60);
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            extraSeconds = extraSeconds< 10 ? "0" + extraSeconds : extraSeconds;
+            result += minutes + ":" + extraSeconds;
+            return result
+        }
+        else return '00:00'
+        
+    }
+    const handleNextSong = () => {
+        const crs = getSongContext.currentSong
+        const index = getPlaylistContext.playlist.findIndex(item => item.RecordURL === crs.RecordURL)
+        getSongContext.setCurrentSong(getPlaylistContext.playlist[index+1])
+        togglePlaying(true)
+    }
+    const handlePrevSong = () => {
+        const crs = getSongContext.currentSong
+        const index = getPlaylistContext.playlist.findIndex(item => item.RecordURL === crs.RecordURL)
+        getSongContext.setCurrentSong(getPlaylistContext.playlist[index-1])
+        togglePlaying(true)
+    }
+    useEffect(() =>{
+        (async () => {
+            try {
+                const {data} = await instance.get("/record")
+                await getPlaylistContext.setPlaylist(data)
+                await getSongContext.setCurrentSong(data[0])
+            }
+            catch (error){
+              console.log(error)
+            }
+          })()
+    
+    },[])
+    
     useEffect(() =>{
         let x = document.getElementById("myAudio");
-        let time = '3:10'
-        let parts = time.split(':');
-        let sec_time = parseInt(parts[0] * 60) + parseInt(parts[1])
-        let per = (x.currentTime / sec_time) * 100
+        let curTime = x.currentTime
+        let time = x.duration
+        setCurrentTime(curTime)
+        setDuration(time - curTime)
+        let per = (curTime / time) * 100
         setValue(per)
     }, [onUpdate])
 
     useEffect(() =>{
         let x = document.getElementById("myAudio");
+        console.log(x.duration)
         if(isPlaying){
             x.play()
         }
         else x.pause()
     },[isPlaying])
-
     return (
         <div className = {styles.musicControl}>
             <div className={styles.musicControlLeft}>
-                <div className= {styles.musicControllThumb}>
-                    <img src="https://images.unsplash.com/photo-1517230878791-4d28214057c2?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
+                <div className= {`${styles.musicControllThumb} ${isPlaying ? `${styles.rotate}`: ''}`}>
+                    <img src={getSongContext.currentSong.RecordThumb} alt="" />
                 </div>
                 <ul className= {styles.musicControllSub}>
-                    <li className= {styles.musicControllSongName}>Nhung loi hua bo quen</li>
-                    <li className= {styles.musicControllSongArtist}>Vu</li>
+                    <li className= {styles.musicControllSongName}>{getSongContext.currentSong.RecordName}</li>
+                    <li className= {styles.musicControllSongArtist}>Toan</li>
                 </ul>
             </div>
 
             <div className= {styles.musicControlCenter}>
                 <div className= {styles.musicControllBtn}>
-                    <div className= {styles.musicControllBtnItem}>
+                    <div 
+                        onClick={() => {
+                            handlePrevSong()}}
+                        className= {styles.musicControllBtnItem}>
                         <SkipPrevious />
                     </div>
                     <div 
@@ -47,31 +96,31 @@ const MusicControl = () => {
                     </div>
                     <div 
                         onClick={() => {
-                            togglePlaying(!isPlaying)
-                            setCurrentSong('')
-                        }}
+                            handleNextSong()
+                            }}
                         className= {styles.musicControllBtnItem}>
                         <SkipNext />
                     </div>
                 </div>
                 <div className= {styles.musicControllTimeline}>
+                    <span>{convertToMinutes(currentTime)}</span>
                     <input 
                         id='inputRange' type="range" step='0.5' min='0' max='100'
                         value={value}
                         />
                     <audio
                         onTimeUpdate={() => {setUpdate(Math.random())}}
-                        src= {currentSong.file}
+                        src= {getSongContext.currentSong.RecordURL}
+                        autoPlay = 'true'
                         id="myAudio" 
                         type="audio/mp3">
                     </audio>
+                    <span>{`-${convertToMinutes(duration)}`}</span>
                 </div>
             </div>
             <div className= {styles.musicControlRight}></div>
-
         </div>
     )
 }
 
 export default MusicControl
- 

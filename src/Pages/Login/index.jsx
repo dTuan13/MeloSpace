@@ -9,7 +9,6 @@ const Login = () => {
   const [password, setPassword] = useState('')
   const getAuthContext = useContext(Contexts.AuthContext)
   let navigate = useNavigate()
-  console.log(Contexts.AuthContext)
   const handleLogin = () => {
     (
       async () =>{
