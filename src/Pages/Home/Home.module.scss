@@ -1,26 +1,7 @@
-.homePage{
+.homePage {
     display: flex;
-    .mainContainer{
-        flex: 1;
-        .upperBar{
-            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-            padding: 20px 10px;
-            .authInfomation{
-                display: flex;
-                justify-content: end;
-                align-items: center;
-                img{
-                    height: 40px;
-                    width: 40px;
-                    border-radius: 50%;
-                    object-fit: cover;
-                    margin:0 10px;
-                }
-                .authBtn{
-                    height: 40px;
-                    width: 70px;
-                }
-            }
-        }
-    }
+}
+
+.mainContainer {
+    flex: 1;
 }

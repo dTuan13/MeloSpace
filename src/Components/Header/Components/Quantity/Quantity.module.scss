@@ -1,0 +1,16 @@
+.main {
+    position: absolute;
+    background-color: #e55353;
+    border-radius: 30px;
+    width: 27px;
+    height: 21px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .quantity {
+        font-size: 14px;
+        color: #fff;
+        line-height: 21px;
+    }
+}
