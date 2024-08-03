@@ -65,7 +65,6 @@ const Sidebar = () => {
                   <span className={styles.songQuantity}>14 songs</span>
                 </div>
               </li>
-              
           </ul>
         </div>
     </div>

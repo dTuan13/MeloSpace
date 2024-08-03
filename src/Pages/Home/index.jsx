@@ -3,8 +3,9 @@ import Sidebar from '../../Components/Sidebar/Sidebar';
 import Header from '../../Components/Header';
 import MusicController from '../../Components/MusicController';
 import { Outlet, useNavigate } from 'react-router-dom';
-import { Contexts } from '../../Context';
-import { useContext } from 'react';
+import {GlobalContext} from '../../Context';
+
+import { useContext, useEffect, useState } from 'react';
 
 function Home() {
     let navigate = useNavigate();
@@ -16,7 +17,6 @@ function Home() {
     return (
         <div className={styles.homePage}>
             <Sidebar />
-
             <div className={styles.mainContainer}>
                 <Header />
                 <Outlet />

@@ -7,7 +7,9 @@ import Test from '../Components/Test/Test';
 import Search from '../Components/Search/index';
 
 const index = () => {
+
     const PublicRoutes = [];
+
     return (
         <Routes>
             <Route path="/" element={<PrivateRoutes />}>
@@ -22,4 +24,5 @@ const index = () => {
     );
 };
 
-export default index;
+
+export default index
