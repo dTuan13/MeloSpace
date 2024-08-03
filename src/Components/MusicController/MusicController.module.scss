@@ -1,4 +1,4 @@
-.musicControl{
+.musicControl {
     background-color: #282828;
     text-align: center;
     display: flex;
@@ -6,12 +6,12 @@
     justify-content: space-between;
     align-items: center;
     color: white;
-    position: absolute;
+    position: fixed;
     right: 0;
     left: 0;
     bottom: 0;
     padding: 1rem;
-    .musicControlLeft{
+    .musicControlLeft {
         display: flex;
         align-items: end;
         width: 290px;
@@ -30,7 +30,7 @@
             };
            
         }
-        .musicControllSub{
+        .musicControllSub {
             list-style: none;
             text-align: left;
             padding-left: 0;
@@ -39,35 +39,36 @@
                 font-weight: bold;
                 color: white;
             }
-            .musicControllSongArtist{
+            .musicControllSongArtist {
                 font-size: 14px;
                 color: grey;
             }
         }
     }
-    .musicControlCenter{
+    .musicControlCenter {
         display: flex;
         flex-direction: column;
-        .musicControllBtn{
+        .musicControllBtn {
             display: flex;
             justify-content: center;
             margin-bottom: 5px;
-            .musicControllBtnItem{
+            .musicControllBtnItem {
                 margin-right: 10px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                svg{
+                svg {
                     height: 35px;
                     width: 35px;
                 }
             }
-            .playStopIcon{
+            .playStopIcon {
                 padding: 0.5rem;
-                background-color:#1ed760 ;
+                background-color: #1ed760;
                 border-radius: 50%;
             }
         }
+
         input[type="range"] {
             -webkit-appearance: none;
             appearance: none; 
@@ -121,7 +122,11 @@
             };
         }
     }
+
     .musicControlRight{
         width: 300px;
     }
 }
+
+}
+

@@ -19,5 +19,4 @@ root.render(
                 </GlobalStyles>
         </React.StrictMode>
 
-);
 

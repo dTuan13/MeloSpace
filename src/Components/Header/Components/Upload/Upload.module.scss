@@ -1,0 +1,31 @@
+.upload {
+    margin-right: 36px;
+    height: 34px;
+    width: 82px;
+    background-color: transparent;
+    outline: none;
+    border-radius: 10px;
+    border-color: #c6c5c5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7px 0 5px;
+    color: #545454;
+
+    .icon {
+        width: 20px;
+        height: 18px;
+    }
+
+    span {
+        font-size: 14px;
+        line-height: 34px;
+        margin-top: 1px;
+    }
+}
+
+.upload:hover {
+    background-color: #f0efef;
+    border-color: #e5e5e5;
+    color: #232222;
+}
