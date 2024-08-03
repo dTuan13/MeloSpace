@@ -1,20 +1,21 @@
-import React from 'react';
-import { AuthProvider, AuthContext } from './AuthProvider'
-import { SongContext, SongProvider } from './SongProvider';
-import { PlaylistProvider, PlaylistContext } from './PlaylistProvider';
+import React, { useState, createContext } from 'react'
+export const GlobalContext = createContext()
 
-export const Contexts = {
-    AuthContext,
-    SongContext,
-    PlaylistContext
-}
-
-const Providers = ({children}) => {
-    return(
-            <PlaylistProvider>
-                        {children}
-            </PlaylistProvider>
+export const Providers = ({children}) => {
+    const [auth, setAuth] = useState('')
+    const [playlist, setPlaylist] = useState()
+    const [currentSong, setCurrentSong] = useState({})
+    const values = {
+        auth,
+        setAuth,
+        currentSong,
+        setCurrentSong,
+        playlist,
+        setPlaylist
+    }
+    return (
+        <GlobalContext.Provider value={values}>
+            {children}
+        </GlobalContext.Provider>
     )
-   
 }
-export default Providers

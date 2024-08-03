@@ -2,18 +2,17 @@ import React, { useContext, useState } from 'react'
 import styles from './Login.module.scss'
 import instance from '../../api'
 import { useNavigate} from 'react-router-dom'
-import {Contexts} from '../../Context'
+import {GlobalContext} from '../../Context'
 
 const Login = () => {
   const [userName, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const getAuthContext = useContext(Contexts.AuthContext)
+  const getAuthContext = useContext(GlobalContext)
   let navigate = useNavigate()
   const handleLogin = () => {
     (
       async () =>{
-        try {
-          getAuthContext.setAuth(userName)
+        try {getAuthContext.setAuth(userName)
           localStorage.setItem('accessToken', '123')
           navigate('/')
         }
