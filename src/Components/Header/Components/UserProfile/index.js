@@ -1,13 +1,13 @@
 import classNames from 'classnames/bind';
 import styles from './UserProfile.module.scss';
-import { Contexts } from '../../../../Context';
+import { GlobalContext } from '../../../../Context';
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function UserProfile() {
-    const getAuthContext = useContext(Contexts.AuthContext);
+    const getAuthContext = useContext(GlobalContext);
 
     const navigate = useNavigate();
 
@@ -31,9 +31,14 @@ function UserProfile() {
                     </div>
                 </div>
             ) : (
-                <button className={cx('login')} onClick={() => navigate('/login')}>
-                    Đăng nhập{' '}
-                </button>
+                <div className={cx('BtnLine')}>
+                    <button className={cx('login')} onClick={() => navigate('/login')}>
+                        Đăng nhập{' '}
+                    </button>
+                    <button className={cx('register')} onClick={() => navigate('/register')}>
+                        Đăng ký{' '}
+                    </button>
+                </div>
             )}
         </div>
     );

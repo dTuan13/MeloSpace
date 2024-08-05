@@ -3,13 +3,13 @@ import { faBell } from '@fortawesome/free-solid-svg-icons';
 import Quantity from '../Quantity/Quantity';
 import classNames from 'classnames/bind';
 import styles from './Notify.module.scss';
-import { Contexts } from '../../../../Context';
+import { GlobalContext } from '../../../../Context';
 import { useContext } from 'react';
 
 const cx = classNames.bind(styles);
 
 function Notify() {
-    const getAuthContext = useContext(Contexts.AuthContext);
+    const getAuthContext = useContext(GlobalContext);
 
     return (
         <button className={cx('notify')}>

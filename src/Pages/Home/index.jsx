@@ -1,27 +1,30 @@
 import styles from './Home.module.scss';
-import Sidebar from '../../Components/Sidebar/Sidebar';
+// import Slidebar from '../../Components/Sidebar/Sidebar';
 import Header from '../../Components/Header';
 import MusicController from '../../Components/MusicController';
 import { Outlet, useNavigate } from 'react-router-dom';
-import {GlobalContext} from '../../Context';
+import { GlobalContext } from '../../Context';
 
 import { useContext, useEffect, useState } from 'react';
+import SlideBar from '../../Components/Sidebar/SlideBar';
+import Footer from '../../Components/Footer/Footer';
 
 function Home() {
     let navigate = useNavigate();
-    const getAuthContext = useContext(Contexts.AuthContext);
+    const getAuthContext = useContext(GlobalContext);
     const handleLogout = () => {
         localStorage.removeItem('accessToken');
         navigate('/login');
     };
     return (
         <div className={styles.homePage}>
-            <Sidebar />
+            <SlideBar />
             <div className={styles.mainContainer}>
                 <Header />
                 <Outlet />
             </div>
             <MusicController />
+            <Footer></Footer>
         </div>
     );
 }

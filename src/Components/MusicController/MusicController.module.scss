@@ -1,8 +1,8 @@
 .musicControl {
-    background-color: white;
+    background-color: #282828;
     text-align: center;
     display: flex;
-    height: 90px;
+    height: 100px;
     justify-content: space-between;
     align-items: center;
     color: white;
@@ -10,15 +10,14 @@
     right: 0;
     left: 0;
     bottom: 0;
-    padding: 14px 27px;
+    padding: 1rem;
     .musicControlLeft {
         display: flex;
         align-items: end;
-        align-items: center;
         width: 290px;
         .musicControllThumb {
-            height: 56px;
-            width: 56px;
+            height: 60px;
+            width: 60px;
             margin-right: 10px;
             transition: 1s linear;
 
@@ -33,15 +32,14 @@
             list-style: none;
             text-align: left;
             padding-left: 0;
-            margin: 0;
             .musicControllSongName {
                 font-size: 14px;
                 font-weight: bold;
-                color: #494848;
+                color: white;
             }
             .musicControllSongArtist {
-                font-size: 13px;
-                color: #494848;
+                font-size: 14px;
+                color: grey;
             }
         }
     }
@@ -51,25 +49,20 @@
         .musicControllBtn {
             display: flex;
             justify-content: center;
-            align-items: center;
             margin-bottom: 5px;
             .musicControllBtnItem {
-                margin-right: 20px;
-                color: #646161;
+                margin-right: 10px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                svg {
+                    height: 35px;
+                    width: 35px;
+                }
             }
-            .other{
-                font-size: 22px;
-
-            }
-            .prevNext{
-                font-size: 29px;
-            }
-            .playPauseIcon{
+            .playStopIcon {
                 padding: 0.5rem;
-                background-color: black;
-                font-size: 30px;
-
-                color: white;
+                background-color: #1ed760;
                 border-radius: 50%;
             }
         }
@@ -77,29 +70,38 @@
         input[type='range'] {
             -webkit-appearance: none;
             appearance: none;
-            width: 500px;
+            width: 100%;
             cursor: pointer;
             outline: none;
             border-radius: 15px;
             height: 0;
+            background: transparent;
             z-index: 1000;
             transition: 0.5s ease;
+
+            &:hover::-webkit-slider-runnable-track {
+                background-color: transparent;
+            }
+            &:hover::-webkit-slider-thumb {
+                background-color: white;
+            }
         }
         input[type='range']::-webkit-slider-runnable-track {
             height: 3px;
+            background-color: #ccc;
             border-radius: 20px;
         }
         input[type='range']::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
-            height: 12px;
-            width: 12px;
-            background-color: #FF6060;
+            height: 15px;
+            width: 15px;
+            background-color: #f50;
             border-radius: 50%;
             transition: 0.2s ease-in-out;
             border: none;
             position: relative;
-            transform: translateY(-4px);
+            transform: translateY(-6.5px);
             transition: 0.2s ease;
         }
         .musicControllTimeline {
@@ -109,48 +111,16 @@
             input {
                 width: 700px;
                 height: 5px;
-                margin: 0 15px;
+                margin: 0 5px;
             }
             span {
-                font-size: 13px;
-                color: #494747;
-                font-weight: bold;
+                font-size: 14px;
+                color: grey;
             }
         }
     }
 
     .musicControlRight {
-        display: flex;
-        justify-content:  right;
-        align-items: center;
-        .rightIcon{
-            color: #646161;
-            font-size: 20px;
-            margin-right: 12px;
-        }
-        input[type='range'] {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 100%;
-            cursor: pointer;
-            outline: none;
-            border-radius: 15px;
-            height: 0;
-            width: 100px;
-        
-        }
-        input[type='range']::-webkit-slider-runnable-track {
-            height: 3px;
-            width: 100px;
-            background: linear-gradient(to right, #1e1e1e 50%, #d9d9d9 50%);
-            border-radius: 20px;
-
-        }
-        input[type='range']::-webkit-slider-thumb{
-            -webkit-appearance: none;
-            appearance: none;
-            height: 0;
-            width: 0;
-        }
+        width: 300px;
     }
 }
