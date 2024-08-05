@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useRef } from 'react'
 import styles from './MusicController.module.scss'
 import instance, * as request from '../../api'
 import {GlobalContext} from '../../Context';
-import { PlayCircleFilled, PauseCircleFilled, SkipNext, SkipPrevious  } from '@mui/icons-material'
+import { Repeat, Shuffle, PlayArrow, Pause, SkipNext, SkipPrevious, Mic, List,  VolumeUp  } from '@mui/icons-material'
 const MusicControl = () => {
     const [duration, setDuration] = useState(0)
     const [durationLeft, setDurationLeft] = useState(100)
@@ -334,30 +334,47 @@ const MusicControl = () => {
 
             <div className= {styles.musicControlCenter}>
                 <div className= {styles.musicControllBtn}>
-                    <div 
-                        onClick={() => {
-                            handlePrevSong()}}
-                        className= {styles.musicControllBtnItem}>
-                        <SkipPrevious />
+                    <div>
+                       <Shuffle  
+                        className= {`${styles.musicControllBtnItem} ${styles.other}`}
+                       />
                     </div>
                     <div 
-                        className= {styles.musicControllBtnItem}
+                        onClick={() => {
+                            handlePrevSong()}}>
+                        <SkipPrevious 
+                        className= {`${styles.musicControllBtnItem} ${styles.prevNext}`}
+                        />
+                    </div>
+                    <div 
                         onClick={() => {statusSong(); togglePlaying(!isPlaying)} }>
-                        {isPlaying === true ? <PauseCircleFilled /> : <PlayCircleFilled />}
+                        {isPlaying === true ? 
+                        <Pause 
+                            className= {`${styles.musicControllBtnItem} ${styles.playPauseIcon}`}
+                        /> :
+                        <PlayArrow 
+                            className= {`${styles.musicControllBtnItem} ${styles.playPauseIcon}`}
+                        />}
                     </div>
                     <div 
                         onClick={() => {
                             handleNextSong()
-                            }}
-                        className= {styles.musicControllBtnItem}>
-                        <SkipNext />
+                            }}>
+                        <SkipNext 
+                        className= {`${styles.musicControllBtnItem} ${styles.prevNext}`}
+                        />
+                    </div>
+                    <div>
+                        <Repeat 
+                        className= {`${styles.musicControllBtnItem} ${styles.other}`}
+                        />
                     </div>
                 </div>
                 <div className= {styles.musicControllTimeline}>
                     <span>{convertToMinutes(currentTime)}</span>
                     <input 
                         id='inputRange' type="range" step='0.55' min='0' max='100'
-                        style={{ background :  onhover ?  `linear-gradient(to right, #f50 ${value}%, #ccc ${value}%)` : '' }}
+                        style={{ background : `linear-gradient(to right, #f50 ${value}%, #ccc ${value}%)` }}
                         onMouseEnter={() => {setOnHover(true)}}
                         onMouseLeave={() => {setOnHover(false)}}
                         onInput = {(e) => {
@@ -379,10 +396,18 @@ const MusicControl = () => {
                         autoPlay = {true}
                         type="audio/mp3">
                     </audio>
-                    <span>{`-${convertToMinutes(durationLeft)}`}</span>
+                    <span>{`${convertToMinutes(durationLeft)}`}</span>
                 </div>
             </div>
-            <div className= {styles.musicControlRight}></div>
+            <div className= {styles.musicControlRight}>
+                <Mic 
+                    className= {styles.rightIcon}/>
+                <List 
+                    className= {styles.rightIcon}/>
+                <VolumeUp 
+                    className= {styles.rightIcon}/>
+                <input type="range" />
+            </div>
         </div>
     )
 }
