@@ -6,12 +6,8 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import { useState } from 'react';
 
 const ContainFoot = styled.div`
-    position: absolute;
-    bottom: 100px;
     background: #ffffff;
-    left: 340px;
-    /* width: 1010px; */
-    flex: 1;
+    margin-bottom: 100px;
     Link {
         text-decoration: none;
         list-style-type: none;

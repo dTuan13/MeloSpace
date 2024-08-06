@@ -14,37 +14,37 @@ import PlayList from './playList/PlayList';
 const playListItem = [
     {
         id: 1,
-        url: './music1.png',
+        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
         title: 'Bài ca hay',
         date: '3 ngày',
     },
     {
         id: 2,
-        url: './music1.png',
+        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
         title: 'Bài ca hay',
         date: '3 ngày',
     },
     {
         id: 3,
-        url: './music1.png',
+        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
         title: 'Bài ca hay',
         date: '3 ngày',
     },
     {
         id: 4,
-        url: './music1.png',
+        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
         title: 'Bài ca hay',
         date: '3 ngày',
     },
     {
         id: 5,
-        url: './music1.png',
+        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
         title: 'Bài ca hay',
         date: '3 ngày',
     },
     {
         id: 6,
-        url: './music1.png',
+        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
         title: 'Bài ca hay',
         date: '3 ngày',
     },
@@ -130,6 +130,7 @@ const SlideBar = () => {
                     </ul>
                 </div>
             </div>
+            <div className="lineBar"></div>
         </Container>
     );
 };
@@ -138,7 +139,6 @@ const Container = styled.div`
     width: 340px;
     background: white;
     position: sticky;
-    box-shadow: 1px 1px 3px #ccc;
     display: flex;
     left: 0;
     top: 0;
@@ -221,13 +221,22 @@ const Container = styled.div`
 
     .listItem {
         overflow-y: scroll;
-        height: 200px;
+        max-height: 300px;
         width: 360px;
         padding-left: 0;
     }
 
     .play_list {
         overflow: hidden;
+    }
+
+    .lineBar {
+        width: 1px;
+        height: 100vh;
+        background-color: #e1e0e0;
+        position: fixed;
+        top: 0;
+        left: 338px;
     }
 `;
 

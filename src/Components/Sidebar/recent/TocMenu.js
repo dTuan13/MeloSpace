@@ -10,6 +10,7 @@ const TocMenu = ({ visible }) => (
         style={{
             display: visible ? 'inline' : 'none',
             position: 'absolute',
+            top: '17px',
             width: '160px',
             height: '270px',
             background: '#000000',

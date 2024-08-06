@@ -1,5 +1,6 @@
 .musicControl {
     background-color: #282828;
+    box-shadow: 1px 1px 10px #ccc;
     text-align: center;
     display: flex;
     height: 100px;
@@ -27,7 +28,7 @@
                 border-radius: 50%;
             }
         }
-    
+
         .musicControllSub {
             list-style: none;
             text-align: left;
@@ -116,7 +117,8 @@
     .musicControlRight {
         width: 300px;
     }
-}.musicControl {
+}
+.musicControl {
     background-color: white;
     text-align: center;
     display: flex;
@@ -171,18 +173,18 @@
             justify-content: center;
             align-items: center;
             margin-bottom: 5px;
-      
+
             .musicControllBtnItem {
                 margin-right: 20px;
                 color: #646161;
             }
-            .other{
+            .other {
                 font-size: 19px;
             }
-            .prevNext{
+            .prevNext {
                 font-size: 30px;
             }
-            .playPauseIcon{
+            .playPauseIcon {
                 padding: 0.5rem;
                 background-color: black;
                 font-size: 30px;
@@ -213,7 +215,7 @@
             appearance: none;
             height: 12px;
             width: 12px;
-            background-color: #FF6060;
+            background-color: #ff6060;
             border-radius: 50%;
             transition: 0.2s ease-in-out;
             border: none;
@@ -242,7 +244,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        .rightIcon{
+        .rightIcon {
             color: #646161;
             font-size: 20px;
             margin-right: 12px;
@@ -263,17 +265,16 @@
         input[type='range']::-webkit-slider-runnable-track {
             width: 100px;
             border-radius: 20px;
-
         }
-        input[type='range']::-webkit-slider-thumb{
+        input[type='range']::-webkit-slider-thumb {
             -webkit-appearance: none;
             appearance: none;
             height: 0;
             width: 0;
         }
     }
-    svg{
-        &:hover{
+    svg {
+        &:hover {
             cursor: pointer;
         }
     }
