@@ -135,19 +135,17 @@ const SlideBar = () => {
 };
 
 const Container = styled.div`
-    position: fixed;
-    z-index: 1;
-    margin-bottom: 100px;
-    top: 0;
-    bottom: 0;
     width: 340px;
     background: white;
-    left: 0;
+    position: sticky;
     box-shadow: 1px 1px 3px #ccc;
     display: flex;
+    left: 0;
+    top: 0;
     flex-direction: column;
     justify-content: flex-start;
     flex-wrap: nowrap;
+    height: calc(100vh - 90px);
     ul {
         padding-left: 10px;
         margin-bottom: 0;

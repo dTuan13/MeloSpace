@@ -1,0 +1,77 @@
+.MainContainer{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 17px;
+    .RecordItem{
+        flex: 0 0 530px;
+        width: 530px;
+        padding: 17px;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 10px;
+        align-items: center;
+        .RecordInfo{
+            display: flex;
+            align-items: center;
+
+            img{
+                height: 80px;
+                width: 80px;
+                border-radius: 5px;
+                margin-right: 22px;
+            }
+            .RecordDetail{
+                display: flex;
+                flex-direction: column;
+                div{
+                  display: flex;
+                    align-items: center;
+                    margin-right: 22px;
+                }
+                .recordName{
+                    color: #FF0808;
+                    font-size: 17px;
+                    margin-bottom: 3px;
+                }
+                .Reaction{
+                   
+                    display: flex;
+                    align-items: center;
+                    .icon{
+                        color: #848080;
+                        font-size: 18px;
+                        margin-right: 3px;
+                    }
+                }
+            }
+        }
+    .More{
+        font-size: 23px;
+        }
+    &:hover{
+        background-color: #E4E4E4;
+        cursor: pointer;
+    }
+    }
+    .noDataFound{
+        display: flex;
+        img{
+         
+
+        }
+        .action{
+            span{
+                color: #474545;
+                font-size: 20px;
+
+            }
+            button{
+                outline: none;
+                background-color: #EC4E4E;
+                height: 42px;
+                width: 130px;
+                font-size: 20px;
+            }
+        }
+    }
+}

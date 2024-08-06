@@ -24,7 +24,7 @@ function Home() {
                 <Outlet />
             </div>
             <MusicController />
-            <Footer></Footer>
+            {/* <Footer></Footer> */}
         </div>
     );
 }

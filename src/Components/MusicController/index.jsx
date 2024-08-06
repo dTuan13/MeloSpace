@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext, useRef } from 'react'
 import styles from './MusicController.module.scss'
 import instance, * as request from '../../api'
 import {GlobalContext} from '../../Context';
-import { Repeat, Shuffle, PlayArrow, Pause, SkipNext, SkipPrevious, Mic, List,  VolumeUp, VolumeMute, VolumeOff  } from '@mui/icons-material'
+import { Repeat, Shuffle, PlayArrow, Pause, SkipNext, SkipPrevious, Mic, List,  VolumeUp, VolumeDown, VolumeOff  } from '@mui/icons-material'
 const MusicControl = () => {
     const [duration, setDuration] = useState(0)
     const [durationLeft, setDurationLeft] = useState(100)
@@ -14,9 +14,9 @@ const MusicControl = () => {
     const [change, setChange] = useState(false)
     const [rotation, setRotation] = useState(0)
     const getContext = useContext(GlobalContext)
-    const audioContext = new AudioContext()
     const [volumeValue, setVolume] = useState(50)
-    
+    const [degree, setDegree] = useState(0);
+    const rotationRef = useRef(null);
     const au = useRef()
     const records = [
         {
@@ -292,14 +292,10 @@ const MusicControl = () => {
     }
 
     const statusSong = () => {
-        const thumbnail = document.getElementById('songThumb');
-        const computedStyle = window.getComputedStyle(thumbnail);
-        const transform = computedStyle.getPropertyValue('transform')
         isPlaying === true ? au.current.pause() : au.current.play()
-        isPlaying === true ? thumbnail.style.transform = `rotate(${360}deg)` : 
-         thumbnail.style.transform = transform
-
+    
     }
+
     useEffect(() =>{
         (async () =>{
             try {
@@ -323,13 +319,32 @@ const MusicControl = () => {
         setCurrentTime(au.current.src ? au.current.currentTime : 0)
         setDurationLeft(duration - currentTime)
         durationLeft < 1 ? handleNextSong() : setValue((currentTime / duration) * 100)
+        
     }, [onUpdate])
-
+    
+    useEffect(() => {
+        if (isPlaying && !document.hidden) {
+                rotationRef.current = setInterval(() => {
+                setDegree(prevDegree => (prevDegree + 10));
+            }, 120); 
+        } 
+        else {
+            if (rotationRef.current) {
+                clearInterval(rotationRef.current);
+            }
+        }
+        return () => {
+            if (rotationRef.current) {
+                clearInterval(rotationRef.current);
+            }
+        };
+      }, [document.hidden]);
     return (
         <div className = {styles.musicControl}>
             <div className={styles.musicControlLeft}>
                 <div 
                     id='songThumb'
+                    style={{ transform: `rotate(${degree}deg)` }}
                     className= {`${styles.musicControllThumb} ${isPlaying ? styles.rotating : ''}`}
                     >
                     <img src={getContext.currentSong.RecordThumb} alt="" />
@@ -414,11 +429,11 @@ const MusicControl = () => {
                     className= {styles.rightIcon}/>
                 <List 
                     className= {styles.rightIcon}/>
-                {
-                    volumeValue  > 0.2 ? <VolumeUp className= {styles.rightIcon}/> :
-                    <VolumeOff className= {styles.rightIcon}/>
+                {   
+                    volumeValue < 0.1 ? <VolumeOff className= {styles.rightIcon}/> :
+                        <VolumeUp className= {styles.rightIcon}/>
                 }
-                
+                np
                 <input 
                     type="range" step='0.5' min='0' max='100'
                     style={{ background : `linear-gradient(to right, #1e1e1e ${volumeValue}%, #d9d9d9 ${volumeValue}%)` }}

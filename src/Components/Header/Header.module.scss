@@ -1,14 +1,13 @@
 .main {
     height: 90px;
     display: flex;
+    flex: 1;
     align-items: center;
     justify-content: space-between;
     padding: 0 50px 0 100px;
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 340px;
     background-color: #fff;
-    width: calc(100% - 340px);
 }
 
 .Information {
