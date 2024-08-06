@@ -3,11 +3,13 @@ import styled from 'styled-components';
 
 const PlayListContainer = styled.div`
     font-size: 15px;
-    height: 50px;
+    height: 60px;
+
     .playList_item {
+        padding-left: 5px;
         display: flex;
         flex-direction: row;
-        height: 50px;
+        height: 100%;
         cursor: pointer;
         align-items: center;
     }
@@ -33,7 +35,7 @@ const PlayListContainer = styled.div`
     }
     .playList_date {
         font-size: 12px;
-        color: #514f4f;
+        color: #0c0b0b;
         font-weight: lighter;
     }
     .playList_item:hover {
@@ -60,7 +62,7 @@ const PlayList = ({ url = '', title = '', date = '' }) => {
                 </div>
                 <div className="playList_info">
                     <div className="playList_title">{`${title}`}</div>
-                    <div className="playList_date">{`${date}`}</div>
+                    <h6 className="playList_date">{`${date}`}</h6>
                 </div>
             </li>
         </PlayListContainer>

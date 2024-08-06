@@ -22,9 +22,9 @@ function Home() {
             <div className={styles.mainContainer}>
                 <Header />
                 <Outlet />
+                <Footer></Footer>
             </div>
             <MusicController />
-            {/* <Footer></Footer> */}
         </div>
     );
 }
