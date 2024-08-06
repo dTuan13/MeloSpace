@@ -19,6 +19,7 @@ const index = () => {
                     <Route path="/home" element={<Test />} />
                     <Route path="/search" element={<Search />} />
                     <Route path="/profile" element={<Profile />}>
+                        <Route index element={<MainContainer url = 'apiToRecord' />} />
                         <Route path="/profile/record" element={<MainContainer url = 'apiToRecord' />} />
                         <Route path="/profile/album" element={<MainContainer url = 'apiToAlbum'/>} />
                         <Route path="/profile/playlist" element={<MainContainer url = 'apiToPlaylis'/>} />

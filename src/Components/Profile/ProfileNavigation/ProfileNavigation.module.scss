@@ -4,7 +4,7 @@
     align-items: center;
     margin-top: 25px;
     border-bottom: 1px solid #6E6C6C;
-
+    position: relative;
     ul{
         display: flex;
         padding: 0;
@@ -14,7 +14,7 @@
             list-style: none;
             font-size: 20px;
             font-weight: bold;
-            color: #E94040;
+     
             // border-bottom: 3px solid #E94040
             margin-right: 40px;
             padding: 5px;
@@ -22,10 +22,14 @@
             &:hover{
                 cursor: pointer;
             }
+            &:active{
+      
+            }
         }
         a{
             text-decoration: none;
         }
+       
     }
     div{
         display: flex;
@@ -44,6 +48,15 @@
             border-radius: 3px
         }
     }
-    
+    #slider{
+        height: 3px;
+        width: 80px;
+        background-color: #E94040;
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        z-index: 1000;
+        transition: 0.3s ease;
+    }
 
 }
