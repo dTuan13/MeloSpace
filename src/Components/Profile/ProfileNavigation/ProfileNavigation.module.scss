@@ -3,7 +3,7 @@
     justify-content: space-between;
     align-items: center;
     margin-top: 25px;
-    border-bottom: 1px solid #6E6C6C;
+    border-bottom: 0.5px solid #6E6C6C;
     position: relative;
     ul{
         display: flex;
@@ -12,18 +12,19 @@
         li{
             margin: 0;
             list-style: none;
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 18px;
+            font-weight: 500;
      
             // border-bottom: 3px solid #E94040
-            margin-right: 40px;
+            margin-right: 35px;
             padding: 5px;
             padding-left: 0;
+            color: #202020;
             &:hover{
                 cursor: pointer;
             }
             &:active{
-      
+                
             }
         }
         a{
@@ -35,9 +36,10 @@
         display: flex;
         .NavButton{
             height: 25px;
-            font-size: 15;
+            font-size: 15px;
+            font-weight: 500;
             color: #565252;
-            padding: 0.3rem 0.6rem;
+            padding: 0.3rem 0.8rem;
             background-color: transparent;
             outline: none;
             border: 1px solid #535050;
@@ -50,7 +52,7 @@
     }
     #slider{
         height: 3px;
-        width: 80px;
+        width: 68px;
         background-color: #E94040;
         position: absolute;
         bottom: -1px;

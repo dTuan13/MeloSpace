@@ -2,21 +2,17 @@ import React, { useEffect, useState, useContext, useRef } from 'react'
 import styles from './MusicController.module.scss'
 import instance, * as request from '../../api'
 import {GlobalContext} from '../../Context';
-import { Repeat, Shuffle, PlayArrow, Pause, SkipNext, SkipPrevious, Mic, List,  VolumeUp, VolumeDown, VolumeOff  } from '@mui/icons-material'
+import { Repeat, Shuffle, PlayArrow, Pause, SkipNext, SkipPrevious, Mic, List,  VolumeUp, VolumeDown, VolumeOff, AddCircle  } from '@mui/icons-material'
 const MusicControl = () => {
     const [duration, setDuration] = useState(0)
     const [durationLeft, setDurationLeft] = useState(100)
     const [currentTime, setCurrentTime] = useState(0)
-    const [isPlaying, togglePlaying] = useState(true)
+    const [isPlaying, togglePlaying] = useState(false)
     const [value, setValue] = useState(0)
     const [onUpdate, setUpdate] = useState(1)
-    const [onhover, setOnHover] = useState(false)
     const [change, setChange] = useState(false)
-    const [rotation, setRotation] = useState(0)
     const getContext = useContext(GlobalContext)
     const [volumeValue, setVolume] = useState(50)
-    const [degree, setDegree] = useState(0);
-    const rotationRef = useRef(null);
     const au = useRef()
     const records = [
         {
@@ -272,7 +268,7 @@ const MusicControl = () => {
             const crs = getContext.currentSong
             const index = getContext.playlist.findIndex(item => item.RecordURL === crs.RecordURL)
             getContext.setCurrentSong(getContext.playlist[index+1])
-            togglePlaying(true)
+            
         }
         catch{
             setChange(true)
@@ -284,17 +280,16 @@ const MusicControl = () => {
             const index = getContext.playlist.findIndex(item => item.RecordURL === crs.RecordURL)
             getContext.setCurrentSong(getContext.playlist[index-1])
             
-            togglePlaying(true)
+           
         }
         catch {
             setChange(true)
         }
     }
 
-    const statusSong = () => {
-        isPlaying === true ? au.current.pause() : au.current.play()
-    
-    }
+    useEffect(() => {
+        // isPlaying === true ? au.current.play() : au.current.pause()
+    }, [isPlaying])
 
     useEffect(() =>{
         (async () =>{
@@ -305,9 +300,6 @@ const MusicControl = () => {
                 getContext.setPlaylist(records)
                 getContext.setCurrentSong(records[5])
                 setChange(false)
-            togglePlaying(true)
-
-                statusSong()
             } catch{
                 setChange(true)
             }
@@ -322,38 +314,23 @@ const MusicControl = () => {
         
     }, [onUpdate])
     
-    useEffect(() => {
-        if (isPlaying && !document.hidden) {
-                rotationRef.current = setInterval(() => {
-                setDegree(prevDegree => (prevDegree + 10));
-            }, 120); 
-        } 
-        else {
-            if (rotationRef.current) {
-                clearInterval(rotationRef.current);
-            }
-        }
-        return () => {
-            if (rotationRef.current) {
-                clearInterval(rotationRef.current);
-            }
-        };
-      }, [document.hidden]);
+
     return (
         <div className = {styles.musicControl}>
             <div className={styles.musicControlLeft}>
-                <div 
-                    id='songThumb'
-                    style={{ transform: `rotate(${degree}deg)` }}
-                    className= {`${styles.musicControllThumb} ${isPlaying ? styles.rotating : ''}`}
-                    >
-                    <img src={getContext.currentSong.RecordThumb} alt="" />
+                <div className={styles.left}>
+                    <div 
+                        className= {`${styles.musicControllThumb} ${isPlaying ? styles.rotating : ''}`}
+                        >
+                        <img src={getContext.currentSong.RecordThumb} alt="" />
 
+                    </div>
+                    <ul className= {styles.musicControllSub}>
+                        <li className= {styles.musicControllSongName}>{getContext.currentSong.RecordName}</li>
+                        <li className= {styles.musicControllSongArtist}>Toan</li>
+                    </ul>
                 </div>
-                <ul className= {styles.musicControllSub}>
-                    <li className= {styles.musicControllSongName}>{getContext.currentSong.RecordName}</li>
-                    <li className= {styles.musicControllSongArtist}>Toan</li>
-                </ul>
+                <AddCircle className={styles.addIcon}/>
             </div>
 
             <div className= {styles.musicControlCenter}>
@@ -371,9 +348,8 @@ const MusicControl = () => {
                         />
                     </div>
                     <div 
-                        onClick={() => {statusSong(); togglePlaying(!isPlaying)} }>
+                        onClick={() => {togglePlaying(!isPlaying)} }>
                         {isPlaying === true ? 
-
                         <Pause 
                             className= {`${styles.musicControllBtnItem} ${styles.playPauseIcon}`}
                         /> :
@@ -391,17 +367,16 @@ const MusicControl = () => {
                     </div>
                     <div>
                         <Repeat 
-                        className= {`${styles.musicControllBtnItem} ${styles.other}`}
+                            className= {`${styles.musicControllBtnItem} ${styles.other}`}
+                            style={{margin: 0}}
                         />
                     </div>
                 </div>
                 <div className= {styles.musicControllTimeline}>
                     <span>{convertToMinutes(currentTime)}</span>
                     <input 
-                        id='inputRange' type="range" step='0.55' min='0' max='100'
+                        id='inputRange' type="range" step='0.555' min='0' max='100'
                         style={{ background : `linear-gradient(to right, #f50 ${value}%, #ccc ${value}%)` }}
-                        onMouseEnter={() => {setOnHover(true)}}
-                        onMouseLeave={() => {setOnHover(false)}}
                         onInput = {(e) => {
                             setCurrentTime((e.target.value / 100) * duration)
                             try{
@@ -418,7 +393,6 @@ const MusicControl = () => {
                         onTimeUpdate={() => {setUpdate(Math.random())}}
                         src= {getContext.currentSong.RecordURL ? getContext.currentSong.RecordURL : '' }
                         id="myAudio" 
-                        autoPlay = {true}
                         type="audio/mp3">
                     </audio>
                     <span>{`${convertToMinutes(durationLeft)}`}</span>
@@ -430,10 +404,10 @@ const MusicControl = () => {
                 <List 
                     className= {styles.rightIcon}/>
                 {   
+            
                     volumeValue < 0.1 ? <VolumeOff className= {styles.rightIcon}/> :
                         <VolumeUp className= {styles.rightIcon}/>
                 }
-                np
                 <input 
                     type="range" step='0.5' min='0' max='100'
                     style={{ background : `linear-gradient(to right, #1e1e1e ${volumeValue}%, #d9d9d9 ${volumeValue}%)` }}

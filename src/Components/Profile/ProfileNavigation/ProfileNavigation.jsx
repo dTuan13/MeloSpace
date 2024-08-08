@@ -12,25 +12,25 @@ const ProfileNavigation = () => {
                 <Link to='/profile/record'
                     onClick={() => {setActive(0)}}>
                     <li 
-                        style={{color: active === 0 ? '#E94040' : '#6E6C6C'}}
+                        style={{color: active === 0 ? '#E94040' : '#202020'}}
                         >Bản ghi</li>
                 </Link>
                 <Link to='/profile/album'
                 onClick={() => {setActive(1)}}>
                     <li
-                        style={{color: active === 1 ? '#E94040' : '#6E6C6C'}}
+                        style={{color: active === 1 ? '#E94040' : '#202020'}}
                         >Albums</li>
                 </Link>
                 <Link to='/profile/playlist'
-                onClick={() => {setActive(2)}}>
+                onClick={() => {setActive(2.05)}}>
                     <li
-                        style={{color: active === 2 ? '#E94040' : '#6E6C6C'}}
+                        style={{color: active === 2.05 ? '#E94040' : '#202020'}}
                         >Playlists</li>
                 </Link>
                 <Link to='/profile/repost'
-                onClick={() => {setActive(3.15)}}>
+                    onClick={() => {setActive(3.15)}}>
                     <li
-                        style={{color: active === 3.15 ? '#E94040' : '#6E6C6C'}}
+                        style={{color: active === 3.15 ? '#E94040' : '#202020'}}
                         >Đăng lại</li>
                 </Link>
 
@@ -47,7 +47,7 @@ const ProfileNavigation = () => {
             </div>
             <span 
                 id = {styles.slider} 
-                style={{left: `calc(111px * ${active})`}} 
+                style={{left: `calc(99px * ${active})`}} 
             >
             </span>
         </div>

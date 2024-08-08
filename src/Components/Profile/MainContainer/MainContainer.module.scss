@@ -1,13 +1,12 @@
 .MainContainer{
     height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(2, 542px);
     padding-top: 17px;
+    justify-content: center;
+    position: relative;
     .RecordItem{
-        flex: 0 0 530px;
-        width: 530px;
+    
         padding: 17px;
         display: flex;
         justify-content: space-between;
@@ -18,8 +17,8 @@
             align-items: center;
 
             img{
-                height: 80px;
-                width: 80px;
+                height: 60px;
+                width: 60px;
                 border-radius: 5px;
                 margin-right: 22px;
             }
@@ -32,17 +31,19 @@
                     margin-right: 22px;
                 }
                 .recordName{
-                    color: #FF0808;
-                    font-size: 17px;
-                    margin-bottom: 3px;
+                    color: #2B2A2A;
+                    font-size: 16px;
+                    font-weight: 500;
+                    margin-bottom: 6px;
                 }
                 .Reaction{
                    
                     display: flex;
                     align-items: center;
+                    font-size: 12px;
                     .icon{
                         color: #848080;
-                        font-size: 18px;
+                        font-size: 20px;
                         margin-right: 3px;
                     }
                 }
@@ -57,7 +58,10 @@
     }
     }
     .noDataFound{
-        transform: translateY(30%);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -73,17 +77,19 @@
             justify-content: center;
             span{
                 color: #474545;
-                font-size: 20px;
-
+                font-size: 18px;
+                font-weight: 500;
+                margin-bottom: 10px;
             }
             button{
                 outline: none;
                 border: none;
                 background-color: #EC4E4E;
                 height: 42px;
-                width: 130px;
-                font-size: 20px;
+                width: 119px;
+                font-size: 18px;
                 border-radius: 5px;
+                color: #fff
             }
         }
     }
