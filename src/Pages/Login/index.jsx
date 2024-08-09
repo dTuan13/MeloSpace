@@ -120,6 +120,7 @@ const Login = () => {
             Đăng ký MeloSpace
           </a>
         </p>
+        <br />
       </div>
     </div>
   );
