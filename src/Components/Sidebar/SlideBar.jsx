@@ -14,39 +14,21 @@ import PlayList from './playList/PlayList';
 const playListItem = [
     {
         id: 1,
-        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
-        title: 'Bài ca hay',
+        url: 'https://i.scdn.co/image/ab67616100005174e1cbc9e7ba8fbc5d7738ea51',
+        title: 'Yêu là tha thu',
         date: '3 ngày',
     },
     {
         id: 2,
         url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
-        title: 'Bài ca hay',
-        date: '3 ngày',
+        title: 'Chia cách bình yên',
+        date: 'Hôm qua',
     },
     {
         id: 3,
-        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
-        title: 'Bài ca hay',
-        date: '3 ngày',
-    },
-    {
-        id: 4,
-        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
-        title: 'Bài ca hay',
-        date: '3 ngày',
-    },
-    {
-        id: 5,
-        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
-        title: 'Bài ca hay',
-        date: '3 ngày',
-    },
-    {
-        id: 6,
-        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
-        title: 'Bài ca hay',
-        date: '3 ngày',
+        url: 'https://i.scdn.co/image/ab6761610000517410e658dffbc09c792ad3969c',
+        title: 'Đừng làm trái tim anh đau',
+        date: '6 ngày trước',
     },
 ];
 
@@ -136,7 +118,7 @@ const SlideBar = () => {
 };
 
 const Container = styled.div`
-    width: 340px;
+    width: var(--limit-width);
     background: white;
     position: sticky;
     display: flex;
@@ -165,9 +147,8 @@ const Container = styled.div`
         width: 24px;
     }
     .NavBar {
-        width: 330px;
+        width: 100%;
         background-color: white;
-        z-index: 10000;
     }
     .logo {
         height: 10%;
@@ -183,14 +164,12 @@ const Container = styled.div`
     }
 
     .playList {
-        padding-left: 24px;
         background-color: #ffffff;
-        padding-top: 10px;
     }
 
     .playList_active {
         position: relative;
-        height: 35px;
+        height: 60px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -220,10 +199,13 @@ const Container = styled.div`
     }
 
     .listItem {
-        overflow-y: scroll;
-        max-height: 300px;
-        width: 360px;
+        max-height: 300px;        
+        overflow: auto; 
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+        width: var(--limit-width)
         padding-left: 0;
+        padding-right: 10px;
     }
 
     .play_list {
@@ -236,7 +218,7 @@ const Container = styled.div`
         background-color: #e1e0e0;
         position: fixed;
         top: 0;
-        left: 338px;
+        left: calc(var(--limit-width) - 2px);
     }
 `;
 

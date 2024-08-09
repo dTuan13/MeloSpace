@@ -6,12 +6,13 @@ const PlayListContainer = styled.div`
     height: 60px;
 
     .playList_item {
-        padding-left: 5px;
+        padding: 0 10px 0 18px;
         display: flex;
         flex-direction: row;
         height: 100%;
         cursor: pointer;
         align-items: center;
+        border-radius: 4px;
     }
     .item_img {
         height: 50px;
@@ -20,23 +21,24 @@ const PlayListContainer = styled.div`
     }
     .item_img img {
         width: 45px;
+        height: 45px;
         border-radius: 8px;
     }
 
     .playList_info {
         width: 100%;
         height: max-content;
-        padding: 8px;
+        padding: 10px;
     }
     .playList_title {
-        font-size: 15px;
+        font-size: 14px;
         color: #272626;
         font-weight: 500;
+        margin-bottom: 1px;
     }
     .playList_date {
         font-size: 12px;
-        color: #0c0b0b;
-        font-weight: lighter;
+        color: #4a4545;
     }
     .playList_item:hover {
         background-color: #f0f0f0;
@@ -61,8 +63,8 @@ const PlayList = ({ url = '', title = '', date = '' }) => {
                     <img src={`${url}`} alt="" className="" />
                 </div>
                 <div className="playList_info">
-                    <div className="playList_title">{`${title}`}</div>
-                    <h6 className="playList_date">{`${date}`}</h6>
+                    <h4 className="playList_title">{`${title}`}</h4>
+                    <span className="playList_date">{`${date}`}</span>
                 </div>
             </li>
         </PlayListContainer>

@@ -3,7 +3,7 @@ import TocMenuItem from './TocMenuItem ';
 import styled from 'styled-components';
 
 const TocMenuSectionUl = styled.ul`
-    background: #000000;
+    background: #292727;
     color: white;
     li {
         padding: 10px 8px 0;
