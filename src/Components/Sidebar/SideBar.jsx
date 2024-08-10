@@ -53,7 +53,7 @@ const initialNavBar = [
     },
 ];
 
-const SlideBar = () => {
+const SideBar = () => {
     const [navBar, setNavBar] = useState(initialNavBar);
     const [showInput, setShowInput] = useState(false);
     const inputRef = useRef(null);
@@ -222,4 +222,4 @@ const Container = styled.div`
     }
 `;
 
-export default SlideBar;
+export default SideBar;

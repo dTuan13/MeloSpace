@@ -4,10 +4,13 @@
     flex: 1;
     align-items: center;
     justify-content: space-between;
-    padding: 0 50px 0 100px;
-    position: sticky;
+    padding: 0 50px 0 162px;
+    position: fixed;
+    right: 0;
+    width: calc(100% - var(--limit-width));
     top: 0;
     background-color: #fff;
+    z-index: 1000;
 }
 
 .Information {
