@@ -1,0 +1,14 @@
+.slider {
+    display: flex;
+    gap: 14px;
+}
+
+.slider-Link {
+    width: 33%;
+    border-radius: 15px;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+    }
+}

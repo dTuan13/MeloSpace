@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell } from '@fortawesome/free-solid-svg-icons';
+import { faBell } from '@fortawesome/free-regular-svg-icons';
 import Quantity from '../Quantity/Quantity';
 import classNames from 'classnames/bind';
 import styles from './Notify.module.scss';

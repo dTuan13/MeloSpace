@@ -65,11 +65,6 @@
 }
 
 .login {
-    margin-right: 15px;
-}
-
-.login,
-.register {
     height: 34px;
     background-color: #e55353;
     outline: none;
@@ -83,7 +78,6 @@
     font-size: 16px;
 }
 
-.login:hover,
-.register:hover {
+.login:hover {
     background-color: rgb(208, 48, 48);
 }

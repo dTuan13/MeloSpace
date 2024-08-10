@@ -3,8 +3,7 @@ import { Routes, Route, Outlet } from 'react-router-dom';
 import PrivateRoutes from './PrivateRoutes';
 import Home from '../Pages/Home';
 import Login from '../Pages/Login';
-import DefaultContent from '../Components/DefaultContent';
-import Search from '../Components/Search/index';
+import DefaultContent from '../Pages/Home/DefaultContent/DefaultContent';
 import Profile from '../Components/Profile/Profile';
 import MainContainer from '../Components/Profile/MainContainer/MainContainer';
 const index = () => {
@@ -16,7 +15,6 @@ const index = () => {
                 <Route path="/" element={<Home />}>
                     <Route index element={<DefaultContent />} />
                     <Route path="/home" element={<DefaultContent />} />
-                    <Route path="/search" element={<Search />} />
                     <Route path="/profile" element={<Profile />}>
                         <Route path="/profile/record" element={<MainContainer url="apiToRecord" />} />
                         <Route path="/profile/album" element={<MainContainer url="apiToAlbum" />} />

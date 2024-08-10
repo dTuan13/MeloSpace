@@ -33,7 +33,7 @@ const AddButton = styled.button`
         top: 0;
         background: #333333;
         color: #cccccc;
-        padding: 5px;
+        padding: 4px;
         border-radius: 3px;
         white-space: nowrap;
         opacity: ${({ hovering }) => (hovering ? '1' : '0')};
