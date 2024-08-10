@@ -35,9 +35,6 @@ function UserProfile() {
                     <button className={cx('login')} onClick={() => navigate('/login')}>
                         Đăng nhập{' '}
                     </button>
-                    <button className={cx('register')} onClick={() => navigate('/register')}>
-                        Đăng ký{' '}
-                    </button>
                 </div>
             )}
         </div>
