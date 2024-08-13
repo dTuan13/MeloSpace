@@ -1,8 +1,9 @@
-import React, { useState, createContext } from 'react'
+import React, { useState, createContext, useEffect } from 'react'
 export const GlobalContext = createContext()
 
 export const Providers = ({children}) => {
-    const [auth, setAuth] = useState('')
+
+    const [auth, setAuth] = useState()
     const [playlist, setPlaylist] = useState()
     const [currentSong, setCurrentSong] = useState({})
     const values = {
@@ -13,6 +14,13 @@ export const Providers = ({children}) => {
         playlist,
         setPlaylist
     }
+    useEffect(()=>{
+        if(localStorage.getItem('access_token')){
+            const userInfo = JSON.parse(atob(localStorage.getItem('access_token').split('.')[1]))
+            setAuth(userInfo)
+        }
+       
+    },[])
     return (
         <GlobalContext.Provider value={values}>
             {children}

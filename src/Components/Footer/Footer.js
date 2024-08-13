@@ -6,12 +6,18 @@ import TwitterIcon from '@mui/icons-material/Twitter';
 import { useState } from 'react';
 
 const ContainFoot = styled.div`
-    position: absolute;
-    bottom: 100px;
     background: #ffffff;
-    left: 340px;
-    /* width: 1010px; */
-    flex: 1;
+    margin-bottom: 100px;
+    margin-top: 70px;
+
+    .line {
+        width: 94.8%;
+        height: 1px;
+        background-color: #f2efef;
+        margin-left: 28px;
+        margin-bottom: 14px;
+    }
+
     Link {
         text-decoration: none;
         list-style-type: none;
@@ -50,6 +56,7 @@ const Footer = () => {
 
     return (
         <ContainFoot>
+            <div className="line"></div>
             <Box
                 component="footer"
                 sx={{

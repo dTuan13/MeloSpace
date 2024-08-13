@@ -16,253 +16,262 @@ const MusicControl = () => {
     const au = useRef()
     const records = [
         {
-            "AlbumID": null,
-            "AuthID": 0,
-            "CateID": 2,
-            "CommentID": null,
-            "Duration": null,
-            "LikeQuantity": 0,
-            "Lyrics": null,
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 1,
-            "RecordName": "Âm thầm bên em",
-            "RecordThumb": "https://photo-resize-zmp3.zmdcdn.me/w600_r300x169_jpeg/thumb_video/4/0/40ea78cbbfd42bf99ec1ff3498c26aae_1483418182.jpg",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/Âm Thầm Bên Em - OFFICIAL MUSIC VIDEO - Sơn Tùng M-TP.mp3",
-            "View": 0,
-            "deleted": 0,
-            "guid": "1"
+            AlbumID: null,
+            AuthID: 0,
+            CateID: 2,
+            CommentID: null,
+            Duration: null,
+            LikeQuantity: 0,
+            Lyrics: null,
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 1,
+            RecordName: 'Âm thầm bên em',
+            RecordThumb:
+                'https://photo-resize-zmp3.zmdcdn.me/w600_r300x169_jpeg/thumb_video/4/0/40ea78cbbfd42bf99ec1ff3498c26aae_1483418182.jpg',
+            RecordURL:
+                'https://minhtoan.blob.core.windows.net/records/Âm Thầm Bên Em - OFFICIAL MUSIC VIDEO - Sơn Tùng M-TP.mp3',
+            View: 0,
+            deleted: 0,
+            guid: '1',
         },
         {
-            "AlbumID": null,
-            "AuthID": 0,
-            "CateID": 2,
-            "CommentID": null,
-            "Duration": null,
-            "LikeQuantity": 0,
-            "Lyrics": null,
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 2,
-            "RecordName": "Ánh sao và bầu trờ",
-            "RecordThumb": "https://avatar-ex-swe.nixcdn.com/mv/2021/09/09/b/8/d/9/1631156018348_268.jpg",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/Ánh Sao Và Bầu Trời - T.R.I x Cá - [Official Audio].mp3",
-            "View": 0,
-            "deleted": 0,
-            "guid": "2"
+            AlbumID: null,
+            AuthID: 0,
+            CateID: 2,
+            CommentID: null,
+            Duration: null,
+            LikeQuantity: 0,
+            Lyrics: null,
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 2,
+            RecordName: 'Ánh sao và bầu trờ',
+            RecordThumb: 'https://avatar-ex-swe.nixcdn.com/mv/2021/09/09/b/8/d/9/1631156018348_268.jpg',
+            RecordURL:
+                'https://minhtoan.blob.core.windows.net/records/Ánh Sao Và Bầu Trời - T.R.I x Cá - [Official Audio].mp3',
+            View: 0,
+            deleted: 0,
+            guid: '2',
         },
         {
-            "AlbumID": null,
-            "AuthID": 0,
-            "CateID": 2,
-            "CommentID": null,
-            "Duration": null,
-            "LikeQuantity": 0,
-            "Lyrics": null,
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 3,
-            "RecordName": "Có hẹn với thanh xuân",
-            "RecordThumb": "https://avatar-ex-swe.nixcdn.com/song/share/2021/07/16/f/0/d/f/1626425507332.jpg",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/có hẹn với thanh xuân - GREY D, HOÀNG DŨNG, ORANGE, SUNI HẠ LINH & TLINH - Hương Mùa Hè show (tập 3).mp3",
-            "View": 0,
-            "deleted": 0,
-            "guid": "2"
+            AlbumID: null,
+            AuthID: 0,
+            CateID: 2,
+            CommentID: null,
+            Duration: null,
+            LikeQuantity: 0,
+            Lyrics: null,
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 3,
+            RecordName: 'Có hẹn với thanh xuân',
+            RecordThumb: 'https://avatar-ex-swe.nixcdn.com/song/share/2021/07/16/f/0/d/f/1626425507332.jpg',
+            RecordURL:
+                'https://minhtoan.blob.core.windows.net/records/có hẹn với thanh xuân - GREY D, HOÀNG DŨNG, ORANGE, SUNI HẠ LINH & TLINH - Hương Mùa Hè show (tập 3).mp3',
+            View: 0,
+            deleted: 0,
+            guid: '2',
         },
         {
-            "AlbumID": null,
-            "AuthID": 0,
-            "CateID": 2,
-            "CommentID": null,
-            "Duration": null,
-            "LikeQuantity": 0,
-            "Lyrics": null,
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 4,
-            "RecordName": "Exit sign",
-            "RecordThumb": "https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/cover/d/4/a/c/d4acc6335d41bd7164173312c6123706.jpg",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/HIEUTHUHAI - Exit Sign (prod. by Kewtiie) ft. marzuz [Official Lyric Video].mp3",
-            "View": 0,
-            "deleted": 0,
-            "guid": "3"
+            AlbumID: null,
+            AuthID: 0,
+            CateID: 2,
+            CommentID: null,
+            Duration: null,
+            LikeQuantity: 0,
+            Lyrics: null,
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 4,
+            RecordName: 'Exit sign',
+            RecordThumb:
+                'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/cover/d/4/a/c/d4acc6335d41bd7164173312c6123706.jpg',
+            RecordURL:
+                'https://minhtoan.blob.core.windows.net/records/HIEUTHUHAI - Exit Sign (prod. by Kewtiie) ft. marzuz [Official Lyric Video].mp3',
+            View: 0,
+            deleted: 0,
+            guid: '3',
         },
         {
-            "AlbumID": null,
-            "AuthID": 0,
-            "CateID": 1,
-            "CommentID": null,
-            "Duration": null,
-            "LikeQuantity": 0,
-            "Lyrics": null,
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 5,
-            "RecordName": "Không thể say",
-            "RecordThumb": "https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/cover/d/4/a/c/d4acc6335d41bd7164173312c6123706.jpg",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/HIEUTHUHAI - Không Thể Say (prod. by Kewtiie) l Official Video.mp3",
-            "View": 0,
-            "deleted": 0,
-            "guid": "4"
+            AlbumID: null,
+            AuthID: 0,
+            CateID: 1,
+            CommentID: null,
+            Duration: null,
+            LikeQuantity: 0,
+            Lyrics: null,
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 5,
+            RecordName: 'Không thể say',
+            RecordThumb:
+                'https://photo-resize-zmp3.zadn.vn/w600_r1x1_jpeg/cover/d/4/a/c/d4acc6335d41bd7164173312c6123706.jpg',
+            RecordURL:
+                'https://minhtoan.blob.core.windows.net/records/HIEUTHUHAI - Không Thể Say (prod. by Kewtiie) l Official Video.mp3',
+            View: 0,
+            deleted: 0,
+            guid: '4',
         },
         {
-            "AlbumID": null,
-            "AuthID": 0,
-            "CateID": 1,
-            "CommentID": null,
-            "Duration": null,
-            "LikeQuantity": 0,
-            "Lyrics": null,
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 6,
-            "RecordName": "Lời tạm biệt chưa nói",
-            "RecordThumb": "https://i.ytimg.com/vi/B9PDYlaV84w/maxresdefault.jpg",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/lời tạm biệt chưa nói - GREY D & ORANGE, Kai Đinh - Hương Mùa Hè show (tập 3).mp3",
-            "View": 0,
-            "deleted": 0,
-            "guid": "5"
+            AlbumID: null,
+            AuthID: 0,
+            CateID: 1,
+            CommentID: null,
+            Duration: null,
+            LikeQuantity: 0,
+            Lyrics: null,
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 6,
+            RecordName: 'Lời tạm biệt chưa nói',
+            RecordThumb: 'https://i.ytimg.com/vi/B9PDYlaV84w/maxresdefault.jpg',
+            RecordURL:
+                'https://minhtoan.blob.core.windows.net/records/lời tạm biệt chưa nói - GREY D & ORANGE, Kai Đinh - Hương Mùa Hè show (tập 3).mp3',
+            View: 0,
+            deleted: 0,
+            guid: '5',
         },
         {
-            "AlbumID": null,
-            "AuthID": 0,
-            "CateID": 2,
-            "CommentID": null,
-            "Duration": null,
-            "LikeQuantity": 0,
-            "Lyrics": null,
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 7,
-            "RecordName": "Ngày đẹp trời để nói chia tay",
-            "RecordThumb": "https://i.ytimg.com/vi/GApctPPK1cI/maxresdefault.jpg",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/LOU HOÀNG - NGÀY ĐẸP TRỜI ĐỂ NÓI CHIA TAY (Official Music Video).mp3",
-            "View": 0,
-            "deleted": 0,
-            "guid": "9"
+            AlbumID: null,
+            AuthID: 0,
+            CateID: 2,
+            CommentID: null,
+            Duration: null,
+            LikeQuantity: 0,
+            Lyrics: null,
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 7,
+            RecordName: 'Ngày đẹp trời để nói chia tay',
+            RecordThumb: 'https://i.ytimg.com/vi/GApctPPK1cI/maxresdefault.jpg',
+            RecordURL:
+                'https://minhtoan.blob.core.windows.net/records/LOU HOÀNG - NGÀY ĐẸP TRỜI ĐỂ NÓI CHIA TAY (Official Music Video).mp3',
+            View: 0,
+            deleted: 0,
+            guid: '9',
         },
         {
-            "AlbumID": null,
-            "AuthID": 0,
-            "CateID": 2,
-            "CommentID": null,
-            "Duration": null,
-            "LikeQuantity": 0,
-            "Lyrics": null,
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 8,
-            "RecordName": "Em là",
-            "RecordThumb": "https://i.ytimg.com/vi/bpOwZ68fcQE/maxresdefault.jpg",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/MONO - Em Là (Official Music Video).mp3",
-            "View": 0,
-            "deleted": 0,
-            "guid": "6"
+            AlbumID: null,
+            AuthID: 0,
+            CateID: 2,
+            CommentID: null,
+            Duration: null,
+            LikeQuantity: 0,
+            Lyrics: null,
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 8,
+            RecordName: 'Em là',
+            RecordThumb: 'https://i.ytimg.com/vi/bpOwZ68fcQE/maxresdefault.jpg',
+            RecordURL: 'https://minhtoan.blob.core.windows.net/records/MONO - Em Là (Official Music Video).mp3',
+            View: 0,
+            deleted: 0,
+            guid: '6',
         },
         {
-            "AlbumID": null,
-            "AuthID": 0,
-            "CateID": 2,
-            "CommentID": null,
-            "Duration": null,
-            "LikeQuantity": 0,
-            "Lyrics": null,
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 9,
-            "RecordName": "Nến và hoa",
-            "RecordThumb": "https://i.ytimg.com/vi/D164TFHeOcI/maxresdefault.jpg",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/Rhymastic - Nến Và Hoa (Official Audio).mp3",
-            "View": 0,
-            "deleted": 0,
-            "guid": "7"
+            AlbumID: null,
+            AuthID: 0,
+            CateID: 2,
+            CommentID: null,
+            Duration: null,
+            LikeQuantity: 0,
+            Lyrics: null,
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 9,
+            RecordName: 'Nến và hoa',
+            RecordThumb: 'https://i.ytimg.com/vi/D164TFHeOcI/maxresdefault.jpg',
+            RecordURL: 'https://minhtoan.blob.core.windows.net/records/Rhymastic - Nến Và Hoa (Official Audio).mp3',
+            View: 0,
+            deleted: 0,
+            guid: '7',
         },
         {
-            "AlbumID": null,
-            "AuthID": 0,
-            "CateID": 2,
-            "CommentID": null,
-            "Duration": null,
-            "LikeQuantity": 0,
-            "Lyrics": null,
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 10,
-            "RecordName": "Đừng làm trái tim anh đau",
-            "RecordThumb": "https://i.scdn.co/image/ab67616d0000b273a1bc26cdd8eecd89da3adc39",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/SƠN TÙNG M-TP - ĐỪNG LÀM TRÁI TIM ANH ĐAU - OFFICIAL MUSIC VIDEO.mp3",
-            "View": 0,
-            "deleted": 0,
-            "guid": "8"
+            AlbumID: null,
+            AuthID: 0,
+            CateID: 2,
+            CommentID: null,
+            Duration: null,
+            LikeQuantity: 0,
+            Lyrics: null,
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 10,
+            RecordName: 'Đừng làm trái tim anh đau',
+            RecordThumb: 'https://i.scdn.co/image/ab67616d0000b273a1bc26cdd8eecd89da3adc39',
+            RecordURL:
+                'https://minhtoan.blob.core.windows.net/records/SƠN TÙNG M-TP - ĐỪNG LÀM TRÁI TIM ANH ĐAU - OFFICIAL MUSIC VIDEO.mp3',
+            View: 0,
+            deleted: 0,
+            guid: '8',
         },
         {
-            "AlbumID": "91951e958d25b4f3f8754165e680527256da8de9c52f9f1e56fdf415576bf8ba",
-            "AuthID": 1,
-            "CateID": 1,
-            "CommentID": null,
-            "Duration": 123,
-            "LikeQuantity": 0,
-            "Lyrics": "abc",
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 12,
-            "RecordName": "Am Tham ben em",
-            "RecordThumb": "none",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/Am%20Tham%20ben%20em",
-            "View": 0,
-            "deleted": 0,
-            "guid": "3647d7a35b9bdf0e09c7240913aa29cfdcfe28dc5a0433c178a2decb7c042848"
+            AlbumID: '91951e958d25b4f3f8754165e680527256da8de9c52f9f1e56fdf415576bf8ba',
+            AuthID: 1,
+            CateID: 1,
+            CommentID: null,
+            Duration: 123,
+            LikeQuantity: 0,
+            Lyrics: 'abc',
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 12,
+            RecordName: 'Am Tham ben em',
+            RecordThumb: 'none',
+            RecordURL: 'https://minhtoan.blob.core.windows.net/records/Am%20Tham%20ben%20em',
+            View: 0,
+            deleted: 0,
+            guid: '3647d7a35b9bdf0e09c7240913aa29cfdcfe28dc5a0433c178a2decb7c042848',
         },
         {
-            "AlbumID": "0",
-            "AuthID": 1,
-            "CateID": 1,
-            "CommentID": null,
-            "Duration": 123,
-            "LikeQuantity": 0,
-            "Lyrics": "abc",
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 13,
-            "RecordName": "Am Tham ben em",
-            "RecordThumb": "none",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/Am%20Tham%20ben%20em",
-            "View": 0,
-            "deleted": 0,
-            "guid": "ddb32538f4e425099be0bd9bbc09bed7150152f632c3e6cabc038d41d4cfe46d"
+            AlbumID: '0',
+            AuthID: 1,
+            CateID: 1,
+            CommentID: null,
+            Duration: 123,
+            LikeQuantity: 0,
+            Lyrics: 'abc',
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 13,
+            RecordName: 'Am Tham ben em',
+            RecordThumb: 'none',
+            RecordURL: 'https://minhtoan.blob.core.windows.net/records/Am%20Tham%20ben%20em',
+            View: 0,
+            deleted: 0,
+            guid: 'ddb32538f4e425099be0bd9bbc09bed7150152f632c3e6cabc038d41d4cfe46d',
         },
         {
-            "AlbumID": "0",
-            "AuthID": 1,
-            "CateID": 1,
-            "CommentID": null,
-            "Duration": 123,
-            "LikeQuantity": 0,
-            "Lyrics": "abc",
-            "ModeID": 1,
-            "Public-Time": null,
-            "RecordID": 14,
-            "RecordName": "Am Tham ben em",
-            "RecordThumb": "none",
-            "RecordURL": "https://minhtoan.blob.core.windows.net/records/Am%20Tham%20ben%20em",
-            "View": 0,
-            "deleted": 0,
-            "guid": "d1f90b107266fe20cec98185f9eb6e844be7713fbb8372155e51d1fbcf206f50"
-        }
-    ]
-    const convertToMinutes = (seconds) =>{
-        if(seconds){
-            let result = ''
+            AlbumID: '0',
+            AuthID: 1,
+            CateID: 1,
+            CommentID: null,
+            Duration: 123,
+            LikeQuantity: 0,
+            Lyrics: 'abc',
+            ModeID: 1,
+            'Public-Time': null,
+            RecordID: 14,
+            RecordName: 'Am Tham ben em',
+            RecordThumb: 'none',
+            RecordURL: 'https://minhtoan.blob.core.windows.net/records/Am%20Tham%20ben%20em',
+            View: 0,
+            deleted: 0,
+            guid: 'd1f90b107266fe20cec98185f9eb6e844be7713fbb8372155e51d1fbcf206f50',
+        },
+    ];
+    const convertToMinutes = (seconds) => {
+        if (seconds) {
+            let result = '';
             let minutes = Math.floor(seconds / 60);
             let extraSeconds = parseInt(seconds % 60);
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            extraSeconds = extraSeconds< 10 ? "0" + extraSeconds : extraSeconds;
-            result += minutes + ":" + extraSeconds;
-            return result
-        }
-        else return '00:00'
-        
-    }
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            extraSeconds = extraSeconds < 10 ? '0' + extraSeconds : extraSeconds;
+            result += minutes + ':' + extraSeconds;
+            return result;
+        } else return '00:00';
+    };
     const handleNextSong = () => {
         try{
             const crs = getContext.currentSong
@@ -273,7 +282,7 @@ const MusicControl = () => {
         catch{
             setChange(true)
         }
-    }
+    };
     const handlePrevSong = () => {
         try{
             const crs = getContext.currentSong
@@ -285,26 +294,26 @@ const MusicControl = () => {
         catch {
             setChange(true)
         }
-    }
+    };
 
     useEffect(() => {
         // isPlaying === true ? au.current.play() : au.current.pause()
     }, [isPlaying])
 
-    useEffect(() =>{
-        (async () =>{
-            try {
-                // const {data} = await instance.get('/record');
-                // getContext.setPlaylist(data)
-                // getContext.setCurrentSong(data[4])
-                getContext.setPlaylist(records)
-                getContext.setCurrentSong(records[5])
-                setChange(false)
-            } catch{
-                setChange(true)
-            }
-        })()
-    },[change])
+    // useEffect(() => {
+    //     (async () => {
+    //         try {
+    //             // const {data} = await instance.get('/record');
+    //             // getContext.setPlaylist(data)
+    //             // getContext.setCurrentSong(data[4])
+    //             getContext.setPlaylist(records)
+    //             getContext.setCurrentSong(records[5])
+    //             setChange(false)
+    //         } catch{
+    //             setChange(true)
+    //         }
+    //     })();
+    // }, [change]);
 
     useEffect(() =>{
         setDuration(au.current.src ? au.current.duration : 0 )
@@ -316,7 +325,7 @@ const MusicControl = () => {
     
 
     return (
-        <div className = {styles.musicControl}>
+        <div className={styles.musicControl}>
             <div className={styles.musicControlLeft}>
                 <div className={styles.left}>
                     <div 
@@ -327,25 +336,23 @@ const MusicControl = () => {
                     </div>
                     <ul className= {styles.musicControllSub}>
                         <li className= {styles.musicControllSongName}>{getContext.currentSong.RecordName}</li>
-                        <li className= {styles.musicControllSongArtist}>Toan</li>
+                        <li className= {styles.musicControllSongArtist}></li>
                     </ul>
                 </div>
                 <AddCircle className={styles.addIcon}/>
             </div>
 
-            <div className= {styles.musicControlCenter}>
-                <div className= {styles.musicControllBtn}>
+            <div className={styles.musicControlCenter}>
+                <div className={styles.musicControllBtn}>
                     <div>
-                       <Shuffle  
-                        className= {`${styles.musicControllBtnItem} ${styles.other}`}
-                       />
+                        <Shuffle className={`${styles.musicControllBtnItem} ${styles.other}`} />
                     </div>
-                    <div 
+                    <div
                         onClick={() => {
-                            handlePrevSong()}}>
-                        <SkipPrevious 
-                        className= {`${styles.musicControllBtnItem} ${styles.prevNext}`}
-                        />
+                            handlePrevSong();
+                        }}
+                    >
+                        <SkipPrevious className={`${styles.musicControllBtnItem} ${styles.prevNext}`} />
                     </div>
                     <div 
                         onClick={() => {togglePlaying(!isPlaying)} }>
@@ -357,13 +364,12 @@ const MusicControl = () => {
                             className= {`${styles.musicControllBtnItem} ${styles.playPauseIcon}`}
                         />}
                     </div>
-                    <div 
+                    <div
                         onClick={() => {
-                            handleNextSong()
-                            }}>
-                        <SkipNext 
-                        className= {`${styles.musicControllBtnItem} ${styles.prevNext}`}
-                        />
+                            handleNextSong();
+                        }}
+                    >
+                        <SkipNext className={`${styles.musicControllBtnItem} ${styles.prevNext}`} />
                     </div>
                     <div>
                         <Repeat 
@@ -372,7 +378,7 @@ const MusicControl = () => {
                         />
                     </div>
                 </div>
-                <div className= {styles.musicControllTimeline}>
+                <div className={styles.musicControllTimeline}>
                     <span>{convertToMinutes(currentTime)}</span>
                     <input 
                         id='inputRange' type="range" step='0.555' min='0' max='100'
@@ -387,7 +393,7 @@ const MusicControl = () => {
                             }
                         }}
                         value={value ? value : 0}
-                        />
+                    />
                     <audio
                         ref={au}
                         onTimeUpdate={() => {setUpdate(Math.random())}}
@@ -412,12 +418,13 @@ const MusicControl = () => {
                     type="range" step='0.5' min='0' max='100'
                     style={{ background : `linear-gradient(to right, #1e1e1e ${volumeValue}%, #d9d9d9 ${volumeValue}%)` }}
                     onChange={(e) => {
-                        setVolume(e.target.value); 
-                        au.current.volume = e.target.value / 100
-                    }}/>
+                        setVolume(e.target.value);
+                        au.current.volume = e.target.value / 100;
+                    }}
+                />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default MusicControl
+export default MusicControl;

@@ -1,35 +1,45 @@
-import { useState } from "react";
-import { useGoogleLogin } from "@react-oauth/google";
+import { useContext, useEffect, useState } from "react";
+import { googleLogout, useGoogleLogin } from "@react-oauth/google";
 import { Google } from "@mui/icons-material";
-export default function Auth() {
+import { useNavigate } from "react-router-dom";
+import { GlobalContext } from "../../Context";
+export default function Auth({children}) {
     const [loggedIn, setLoggedIn] = useState(false);
     const [user, setUser] = useState({})
+    let navigate = useNavigate()
+    const getContext = useContext(GlobalContext)
 
     const googleLogin = useGoogleLogin({
       flow: "auth-code",
       onSuccess: async (codeResponse) => {
-        console.log(codeResponse)
-        var loginDetails = await getUserInfo(codeResponse);
-        console.log(loginDetails.access_token);
-      },
+        try {
+          var loginDetails = await getUserInfo(codeResponse);
+          localStorage.setItem('access_token', loginDetails.access_token)
+          const userInfo = JSON.parse(atob(loginDetails.access_token.split('.')[1]))
+          getContext.setAuth(userInfo)
+          navigate('/')
+        } catch (error) {
+          
+        }
+       
+      },  
+      onError: () => {
+        console.log('fail')
+      }
     });
-  
+    return (
+      <div onClick={() => googleLogin()}>
+        {children}
+      </div>
+ 
+    )
     const handleLogout = () => {
       setLoggedIn(false);
       setUser(false);
     };
-  
-    return (
-      <>
-          <div
-            onClick={() => googleLogin()}>
-            Login with Google
-            <Google />
-          </div>
-        
-      </>
-    );
   }
+
+
     async function getUserInfo(codeResponse) {
         var response = await fetch("http://localhost:5000/google_login", {
         method: "POST",

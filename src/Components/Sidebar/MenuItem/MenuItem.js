@@ -8,8 +8,6 @@ const MenuContainer = styled.div`
     align-items: center;
     position: relative;
     width: 100%;
-    height: 50px;
-    font-size: 18px;
     svg {
         height: 24px !important;
         width: 24px !important;
@@ -22,7 +20,7 @@ const MenuContainer = styled.div`
     }
 
     .menu_item--container {
-        height: 40px;
+        height: 48px;
         text-align: center;
         align-items: center;
         display: flex;
@@ -35,6 +33,7 @@ const MenuContainer = styled.div`
         margin-left: 5px;
         color: #161823;
         font-weight: bold;
+        font-size: 16px;
     }
 
     .active {
