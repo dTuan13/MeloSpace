@@ -1,52 +1,65 @@
 import React, { useContext, useState } from 'react';
 import styles from'./Login.module.scss';
 import instance from '../../api';
+import Auth from '../../Components/Auth';
 import { useNavigate } from 'react-router-dom';
-import { GlobalContext } from '../../Context';
 import gg from './images/gg.svg';
 import fb from './images/fb.svg';
 import lg from './images/lg.png';
+import { faRandom } from '@fortawesome/free-solid-svg-icons';
+import {GlobalContext} from '../../Context';
 
 
 
-const Button = ({ label, logo }) => (
-  <button type="button" className={styles.btn}>
+const Button = ({ label, logo, require }) => (
+  require === true ?  
+  <Auth>
+    <button type="button" className={styles.btn}>
+        {logo && <img src={logo} alt={label} className={styles.btnLogo} />}
+        <span>{label}</span>
+      </button>
+  </Auth>
+  : <button type="button" className={styles.btn}>
     {logo && <img src={logo} alt={label} className={styles.btnLogo} />}
-    
     <span>{label}</span>
   </button>
+ 
 );
 
 const Login = () => {
   const [userName, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const getAuthContext = useContext(GlobalContext);
+  const [invalid, setInvalid ] = useState('')
+  const getContext = useContext(GlobalContext);
   let navigate = useNavigate();
 
   const buttons = [
-    { label: "Tiếp tục bằng Googgle", logo: gg },
-    { label: "Tiếp tục bằng Facebook", logo: fb },
-    { label: "Tiếp tục bằng số điện thoại" },
+    { label: "Tiếp tục bằng Googgle", logo: gg, require : true },
+    { label: "Tiếp tục bằng Facebook", logo: fb, require: false },
+    { label: "Tiếp tục bằng số điện thoại", require: false },
   ];
 
   const handleLogin = () => {
     (async () => {
       try {
-        // get User by username and password
-        const user = {
-          id: 1,
-          name: 'Adam',
-          email: '',
-          image: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
-          mail: 3,
-          notify: 2,
-        };
-
-        getAuthContext.setAuth(user);
-        localStorage.setItem('accessToken', '123');
-        navigate('/');
+        const formData = new FormData()
+        formData.append('username', userName)
+        formData.append('password', password)
+        const data = await instance.post('/user/login', formData,   { headers: {
+          'Content-Type': 'multipart/form-data'
+        }});
+        if(data.status === 200){
+          console.log(data)
+          const userInfo = JSON.parse(atob(data.data.token.split('.')[1]))
+          getContext.setAuth(userInfo)
+          localStorage.setItem('access_token', data.data.token)
+          navigate('/')
+        }
       } catch (error) {
-        // handle error
+        // invalid infor
+        alert('Invalid username')
+        setPassword('')
+        setUsername('')
         console.error("Login failed", error);
       }
     })();
@@ -58,7 +71,7 @@ const Login = () => {
         <img src={lg} alt="Header" className={styles.headerImage} />
         <h1 className={styles.title}>Đăng nhập vào MeloSpace</h1>
         <form
-          action="#"
+      
           className={styles.loginForm}
           onSubmit={(e) => {
             e.preventDefault();
@@ -105,8 +118,9 @@ const Login = () => {
             <input type="checkbox" id="rememberMe" className={styles.rememberMeCheckbox} />
             <label htmlFor="rememberMe" className={styles.rememberMeLabel}>Hãy nhớ tôi</label>
           </div>
-
-          <button type="submit" className={styles.btnPrimary}>
+          <div className={styles.invalid}>{invalid}</div>
+          <button type="submit" 
+           className={styles.btnPrimary}>
             Đăng nhập
           </button>
           <a href="#" className={styles.forgotPass}>Quên mật khẩu của bạn?</a>

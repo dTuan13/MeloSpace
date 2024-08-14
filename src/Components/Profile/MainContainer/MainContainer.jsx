@@ -33,7 +33,7 @@ useEffect(() => {
 console.log(url)
   return (
     <div className= {styles.MainContainer}>
-        {/* {
+        {url.url === 'apiToRecord' ?(
             data.map((item) => (
                 <div className= {styles.RecordItem}>
                     <div className= {styles.RecordDes}>
@@ -66,14 +66,16 @@ console.log(url)
                         className = {styles.More}/>
             </div>
             ))
-        } */}
-        <div className={styles.noDataFound}>
-            <img src="https://minhtoan.blob.core.windows.net/images/add.jpg" alt="" />
-            <div className= {styles.actions}>
-                <span>Ở đây thiếu em ...</span>
-                <button>Tải lên ngay</button>
+         ) : 
+            <div className={styles.noDataFound}>
+                <img src="https://minhtoan.blob.core.windows.net/records/f.jpg" alt="" />
+                <div className= {styles.actions}>
+                    <span>Ở đây thiếu em ...</span>
+                    <button>Tải lên ngay</button>
+                </div>
             </div>
-        </div>
+        }
+       
     </div>
   )
 }
