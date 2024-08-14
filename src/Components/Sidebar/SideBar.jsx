@@ -107,7 +107,7 @@ const SideBar = () => {
                 <div className="play_list">
                     <ul className="listItem">
                         {playListItem.map((item) => (
-                            <PlayList url={item.url} title={item.title} date={item.date}></PlayList>
+                            <PlayList url={item.url} key={item.id} title={item.title} date={item.date}></PlayList>
                         ))}
                     </ul>
                 </div>

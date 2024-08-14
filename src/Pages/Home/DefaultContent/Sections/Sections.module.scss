@@ -1,9 +1,9 @@
-.category-header {
+.section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 10px;
-    margin: 32px 0 10px 0;
+    margin: 12px 0 10px 0;
     user-select: none;
 
     h1 {
@@ -22,4 +22,10 @@
     .readAll:hover {
         color: #e55353;
     }
+}
+
+.section-item {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
 }
