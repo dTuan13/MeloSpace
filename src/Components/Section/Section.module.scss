@@ -1,0 +1,16 @@
+.section-item {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.section {
+    padding: 2px 20px 0 20px;
+
+    h2 {
+        color: #323030;
+        font-size: 30px;
+        font-weight: bold;
+        margin: 10px 0px 10px 9px;
+    }
+}
