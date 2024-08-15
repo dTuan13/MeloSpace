@@ -12,27 +12,27 @@ function Sections() {
         {
             id: 1,
             name: 'Dành cho bạn',
-            url: 'section/danhchoban',
+            url: '/section/danhchoban',
         },
         {
             id: 2,
             name: 'Album nổi bật',
-            url: 'section/album',
+            url: '/section/album',
         },
         {
             id: 3,
             name: 'Người dùng nổi bật',
-            url: 'section/user',
+            url: '/section/user',
         },
         {
             id: 4,
             name: 'Danh sách phát nổi bật',
-            url: 'section/playlist',
+            url: '/section/playlist',
         },
         {
             id: 5,
             name: 'Tập thịnh hành',
-            url: 'section/popular',
+            url: '/section/popular',
         },
     ];
     return (

@@ -48,11 +48,14 @@ const Login = () => {
         const data = await instance.post('/user/login', formData,   { headers: {
           'Content-Type': 'multipart/form-data'
         }});
+        
         if(data.status === 200){
           console.log(data)
           const userInfo = JSON.parse(atob(data.data.token.split('.')[1]))
+
           getContext.setAuth(userInfo)
           localStorage.setItem('access_token', data.data.token)
+          localStorage.setItem('avatar',userInfo.payload.avatar )
           navigate('/')
         }
       } catch (error) {
