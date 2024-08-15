@@ -6,6 +6,7 @@ import Login from '../Pages/Login';
 import DefaultContent from '../Pages/Home/DefaultContent/DefaultContent';
 import Profile from '../Components/Profile/Profile';
 import MainContainer from '../Components/Profile/MainContainer/MainContainer';
+import UpLoad from '../Components/UpLoad/UpLoad';
 const index = () => {
     const PublicRoutes = [];
 
@@ -21,6 +22,7 @@ const index = () => {
                         <Route path="/profile/playlist" element={<MainContainer url="apiToPlaylis" />} />
                         <Route path="/profile/repost" element={<MainContainer url="apiToRePost" />} />
                     </Route>
+                    <Route path="/upload" element={<UpLoad />} />
                 </Route>
             </Route>
             <Route path="login" element={<Login />} />

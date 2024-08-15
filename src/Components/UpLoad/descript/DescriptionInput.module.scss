@@ -1,0 +1,20 @@
+.description {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #242424;
+    }
+    textarea {
+        width: 480px;
+        height: 110px;
+        padding: 5px 20px;
+        border-radius: 10px;
+        outline: none;
+        border: 1px solid #000000;
+        font-weight: 500;
+        font-size: 14px;
+    }
+}
