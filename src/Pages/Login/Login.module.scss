@@ -33,11 +33,6 @@ $border-color: #545252;
   }
 }
 
-* {
-  font-family: $font-family;
-}
-
-
 .loginPage {
   display: flex;
   justify-content: center;
@@ -50,11 +45,11 @@ $border-color: #545252;
     width: 327px;
     height: 67px;
     margin-bottom: 21px;
+    align-items: center;
   }
 
   .loginFormContainer {
     width: 735px;
-    height: 842px;
     padding: 0px 205px 48px;
     box-shadow: $box-shadow;
     background: #fff;
@@ -62,16 +57,43 @@ $border-color: #545252;
     border: none;
     box-sizing: border-box;
 
-    
-
     .title {
-      font-size: 24px;
-      margin-bottom: 30px;
+      font-size: 25px;
       text-align: center;
-      margin-top: 0px;
       font-weight: bold;
     }
-  
+
+    .errorBar.visible {
+      display: flex;
+      align-items: center;
+      background-color: #EB1515;
+      color: #fff;
+      margin-top: 15px;
+      margin-bottom: 18px;
+      margin-left: -93px;
+      font-weight: bold;
+      height: 46px;  
+      width: 512px;
+      font-size: 16px;
+
+      .errorIcon {
+        margin-right: 8px;
+        font-size: 20px;
+        margin-left: 30px;
+      }
+
+      .errorMessage {
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+
+    .errorBar:not(.visible) {
+      height: 0;
+      visibility: hidden; //ẩn
+      margin-bottom: 25px;  // Khoảng cách giữa tiêu đề và nút Google là 30px
+    }
+    
     .loginForm {
       .separator {
           width: 512px;
@@ -92,7 +114,6 @@ $border-color: #545252;
         height: $input-height;
         width: $button-width;
         display: block;
-        margin-bottom:16px;
         border: 1px solid $border-color;
         border-radius: 5px;
         box-sizing: border-box;
@@ -101,18 +122,41 @@ $border-color: #545252;
         color: #7B7878;
         outline: none; 
   
-        // &:hover {
-        //   border: 1.4px solid $primary-color;
-        // }
         &:focus {
-          border: 1.6px solid $primary-color;
+          border: 1.9px solid $primary-color;
         }
       }
+
+      .formGroup.invalid {
+        .formControl {
+          margin-bottom: 8px;
+        }
+
+        .errorContainer {
+          display: flex;
+          margin-top: 8px;
+          margin-bottom: 16px;
+          color: $primary-color;
+          
+  
+          .errorIcon {
+            margin-right: 3px;
+            font-size: 20px;
+          }
+  
+          .errorMessage {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .formGroup:not(.invalid) {
+        margin-bottom: 16px;
+      }
+
   
       .btn {
         @include button-style(#fff, #414040);
-        
-        
   
         .btnLogo {
           width: 30px;
@@ -179,6 +223,7 @@ $border-color: #545252;
     text-align: center;
     font-size: $font-size;
     color: #4D4B4B;
+    width: 350px;
 
     .register {
       color: #000;
