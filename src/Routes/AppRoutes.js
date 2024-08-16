@@ -6,8 +6,10 @@ import Login from '../Pages/Login';
 import DefaultContent from '../Pages/Home/DefaultContent/DefaultContent';
 import Profile from '../Components/Profile/Profile';
 import MainContainer from '../Components/Profile/MainContainer/MainContainer';
+import UpLoad from '../Components/UpLoad/UpLoad';
 import Auth from '../Components/Auth';
 import Section from '../Components/Section';
+
 const index = () => {
     const PublicRoutes = [];
 
@@ -39,6 +41,7 @@ const index = () => {
                         <Route path="/section/playlist" element={<Section section_id="4" />} />
                         <Route path="/section/popular" element={<Section section_id="5" />} />
                     </Route>
+                    <Route path="/upload" element={<UpLoad />} />
                 </Route>
             <Route path="login" element={<Login />} />
             <Route path = '/loginGoogle' element= {<Auth/>} />

@@ -1,0 +1,41 @@
+.upLoadContain {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 10px;
+    .text-red {
+        color: #f21c1c;
+    }
+    .error {
+        color: #f21c1c;
+        font-size: 12px;
+        margin-top: -10px;
+        margin-bottom: 0;
+    }
+    .customFileButton.error {
+        border: 2px solid #f21c1c;
+    }
+    .customFileButton {
+        cursor: pointer;
+        border-radius: 6px;
+        transition: background-color 0.3s ease;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        height: 30px;
+        width: 130px;
+        margin: 0;
+        padding: 0;
+        color: #484747;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 30px;
+        border: 1px solid #000000;
+        background: #ffffff;
+        svg {
+            // margin-top: 5px;
+            height: 28px;
+            font-size: 20px;
+        }
+    }
+}
