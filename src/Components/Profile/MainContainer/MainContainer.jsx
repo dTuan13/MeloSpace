@@ -7,6 +7,7 @@ import { GlobalContext } from '../../../Context'
 
 const initRecord = () => {
     const re = localStorage.getItem('user-record')
+    console.log(re)
     return re ? JSON.parse(re) : ''
 }
 const initAlbum = () => {
