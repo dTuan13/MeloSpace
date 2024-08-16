@@ -1,0 +1,118 @@
+
+a {
+    color: black;
+    text-decoration: underline;
+  }
+  
+  a:hover {
+    color: black;
+  }
+  .container{
+    background-color: #fcfcfc;
+  }
+  .register-container {
+    max-width: 700px;
+    margin: 50px auto;
+    padding: 0px 190px 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-danger {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 50px;
+  }
+  
+  .btn-google i,
+  .btn-facebook i {
+    margin-right: 8px;
+  }
+  
+  .form-group {
+    position: relative;
+    margin-bottom: 12px;
+  }
+  
+  .form-group .error span{
+    color: #F81313;
+    margin: 6px 0 4px;
+    font-size: 13px;
+  }
+  
+  img {
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding-bottom: 10px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-top: 0;
+    font-size: 30px;
+    font-weight: bold;
+  
+  }
+  
+  .form-control {
+    border: 1px solid #2c2c2c;
+    height: 46px;
+  }
+  .labelInput {
+    margin-bottom: 6px;
+  }
+  #otherOption{
+      width: 100%;
+      margin-top: 10px;
+      border-radius: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 20px 0;
+  }
+  .otherOption-left, .otherOption-right{
+    width:120px;
+    height: 1px;
+    background-color: #3D3939;
+  }
+  .otherOption-center{
+    color: #383535;
+    font-size: 15px;
+    font-weight: 500;
+  }
+  .btn{
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 40px;
+    background-color: #FC6060;
+    font-size: 18px;
+    color: white;
+    font-weight: bold;
+    height: 48px;
+  }
+  
+  .btn img{
+    display: none;
+  }
+  .otherBtn{
+    width: 100%;
+    margin-top: 10px;
+    border-radius: 40px;
+    font-size: 15px;
+    font-weight: bold;
+    color: black;
+    height: 48px;
+    outline: none;
+    border: 1px solid #545252;
+    background-color: transparent;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  .otherBtn img{
+    width: 19%;
+    margin-top: 12px;
+    padding-bottom: 10px;
+    display: inline;
+  }
