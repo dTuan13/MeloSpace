@@ -35,30 +35,30 @@ const Register = () => {
 
   },[formError])
   const validate = (values) => {
-    const errors = {}
+    const errors = {};
     const regex=/^[^\s@]+@[^\s@]+\.[^\s@]+$/i;
     if (!values.email) {
-      errors.email = "Email không hợp lệ"
+      errors.email = "Email không hợp lệ";
     } else if(!regex.test(values.email)){
-      errors.email = "không phải định dạng email"
+      errors.email = "không phải định dạng email";
     }
     
     if (!values.usename) {
-      errors.usename = "Tên người dùng không hợp lệ"
+      errors.usename = "Tên người dùng không hợp lệ";
     }
     if (!values.fullname) {
-      errors.fullnamename = "Tên đầy đủ không hợp lệ"
+      errors.fullnamename = "Tên đầy đủ không hợp lệ";
     }
     if (!values.password) {
-      errors.password = "Mật khẩu không hợp lệ"
+      errors.password = "Mật khẩu không hợp lệ";
     } else if(values.password.length < 6){
-      errors.password = "Mật khẩu không ít hơn 6 ký tự"
+      errors.password = "Mật khẩu không ít hơn 6 ký tự";
     }
     if (!values.confirmPassword) {
-      errors.confirmPassword = "Mật khẩu không trùng khớp"
+      errors.confirmPassword = "Mật khẩu không trùng khớp";
     }
     if (!values.phone) {
-      errors.phone = "Số điện thoạikhông hợp lệ"
+      errors.phone = "Số điện thoạikhông hợp lệ";
     }
     console.log(values)
     return errors;
