@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import HomeIcon from '@mui/icons-material/Home';
@@ -10,27 +10,9 @@ import MenuItem from './MenuItem/MenuItem';
 import Search from './Search/Search';
 import RecentIcon from './recent/RecentIcon';
 import PlayList from './playList/PlayList';
+import { GlobalContext } from '../../Context';
+import instance from '../../api'
 
-const playListItem = [
-    {
-        id: 1,
-        url: 'https://i.scdn.co/image/ab67616100005174e1cbc9e7ba8fbc5d7738ea51',
-        title: 'Yêu là tha thu',
-        date: '3 ngày',
-    },
-    {
-        id: 2,
-        url: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
-        title: 'Chia cách bình yên',
-        date: 'Hôm qua',
-    },
-    {
-        id: 3,
-        url: 'https://i.scdn.co/image/ab6761610000517410e658dffbc09c792ad3969c',
-        title: 'Đừng làm trái tim anh đau',
-        date: '6 ngày trước',
-    },
-];
 
 const initialNavBar = [
     {
@@ -52,13 +34,17 @@ const initialNavBar = [
         isActive: false,
     },
 ];
-
+const initPlaylist = () =>{
+    const playlist = localStorage.getItem('playlist')
+    return playlist ? JSON.parse(playlist) : []
+}
 const SideBar = () => {
     const [navBar, setNavBar] = useState(initialNavBar);
     const [showInput, setShowInput] = useState(false);
     const inputRef = useRef(null);
     const location = useLocation();
-
+    const [userPlaylist, setUserPlaylist] = useState(initPlaylist)
+    const getContext = useContext(GlobalContext)
     const updateNavBar = useCallback(() => {
         setNavBar((prevNavBar) =>
             prevNavBar.map((item) => ({
@@ -72,6 +58,17 @@ const SideBar = () => {
         updateNavBar();
     }, [updateNavBar]);
 
+    useEffect(() =>{
+        (async () => {
+            try {
+                const userID = getContext.auth.payload.guid
+                const {data} = await instance.get(`/playlist?userid=${userID}`);
+                localStorage.setItem('playlist', JSON.stringify(data))
+            } 
+            catch{
+            }
+        })(); 
+    },[userPlaylist])
     const handleInput = () => {
         setShowInput((prevShowInput) => !prevShowInput);
     };
@@ -106,9 +103,9 @@ const SideBar = () => {
             <div className="playList">
                 <div className="play_list">
                     <ul className="listItem">
-                        {playListItem.map((item) => (
-                            <PlayList url={item.url} title={item.title} date={item.date}></PlayList>
-                        ))}
+                        {userPlaylist ? userPlaylist.map((item) => (
+                            <PlayList url={item.thumb} key={item.id} title={item.playlistname} date='today'></PlayList>
+                        )) : ''}
                     </ul>
                 </div>
             </div>

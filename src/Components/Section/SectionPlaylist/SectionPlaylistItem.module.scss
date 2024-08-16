@@ -1,10 +1,9 @@
-.category {
-    display: flex;
-    overflow: hidden;
-    justify-content: space-between;
+.sectionPlaylistItem {
+    display: contents;
+    width: 100%;
 }
 
-.category-item {
+.sectionPlaylistItem-item {
     flex: 0 0 14.2857%;
     border-radius: 5px;
     display: flex;
@@ -12,8 +11,9 @@
     padding: 8px 10px;
     text-decoration: none;
     position: relative;
+    margin-bottom: 12px;
 
-    .category-item_img {
+    .sectionPlaylistItem-item_img {
         width: 100%;
         overflow: hidden;
 
@@ -27,7 +27,7 @@
     }
 }
 
-.category-item:hover {
+.sectionPlaylistItem-item:hover {
     background-color: #f0f0f0;
 
     .playBtn {
@@ -35,7 +35,7 @@
     }
 }
 
-.category-item__info {
+.sectionPlaylistItem-item__info {
     h3 {
         font-size: 16px;
         color: #252424;
