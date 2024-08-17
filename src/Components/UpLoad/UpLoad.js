@@ -10,10 +10,12 @@ import ModeSelector from './mode/ModeSelector';
 import TypeSelector from './type/TypeSelect';
 import TagsInput from './tags/Tags';
 import Img from './img/Img';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 const UpLoad = () => {
+    const navigate = useNavigate();
     const {
         // register,
         handleSubmit,
@@ -27,6 +29,10 @@ const UpLoad = () => {
         console.log(values.description);
         console.log(values.mode);
         console.log(values.type);
+    };
+
+    const Skip = () => {
+        navigate('/');
     };
 
     return (
@@ -45,7 +51,9 @@ const UpLoad = () => {
                 <DescriptionInput type="text" name="description" placeholder="Nhập mô tả chi tiết" control={control} />
                 <ModeSelector control={control} name="mode" />
                 <div className={cx('btn')}>
-                    <button className={cx('btn1')}>Bỏ qua</button>
+                    <button onClick={Skip} className={cx('btn1')}>
+                        Bỏ qua
+                    </button>
                     <button className={cx('btn2')}>Lưu</button>
                 </div>
             </div>
