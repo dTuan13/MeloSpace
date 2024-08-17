@@ -7,19 +7,19 @@ import { useFetcher, useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 const initAvatar = () => {
-    const avatar = localStorage.getItem('avatar')
-    return avatar ? avatar : ''
-}
+    const avatar = localStorage.getItem('avatar');
+    return avatar ? avatar : '';
+};
 function UserProfile() {
     const getAuthContext = useContext(GlobalContext);
-    const [avatar, setAvatar] = useState(initAvatar)
+    const [avatar, setAvatar] = useState(initAvatar);
     const navigate = useNavigate();
     const handleLogOut = () => {
-        localStorage.removeItem('access_token');
+        localStorage.clear();
         getAuthContext.setAuth();
         navigate('/login');
     };
-  
+
     return (
         <div>
             {avatar ? (

@@ -1,0 +1,72 @@
+$font-family: 'IBM Plex Sans', sans-serif;
+$border-radius: 30px;
+$primary-color: #fc6060;
+$font-size: 15px;
+$input-height: 48px;
+$button-height: 48px;
+$button-width: 325px;
+$box-shadow: 0 0 10px rgba(0, 0, 0, 0.022);
+$border-color: #545252;
+
+@mixin button-style($bg-color, $text-color) {
+    height: $button-height;
+    width: $button-width;
+    display: flex;
+    margin-bottom: 15px;
+    border: 1px solid $border-color;
+    border-radius: 40px;
+    box-sizing: border-box;
+    background: $bg-color;
+    cursor: pointer;
+    color: $text-color;
+    font-size: $font-size;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin hover-scale($scale: 1.06) {
+    &:hover {
+        transform: scale($scale);
+    }
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.form-group .error span {
+    color: #f81313;
+    margin: 6px 0 4px;
+    font-size: 13px;
+}
+
+.form-control {
+    height: $input-height;
+    width: $button-width;
+    display: block;
+    border: 1px solid $border-color;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 0 23.5px;
+    font-size: 16px;
+    color: #7b7878;
+    outline: none;
+
+    &:focus {
+        border: 1.9px solid $primary-color;
+    }
+}
+.formLabel {
+    font-weight: bold;
+    font-size: 14px;
+    color: #2b2a2a;
+    margin-bottom: 10px;
+    margin-right: 3px;
+}
+
+.requied {
+    color: red;
+    font-size: 18px;
+}

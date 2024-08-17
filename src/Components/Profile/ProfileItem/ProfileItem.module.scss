@@ -1,40 +1,43 @@
-.RecordItem{
-    
+.RecordItem {
     padding: 17px;
     display: flex;
     justify-content: space-between;
     border-radius: 10px;
     align-items: center;
-    .RecordInfo{
+    width: 50%;
+
+    .RecordInfo {
         display: flex;
         align-items: center;
 
-        img{
+        img {
             height: 60px;
             width: 60px;
+            object-fit: cover;
             border-radius: 5px;
             margin-right: 22px;
+            padding-bottom: 0;
         }
-        .RecordDetail{
+        .RecordDetail {
             display: flex;
             flex-direction: column;
-            div{
-              display: flex;
+            div {
+                display: flex;
                 align-items: center;
                 margin-right: 22px;
+                margin-left: -2px;
             }
-            .recordName{
-                color: #2B2A2A;
+            .recordName {
+                color: #2b2a2a;
                 font-size: 16px;
                 font-weight: 500;
                 margin-bottom: 6px;
             }
-            .Reaction{
-               
+            .Reaction {
                 display: flex;
                 align-items: center;
                 font-size: 12px;
-                .icon{
+                .icon {
                     color: #848080;
                     font-size: 20px;
                     margin-right: 3px;
@@ -42,15 +45,15 @@
             }
         }
     }
-.More{
-    font-size: 23px;
+    .More {
+        font-size: 23px;
     }
-&:hover{
-    background-color: #E4E4E4;
-    cursor: pointer;
+    &:hover {
+        background-color: #e4e4e4;
+        cursor: pointer;
+    }
 }
-}
-.noDataFound{
+.noDataFound {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -58,31 +61,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    img{
+    img {
         width: 200px;
         height: 142px;
         margin-right: 40px;
     }
-    .actions{
+    .actions {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        span{
+        span {
             color: #474545;
             font-size: 18px;
             font-weight: 500;
             margin-bottom: 10px;
         }
-        button{
+        button {
             outline: none;
             border: none;
-            background-color: #EC4E4E;
+            background-color: #ec4e4e;
             height: 42px;
             width: 119px;
             font-size: 18px;
             border-radius: 5px;
-            color: #fff
+            color: #fff;
         }
     }
 }

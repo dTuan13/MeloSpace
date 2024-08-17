@@ -1,64 +1,61 @@
-.ProfileNav{
+.ProfileNav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 25px;
-    border-bottom: 0.5px solid #6E6C6C;
+    margin-top: 15px;
+    border-bottom: 0.5px solid #c1c0c0;
     position: relative;
-    ul{
+    ul {
         display: flex;
         padding: 0;
         margin: 0;
-        li{
+        li {
             margin: 0;
             list-style: none;
             font-size: 18px;
-            font-weight: 500;
-     
+            font-weight: 600;
+
             // border-bottom: 3px solid #E94040
             margin-right: 35px;
             padding: 5px;
             padding-left: 0;
             color: #202020;
-            &:hover{
+            &:hover {
                 cursor: pointer;
             }
-            &:active{
-                
+            &:active {
             }
         }
-        a{
+        a {
             text-decoration: none;
         }
-       
     }
-    div{
+    div {
         display: flex;
-        .NavButton{
+        .NavButton {
             height: 25px;
             font-size: 15px;
             font-weight: 500;
-            color: #565252;
+            color: #3f3d3d;
             padding: 0.3rem 0.8rem;
             background-color: transparent;
             outline: none;
             border: 1px solid #535050;
-            margin-right: 21px;
+            margin-left: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
-            border-radius: 3px
+            border-radius: 2px;
         }
     }
-    #slider{
+    #slider {
         height: 3px;
-        width: 68px;
-        background-color: #E94040;
+        width: 70px;
+        background-color: #e94040;
         position: absolute;
         bottom: -1px;
         left: 0;
         z-index: 1000;
         transition: 0.3s ease;
     }
-
 }
