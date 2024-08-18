@@ -151,7 +151,7 @@ const Login = () => {
 
         <p className={styles.signupText}>
           Bạn chưa có tài khoản? 
-          <a href="#" className={styles.register}>
+        <a href="/register" className={styles.register}>
             Đăng ký MeloSpace
           </a>
         </p>
