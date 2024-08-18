@@ -38,9 +38,28 @@ const Login = () => {
     { label: "Tiếp tục bằng Facebook", logo: fb, require: false },
     { label: "Tiếp tục bằng số điện thoại", require: false },
   ];
-
-  const handleLogin = () => {
+  const callData = () => {
     (async () => {
+      try {
+          const userID = getContext.auth.payload.guid
+          const {data} = await instance.get(`/record?user=${userID}`);
+          localStorage.setItem('user-record', JSON.stringify(data))
+      } 
+      catch{
+      }
+  })(); 
+  (async () => {
+    try {
+        const userID = getContext.auth.payload.guid
+        const {data} = await instance.get(`/album?userid=${userID}`);
+        localStorage.setItem('user-album', JSON.stringify(data))
+    } 
+    catch{
+    }
+})(); 
+  }
+  const handleLogin = () => {
+  (async () => {
       try {
         const formData = new FormData()
         formData.append('username', userName)
@@ -52,7 +71,6 @@ const Login = () => {
         if(data.status === 200){
           console.log(data)
           const userInfo = JSON.parse(atob(data.data.token.split('.')[1]))
-
           getContext.setAuth(userInfo)
           localStorage.setItem('access_token', data.data.token)
           localStorage.setItem('avatar',userInfo.payload.avatar )

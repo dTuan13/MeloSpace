@@ -3,7 +3,8 @@ import styles from './MainContainer.module.scss'
 import {PlayArrow, Favorite, Comment, MoreHoriz, Preview} from '@mui/icons-material'
 import ProfileItem from '../ProfileItem/ProfileItem'
 import { GlobalContext } from '../../../Context'
-
+import instance from '../../../api'
+import { useFetcher } from 'react-router-dom'
 
 const initRecord = () => {
     const re = localStorage.getItem('user-record')
@@ -23,32 +24,31 @@ const [record, setRecord] = useState(initRecord)
 const [album, setAlbum] = useState(initAlbum)
 const [playlist, setPlaylist] = useState(initPlaylsit)
 const [data, setData] = useState()
-const example = [
-    {
-        title : 'Đừng làm trái tim anh đau'
-    },
-    {
-        title : 'Em Là'
-    },
-    {
-        title : 'Ngày đẹp trời để nói chia tay'
-    },
-    {
-        title : 'Em xinh'
-    },
-    {
-        title : 'Em'
-    },
-    {
-        title : 'Anh'
-    },
-    {
-        title : 'Anh trai'
-    },
-]
-
+const [key, setKey] = useState(true);
 const getContext = useContext(GlobalContext)
-
+useEffect(() => {
+    (async () => {
+        try {
+            const userID = getContext.auth.payload.guid
+            const { data } = await instance.get(`/record?user=${userID}`);
+            localStorage.setItem('user-record', JSON.stringify(data))
+            setRecord(data)
+            setKey(!key)
+        } 
+        catch{
+        }
+    })(); 
+    (async () => {
+      try {
+          const userID = getContext.auth.payload.guid
+          const {data} = await instance.get(`/album?userid=${userID}`);
+          localStorage.setItem('user-album', JSON.stringify(data))
+          setAlbum(data)
+      } 
+      catch{
+      }
+  })(); 
+}, [])
 useEffect(()=>{
     if(url === "apiToRecord"){
         if(record){
@@ -99,7 +99,8 @@ useEffect(()=>{
     else if(url === 'apiToRePost'){
         setData()
     }
-},[url])
+},[url, key])
+
 return (
     <div className= {styles.MainContainer}>
         {data ? (
