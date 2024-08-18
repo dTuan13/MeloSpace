@@ -1,147 +1,178 @@
-import React, { useContext, useState } from 'react';
-import styles from'./Login.module.scss';
+import React, { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import styles from './Login.module.scss';
 import instance from '../../api';
 import Auth from '../../Components/Auth';
-import { useNavigate } from 'react-router-dom';
+import { GlobalContext } from '../../Context';
 import gg from './images/gg.svg';
 import fb from './images/fb.svg';
 import lg from './images/lg.png';
-import { faRandom } from '@fortawesome/free-solid-svg-icons';
-import {GlobalContext} from '../../Context';
-
-
 
 const Button = ({ label, logo, require }) => (
   require === true ?  
   <Auth>
     <button type="button" className={styles.btn}>
-        {logo && <img src={logo} alt={label} className={styles.btnLogo} />}
-        <span>{label}</span>
-      </button>
+      {logo && <img src={logo} alt={label} className={styles.btnLogo} />}
+      <span>{label}</span>
+    </button>
   </Auth>
-  : <button type="button" className={styles.btn}>
+  : 
+  <button type="button" className={styles.btn}>
     {logo && <img src={logo} alt={label} className={styles.btnLogo} />}
     <span>{label}</span>
   </button>
- 
 );
 
 const Login = () => {
-  const [userName, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [invalid, setInvalid ] = useState('')
+  const initialValues = { username: '', password: '' };
+  const [formValues, setFormValues] = useState(initialValues);
+  const [formErrors, setFormErrors] = useState({});
+  const [loginError, setLoginError] = useState('');
+  const [isSubmit, setIsSubmit] = useState(false);
   const getContext = useContext(GlobalContext);
   let navigate = useNavigate();
 
   const buttons = [
-    { label: "Tiếp tục bằng Googgle", logo: gg, require : true },
+    { label: "Tiếp tục bằng Google", logo: gg, require: true },
     { label: "Tiếp tục bằng Facebook", logo: fb, require: false },
     { label: "Tiếp tục bằng số điện thoại", require: false },
   ];
-  const callData = () => {
-    (async () => {
-      try {
-          const userID = getContext.auth.payload.guid
-          const {data} = await instance.get(`/record?user=${userID}`);
-          localStorage.setItem('user-record', JSON.stringify(data))
-      } 
-      catch{
-      }
-  })(); 
-  (async () => {
-    try {
-        const userID = getContext.auth.payload.guid
-        const {data} = await instance.get(`/album?userid=${userID}`);
-        localStorage.setItem('user-album', JSON.stringify(data))
-    } 
-    catch{
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormValues({ ...formValues, [name]: value });
+
+    if (value) {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: '',
+      }));
     }
-})(); 
-  }
-  const handleLogin = () => {
-  (async () => {
-      try {
-        const formData = new FormData()
-        formData.append('username', userName)
-        formData.append('password', password)
-        const data = await instance.post('/user/login', formData,   { headers: {
-          'Content-Type': 'multipart/form-data'
-        }});
-        
-        if(data.status === 200){
-          console.log(data)
-          const userInfo = JSON.parse(atob(data.data.token.split('.')[1]))
-          getContext.setAuth(userInfo)
-          localStorage.setItem('access_token', data.data.token)
-          localStorage.setItem('avatar',userInfo.payload.avatar )
-          navigate('/')
-        }
-      } catch (error) {
-        // invalid infor
-        alert('Invalid username')
-        setPassword('')
-        setUsername('')
-        console.error("Login failed", error);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validate(formValues);
+    setFormErrors(errors);
+    setIsSubmit(true);
+  };
+
+  useEffect(() => {
+    if (Object.keys(formErrors).length === 0 && isSubmit) {
+      handleLogin();
+    }
+  }, [formErrors]);
+
+  const validate = (values) => {
+    const errors = {};
+    if (!values.username) {
+      errors.username = 'Vui lòng nhập tên người dùng MeloSpace hoặc địa chỉ email.';
+    }
+    if (!values.password) {
+      errors.password = 'Vui lòng nhập mật khẩu.';
+    }
+    return errors;
+  };
+
+  const handleLogin = async () => {
+    try {
+      const formData = new FormData();
+      formData.append('username', formValues.username);
+      formData.append('password', formValues.password);
+
+      const data = await instance.post('/user/login', formData, {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      });
+      if (data.status === 200) {
+        const decode = token => decodeURIComponent(atob(token.split('.')[1].replace('-', '+').replace('_', '/')).split('').map(c => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`).join(''));
+        const userInfo = JSON.parse(decode(data.data.token))
+        getContext.setAuth(userInfo);
+        localStorage.setItem('access_token', data.data.token)
+        localStorage.setItem('avatar', userInfo.payload.avatar);
+        navigate('/');
       }
-    })();
+      else{
+        setLoginError('Tên người dùng hoặc mật khẩu không chính xác.');
+        setFormValues(initialValues);
+      }
+    } catch (error) {
+     
+    }
   };
 
   return (
-    <div className={styles.loginPage}>  
+    <div className={styles.loginPage}>
       <div className={styles.loginFormContainer}>
         <img src={lg} alt="Header" className={styles.headerImage} />
+
         <h1 className={styles.title}>Đăng nhập vào MeloSpace</h1>
-        <form
-      
-          className={styles.loginForm}
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleLogin();
-          }}
-        >
+
+        <div className={`${styles.errorBar} ${loginError ? styles.visible : ''}`}>
+          <ErrorOutlineIcon className={styles.errorIcon} />
+          <div className={styles.errorMessage}>
+            {loginError}
+          </div>
+        </div>
+
+        <form className={styles.loginForm} onSubmit={handleSubmit}>
           {buttons.map((button, index) => (
             <Button key={index} {...button} />
           ))}
-
           <div className={styles.separator}></div>
 
-          <div className="mb-4">
-            <label htmlFor="email" className={styles.formLabel}>
+          <div className={`${styles.formGroup} ${formErrors.username ? styles.invalid : ''}`}>
+            <label htmlFor="username" className={styles.formLabel}>
               Email hoặc tên người dùng
             </label>
             <input
-              value={userName}
-              onChange={(e) => setUsername(e.target.value)}
+              value={formValues.username}
+              onChange={handleChange}
               type="text"
+              name="username"
               className={styles.formControl}
-              id="email"
+              id="username"
               placeholder="Email hoặc tên người dùng"
-              required
             />
+            {formErrors.username && (
+              <div className={styles.errorContainer}>
+                <ErrorOutlineIcon className={styles.errorIcon} />
+                <div className={styles.errorMessage}>
+                  {formErrors.username}
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="mb-3">
+          <div className={`${styles.formGroup} ${formErrors.password ? styles.invalid : ''}`}>
             <label htmlFor="password" className={styles.formLabel}>
               Mật khẩu
             </label>
             <input
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={formValues.password}
+              onChange={handleChange}
               type="password"
+              name="password"
               className={styles.formControl}
               id="password"
               placeholder="Mật khẩu"
-              required
             />
+            {formErrors.password && (
+              <div className={styles.errorContainer}>
+                <ErrorOutlineIcon className={styles.errorIcon}/>
+                <div className={styles.errorMessage}>
+                  {formErrors.password}
+                </div>
+              </div>
+            )}
           </div>
 
           <div className={styles.rememberMeContainer}>
             <input type="checkbox" id="rememberMe" className={styles.rememberMeCheckbox} />
             <label htmlFor="rememberMe" className={styles.rememberMeLabel}>Hãy nhớ tôi</label>
           </div>
-          <div className={styles.invalid}>{invalid}</div>
-          <button type="submit" 
-           className={styles.btnPrimary}>
+
+          <button type="submit" className={styles.btnPrimary}>
             Đăng nhập
           </button>
           <a href="#" className={styles.forgotPass}>Quên mật khẩu của bạn?</a>
@@ -150,12 +181,11 @@ const Login = () => {
         <div className={styles.separatorLine}></div>
 
         <p className={styles.signupText}>
-          Bạn chưa có tài khoản? 
-        <a href="/register" className={styles.register}>
+          Bạn chưa có tài khoản?
+          <a href="#" className={styles.register}>
             Đăng ký MeloSpace
           </a>
         </p>
-        <br />
       </div>
     </div>
   );

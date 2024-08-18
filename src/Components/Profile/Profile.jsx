@@ -7,15 +7,13 @@ import { GlobalContext } from '../../Context'
 import instance from '../../api'
 import { Outlet } from 'react-router-dom'
   const Profile = () => {
-  
+    return (
+        <div className={styles.ProfileWrapper}>
+            <ProfileInfo />
+            <ProfileNavigation />
+            <Outlet />
+        </div>
+    );
+};
 
-  return (
-    <div className= {styles.ProfileWrapper}>
-        <ProfileInfo />
-        <ProfileNavigation />
-        <Outlet />
-    </div>
-  )
-}
-
-export default Profile
+export default Profile;

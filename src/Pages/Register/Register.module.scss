@@ -1,0 +1,92 @@
+$font-family: 'IBM Plex Sans', sans-serif;
+$border-radius: 30px;
+$primary-color: #fc6060;
+$font-size: 15px;
+$input-height: 48px;
+$button-height: 48px;
+$button-width: 325px;
+$box-shadow: 0 0 10px rgba(0, 0, 0, 0.022);
+$border-color: #545252;
+
+@mixin button-style($bg-color, $text-color) {
+    height: $button-height;
+    width: $button-width;
+    display: flex;
+    margin-bottom: 15px;
+    border: 1px solid $border-color;
+    border-radius: 40px;
+    box-sizing: border-box;
+    background: $bg-color;
+    cursor: pointer;
+    color: $text-color;
+    font-size: $font-size;
+    font-weight: bold;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin hover-scale($scale: 1.06) {
+    &:hover {
+        transform: scale($scale);
+    }
+}
+.registerPage {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 40px;
+    padding-bottom: 143px;
+    background-color: #f5f5f5;
+}
+.register-container {
+    width: 735px;
+    padding: 0px 205px 48px;
+    box-shadow: $box-shadow;
+    background: #fff;
+    border-radius: $border-radius;
+    border: none;
+    box-sizing: border-box;
+
+    .logo {
+        width: 327px;
+        height: 67px;
+        margin-bottom: 21px;
+        align-items: center;
+    }
+}
+
+.title {
+    text-align: center;
+    margin-top: 0;
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.separatorLine {
+    width: 325px;
+    border-top: 0.4px solid #aba6a6;
+    margin-left: 0%;
+    margin-top: 40px;
+    margin-bottom: 32px;
+}
+
+.loginText {
+    margin-top: 20px;
+    text-align: center;
+    font-size: $font-size;
+    color: #4d4b4b;
+    width: 350px;
+
+    .login {
+        color: #000;
+        text-decoration: underline;
+        font-weight: bold;
+        font-size: 16px;
+        margin-left: 10px;
+
+        &:hover {
+            color: $primary-color;
+        }
+    }
+}

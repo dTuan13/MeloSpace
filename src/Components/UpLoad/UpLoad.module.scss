@@ -1,0 +1,66 @@
+.upLoadForm {
+    margin-left: 56px;
+    margin-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    min-height: max-content;
+
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #242424;
+    }
+
+    input,
+    textarea,
+    select {
+        font-size: 14px;
+        font-weight: 500;
+        color: #7b7878;
+    }
+
+    .upLoadContain {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        gap: 25px;
+    }
+
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #242424;
+    }
+    span {
+        font-size: 14px;
+    }
+
+    .btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+        gap: 30px;
+
+        button {
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .btn1 {
+            background: transparent;
+            font-weight: 500;
+            color: #4e4b4b;
+        }
+
+        .btn2 {
+            background: #fc5050;
+            color: #ffffff;
+            font-weight: 600;
+            height: 25px;
+            width: 50px;
+            border-radius: 5px;
+        }
+    }
+}

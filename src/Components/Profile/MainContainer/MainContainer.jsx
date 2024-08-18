@@ -100,25 +100,25 @@ useEffect(()=>{
         setData()
     }
 },[url, key])
-
-return (
-    <div className= {styles.MainContainer}>
-        {data ? (
-            data.map((item) => (
-               <ProfileItem item={item}/>
-            ))
-        ) : 
-            <div className={styles.noDataFound}>
-                <img src="https://minhtoan.blob.core.windows.net/records/f.jpg" alt="" />
-                <div className= {styles.actions}>
-                    <span>Ở đây thiếu em ...</span>
-                    <button>Tải lên ngay</button>
+    return (
+        <div className={styles.MainContainer}>
+            {data ? (
+                <div className={styles.MainContent}>
+                    {data.map((item, index) => (
+                        <ProfileItem key={index} item={item} />
+                    ))}
                 </div>
-            </div>
-        }
-    
-    </div>
-)
-}
+            ) : (
+                <div className={styles.noDataFound}>
+                    <img src="https://minhtoan.blob.core.windows.net/records/f.jpg" alt="" />
+                    <div className={styles.actions}>
+                        <h4>Ở đây có vẻ yên tĩnh ...</h4>
+                        <button>Tải lên ngay</button>
+                    </div>
+                </div>
+            )}
+        </div>
+    );
+};
 
-export default MainContainer
+export default MainContainer;

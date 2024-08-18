@@ -1,0 +1,48 @@
+.mode {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #242424;
+    }
+    .radio-group {
+        display: flex;
+        flex-direction: column;
+
+        .radio-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #242424;
+            justify-content: start;
+            display: flex;
+            flex-direction: row;
+            margin-left: 40px;
+            input[type='radio'] {
+                margin-right: 12px; // Khoảng cách giữa radio và label
+                cursor: pointer; // Con trỏ chuột cho thấy đây là phần có thể chọn
+                width: 16px; // Kích thước của radio button
+                height: 16px;
+                accent-color: none; // Màu sắc của radio button khi chọn
+                margin-top: 4px;
+            }
+
+            input[type='radio']:checked::before {
+                content: '';
+                display: block;
+                width: 10px; // Kích thước của vòng trong của radio khi chọn
+                height: 10px;
+                border-radius: 50%;
+                background-color: #fc5050; // Màu sắc của vòng trong khi chọn
+                position: relative;
+                top: 3px;
+                left: 3px;
+            }
+
+            input[type='radio']:focus {
+                outline: none;
+            }
+        }
+    }
+}
