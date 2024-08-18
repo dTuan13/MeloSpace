@@ -41,9 +41,8 @@ const SideBar = () => {
     useEffect(() => {
         (async () => {
             try {
-                const { data } = await instance.get(
-                    `/playlist?userid=dce39d4331de9b3c0c5bc402c1cfc08930fc72dacd25a8db2c5ed9d72a8c22820`,
-                );
+                const userID = localStorage.getItem('userID');
+                const { data } = await instance.get(`/playlist?userid=${userID}`);
                 localStorage.setItem('playlist', JSON.stringify(data));
             } catch (error) {
                 console.error('Error fetching user playlist:', error);
