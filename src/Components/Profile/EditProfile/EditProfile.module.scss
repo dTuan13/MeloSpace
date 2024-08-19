@@ -1,0 +1,90 @@
+
+.editForm {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 3000;
+    flex-direction: row;
+    
+
+    .editContain {
+        width: 800px;
+        height: 700px;
+        background:#fff;
+        position: relative; 
+        border-radius: 6px;
+        
+        .title {
+            font-size: 22px;
+            font-weight: bold;
+            padding-top: 25px;
+            margin-left: 25px;
+            display: flex;
+
+            .icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+                color: #6D6A6A;
+                padding: 8px;
+                margin-right: 15px;
+                cursor: pointer;
+                width: 12px;
+                height: 16px;
+            }
+        }
+
+        .separatorLine {
+            width: 750px;
+            border-top: 0.4px solid #ACA8A8;
+            margin-left: 25px;
+        }
+
+        .edit-1 {
+            
+            .row-1{
+                display: flex;
+            }
+    
+            .row-2{
+                display: flex;
+            }
+    
+        }
+        .btn {
+            display: flex;
+            justify-content: end;
+            gap: 30px;
+            margin-right: 80px;
+    
+            button {
+                border: none;
+                outline: none;
+                font-size: 14px;
+            }
+    
+            .btn1 {
+                background: transparent;
+                font-weight: 500;
+                color: #4e4b4b;
+            }
+    
+            .btn2 {
+                background: #fc5050;
+                color: #ffffff;
+                font-weight: 600;
+                height: 25px;
+                width: 50px;
+                border-radius: 4px;
+            }
+        }
+
+        
+    }
+}
