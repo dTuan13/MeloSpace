@@ -1,0 +1,20 @@
+.bio {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    label {
+        font-size: 16px;
+        font-weight: bold;
+        color: #242424;
+    }
+    input {
+        width: 400px;
+        height: 80px;
+        // padding: 5px 20px;
+        border-radius: 6px;
+        outline: none;
+        border: 1px solid #000000;
+        font-weight: 500;
+        font-size: 14px;
+    }
+}
