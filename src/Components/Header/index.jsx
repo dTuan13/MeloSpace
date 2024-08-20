@@ -9,7 +9,7 @@ import Upload from './Components/Upload';
 
 const cx = classNames.bind(styles);
 
-function Header() {
+function Header(upLoad) {
     return (
         <div className={cx('main')}>
             <Search />

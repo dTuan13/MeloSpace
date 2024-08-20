@@ -2,21 +2,24 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    width: 190px;
+
     select {
-        width: 130px;
-        height: 30px;
+        width: 190px;
+        height: 100%;
         border: none;
         outline: none;
         background: transparent;
         cursor: pointer;
         padding-left: 20px;
+        // padding-top: 5px;
     }
     div {
         display: flex;
         justify-content: center;
         border: 1px solid #676262;
-        width: 130px;
-        height: 30px;
+        width: 190px;
+        height: 35px;
         padding: 0 10px 0 0px;
         border-radius: 6px;
         overflow: hidden;
@@ -26,5 +29,9 @@
         font-size: 16px;
         font-weight: bold;
         color: #242424;
+    }
+    option {
+        font-size: 14px;
+        cursor: pointer;
     }
 }

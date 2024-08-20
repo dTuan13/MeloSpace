@@ -1,0 +1,72 @@
+.full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    .modal {
+        transform: translateX(276px);
+        width: 800px;
+        height: 660px;
+        padding: 0 25px;
+        background: #ffffff;
+        // border: 2px solid #000000;
+        border: 5px;
+        position: absolute;
+        opacity: 1;
+        .title {
+            display: flex;
+            padding: 20px 0px 0;
+            justify-content: space-between;
+            border-bottom: 1px solid #000000;
+            margin-bottom: 20px;
+            h1 {
+                font-weight: 600;
+                font-size: 22px;
+                color: #333333;
+            }
+        }
+        button {
+            cursor: pointer;
+            outline: none;
+            border: none;
+            background: transparent;
+            svg {
+                font-size: 30px;
+            }
+        }
+    }
+    @keyframes slideIn {
+        from {
+            // transform: translateY(-50px);
+            opacity: 0;
+        }
+        to {
+            // transform: translateY(200px);
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideOut {
+        from {
+            // transform: translateY(0);
+            opacity: 1;
+        }
+        to {
+            // transform: translateY(-50px);
+            opacity: 0;
+        }
+    }
+
+    .modal-enter {
+        animation: slideIn 0.3s forwards;
+    }
+
+    .modal-exit {
+        animation: slideOut 0.3s forwards;
+    }
+}
