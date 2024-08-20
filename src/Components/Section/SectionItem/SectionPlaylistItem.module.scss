@@ -1,0 +1,61 @@
+.sectionPlaylistItem {
+    display: contents;
+    width: 100%;
+}
+
+.sectionPlaylistItem-item {
+    flex: 0 0 14.2857%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px 10px;
+    text-decoration: none;
+    position: relative;
+    margin-bottom: 12px;
+
+    .sectionPlaylistItem-item_img {
+        width: 100%;
+        overflow: hidden;
+
+        img {
+            aspect-ratio: 1/1;
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+    }
+}
+
+.sectionPlaylistItem-item:hover {
+    background-color: #f0f0f0;
+
+    .playBtn {
+        display: block;
+    }
+}
+
+.sectionPlaylistItem-item__info {
+    h3 {
+        font-size: 16px;
+        color: #252424;
+        font-weight: 700;
+        margin: 12px 0 4px 0;
+    }
+
+    h6 {
+        font-size: 12px;
+        color: #383737;
+        margin: 0;
+        vertical-align: middle;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 1;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.playBtn {
+    display: none;
+}
