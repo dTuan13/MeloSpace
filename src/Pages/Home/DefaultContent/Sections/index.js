@@ -1,40 +1,33 @@
 import { Link } from 'react-router-dom';
 import styles from './Sections.module.scss';
 import classNames from 'classnames/bind';
-import SectionPlaylistItem from '../../../../Components/Section/SectionPlaylist';
-import SectionUserItem from '../../../../Components/Section/SectionUser';
-import SectionAlbumItem from '../../../../Components/Section/SectionAlbum';
+import SectionItem from '../../../../Components/Section/SectionItem';
+import { useState, useEffect } from 'react';
+import instance from '../../../../api';
 
 const cx = classNames.bind(styles);
-
+const initSection = () => {
+    const sec = localStorage.getItem('sections');
+    return sec ? JSON.parse(sec) : [];
+};
 function Sections() {
-    const sections = [
-        {
-            id: 1,
-            name: 'Dành cho bạn',
-            url: '/section/danhchoban',
-        },
-        {
-            id: 2,
-            name: 'Album nổi bật',
-            url: '/section/album',
-        },
-        {
-            id: 3,
-            name: 'Người dùng nổi bật',
-            url: '/section/user',
-        },
-        {
-            id: 4,
-            name: 'Danh sách phát nổi bật',
-            url: '/section/playlist',
-        },
-        {
-            id: 5,
-            name: 'Tập thịnh hành',
-            url: '/section/popular',
-        },
-    ];
+    const [sections, setSections] = useState(initSection);
+    const [key, setKey] = useState(false);
+    useEffect(() => {
+        (async () => {
+            try {
+                const { data } = await instance.get(`/section`);
+                if (localStorage.getItem('sections')) {
+                    localStorage.removeItem('sections');
+                }
+                localStorage.setItem('sections', JSON.stringify(data));
+                setSections(data);
+                setKey(true);
+            } catch {}
+        })();
+        console.log(sections);
+    }, [key]);
+
     return (
         <div>
             {sections.map((section) => (
@@ -46,9 +39,7 @@ function Sections() {
                         </Link>
                     </div>
                     <div className={cx('section-item')}>
-                        <SectionPlaylistItem sectionId={section.id} />
-                        <SectionUserItem sectionId={section.id} />
-                        <SectionAlbumItem sectionId={section.id} />
+                        <SectionItem sectionId={section.id} />
                     </div>
                 </div>
             ))}
