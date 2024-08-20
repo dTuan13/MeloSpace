@@ -5,6 +5,8 @@ import ProfileItem from '../ProfileItem/ProfileItem';
 import { GlobalContext } from '../../../Context';
 import instance from '../../../api';
 import { useFetcher } from 'react-router-dom';
+import TypeSelector from './type/TypeSelect';
+import { useForm } from 'react-hook-form';
 
 const initRecord = () => {
     const re = localStorage.getItem('user-record');
@@ -24,7 +26,11 @@ const MainContainer = ({ url }) => {
     const [album, setAlbum] = useState(initAlbum);
     const [playlist, setPlaylist] = useState(initPlaylsit);
     const [data, setData] = useState();
-    const [key, setKey] = useState(true);
+    const [key, setKey] = useState(true);  
+    const {
+        control,
+    } = useForm();
+
     useEffect(() => {
         (async () => {
             try {
@@ -87,6 +93,11 @@ const MainContainer = ({ url }) => {
     }, [url, key]);
     return (
         <div className={styles.MainContainer}>
+            <div className={styles.header}>
+                <TypeSelector control={control} name="type" />
+                <a href="#">Xem tất cả</a>
+            </div>
+            
             {data ? (
                 <div className={styles.MainContent}>
                     {data.map((item, index) => (

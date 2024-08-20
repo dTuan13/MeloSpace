@@ -52,6 +52,7 @@ const ProfileNavigation = () => {
                 </button>
             </div>
             <span id={styles.slider} style={{ left: `calc(99px * ${active})` }}></span>
+
         </div>
     );
 };
