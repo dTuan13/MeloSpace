@@ -4,12 +4,14 @@ import ProfileInfo from './ProfileBackgroundImg/ProfileInfo';
 import ProfileNavigation from './ProfileNavigation/ProfileNavigation';
 import { Outlet } from 'react-router-dom';
 import EditProfile from './EditProfile/EditProfile';
+import ModalEdit from './EditProfile/ModalEdit';
 const Profile = () => {
     return (
         <div className={styles.ProfileWrapper}>
             <ProfileInfo />
             <ProfileNavigation />
-            <EditProfile/>
+            {/* <EditProfile/> */}
+            <ModalEdit />
             <Outlet />
         </div>
     );

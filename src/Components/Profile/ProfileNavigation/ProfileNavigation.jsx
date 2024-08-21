@@ -2,8 +2,18 @@ import React, { useRef, useState } from 'react';
 import styles from './ProfileNavigation.module.scss';
 import { Share, Edit } from '@mui/icons-material';
 import { Link } from 'react-router-dom';
+import ModalEdit from '../EditProfile/ModalEdit';
 
 const ProfileNavigation = () => {
+    const handleEdit = () => {
+        setIsOpenEdit(true);
+    };
+    const [isOpenEdit, setIsOpenEdit] = useState(false);
+
+    const handleCloseEdit = () => {
+        setIsOpenEdit(false);
+    };
+
     const [active, setActive] = useState(0);
     return (
         <div className={styles.ProfileNav}>
@@ -46,10 +56,11 @@ const ProfileNavigation = () => {
                     <Share />
                     Chia sẻ
                 </button>
-                <button className={styles.NavButton}>
+                <button onClick={handleEdit} className={styles.NavButton}>
                     <Edit />
                     Sửa
                 </button>
+                <ModalEdit isOpen={isOpenEdit} onClose={handleCloseEdit} />
             </div>
             <span id={styles.slider} style={{ left: `calc(99px * ${active})` }}></span>
         </div>
