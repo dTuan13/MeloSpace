@@ -97,7 +97,7 @@ const Register = () => {
             <div className={styles['register-container']}>
                 <img className={styles.logo} src={lg} alt="" width="100%" />
                 <h2 className={styles['title']}>Đăng ký để thưởng thức giai điệu</h2>
-                <form>
+                <form onSubmit={handleSubmit}>
                     {formArr.map((item) => {
                         return (
                             <Form
