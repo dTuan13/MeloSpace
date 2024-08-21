@@ -39,3 +39,20 @@
         outline: none;
     }
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+
+    a{
+        text-decoration: none;
+        font-size: 14px;
+        color: #000;
+    }
+
+    a:hover {
+        color: #E94040;
+    }
+}
