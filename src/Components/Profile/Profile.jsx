@@ -12,6 +12,7 @@ const Profile = () => {
             <ProfileNavigation />
             {/* <EditProfile/> */}
             <ModalEdit />
+
             <Outlet />
         </div>
     );

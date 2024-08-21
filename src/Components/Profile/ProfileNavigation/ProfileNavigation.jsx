@@ -63,6 +63,7 @@ const ProfileNavigation = () => {
                 <ModalEdit isOpen={isOpenEdit} onClose={handleCloseEdit} />
             </div>
             <span id={styles.slider} style={{ left: `calc(99px * ${active})` }}></span>
+
         </div>
     );
 };
