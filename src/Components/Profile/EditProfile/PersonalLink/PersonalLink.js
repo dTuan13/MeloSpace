@@ -12,7 +12,7 @@ const PersonalLink = ({ control, errors }) => {
                 Đường dẫn trang cá nhân <span className={cx('text-red')}>*</span>
             </label>
             <Controller
-                name="link"
+                name="inputLink"
                 control={control}
                 rules={{
                     required: 'Đường link không ít hơn 4 kí tự.',
@@ -28,7 +28,7 @@ const PersonalLink = ({ control, errors }) => {
                                 <label htmlFor="inputLink">melospace.com/</label>
                                 <input
                                     type="text"
-                                    id="link"
+                                    id="inputLink"
                                     placeholder=""
                                     {...field}
                                     className={cx({ error: errors.link })}
@@ -36,9 +36,9 @@ const PersonalLink = ({ control, errors }) => {
                             </div>
                             {errors.link && <p className={cx('error-text')}>{errors.link.message}</p>}
                         </div>
-                        <button>
+                        <label htmlFor="link" className={cx('icon')}>
                             <CreateIcon></CreateIcon>
-                        </button>
+                        </label>
                     </div>
                 )}
             />

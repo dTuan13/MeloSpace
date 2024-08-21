@@ -1,22 +1,20 @@
 .editForm {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 20px;
-    background: rgba(0, 0, 0, 0.4);
-    /* display: flex; */
+    background: #ffffff;
+    height: 630px;
+    // height: 5000px;
     align-items: center;
     /* overflow: scroll; */
     justify-content: center;
     /* z-index: 3000; */
     flex-direction: row;
     /* margin-top: 213px; */
-    transform: translateY(72px);
-
+    // transform: translateY(72px);
+    input {
+        padding: 0 10px;
+    }
     .editContain {
         width: 800px;
-        height: 700px;
+        // height: 700px;
         display: flex;
         background: #fff;
         /* position: relative; */

@@ -24,6 +24,11 @@ const EditProfile = () => {
         defaultValues: {
             title: 'abcd',
             inputLink: 'phuoc23',
+            firstName: 'Phuoc',
+            lastName: 'Nguyen',
+            city: 'Hue',
+            region: 'ChoNoMarket',
+            bio: '',
         },
     });
 
@@ -47,11 +52,7 @@ const EditProfile = () => {
                 <div className={cx('edit-1')}>
                     <DisplayName control={control} errors={errors} />
 
-                    <PersonalLink
-                        control={control}
-                        errors={errors}
-                        rules={{ required: 'Đường dẫn không ít hơn 4 ký tự' }}
-                    />
+                    <PersonalLink control={control} errors={errors} />
 
                     <div className={cx('row-1')}>
                         <InputField control={control} name="firstName" label="Họ" />
@@ -66,12 +67,14 @@ const EditProfile = () => {
                     <Bio type="text" name="bio" placeholder="Thêm tiểu sử của bạn" control={control} />
 
                     <SocialLinks control={control} />
-                </div>
-                <div className={cx('btn')}>
-                    <button onClick={Skip} className={cx('btn1')}>
-                        Bỏ qua
-                    </button>
-                    <button className={cx('btn2')}>Lưu</button>
+                    <div className={cx('btn')}>
+                        <button onClick={Skip} className={cx('btn1')}>
+                            Bỏ qua
+                        </button>
+                        <button type="submit" className={cx('btn2')}>
+                            Lưu
+                        </button>
+                    </div>
                 </div>
             </div>
         </form>
