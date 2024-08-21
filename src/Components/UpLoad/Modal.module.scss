@@ -1,0 +1,54 @@
+.full {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    right: 0;
+    bottom: 0;
+    .modal {
+        overflow: auto;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE and Edge */
+    }
+
+    background: rgba(0, 0, 0, 0.3);
+    .modal::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, and Opera */
+    }
+    .modal {
+        margin-top: 70px;
+        transform: translateX(276px);
+        width: 800px;
+        border: none;
+        height: 585px;
+        padding: 0 25px;
+        background: #ffffff;
+        overflow: scroll;
+        overflow-x: hidden;
+        border: 5px;
+        position: absolute;
+        opacity: 1;
+        .title {
+            display: flex;
+            padding: 20px 0px 0;
+            justify-content: space-between;
+            border-bottom: 1px solid #000000;
+            margin-bottom: 20px;
+            h1 {
+                font-weight: 600;
+                font-size: 22px;
+                color: #333333;
+            }
+        }
+        button {
+            cursor: pointer;
+            outline: none;
+            border: none;
+            background: transparent;
+            svg {
+                font-size: 30px;
+            }
+        }
+    }
+}

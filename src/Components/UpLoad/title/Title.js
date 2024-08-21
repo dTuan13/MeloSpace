@@ -26,7 +26,7 @@ const Title = ({ control, errors }) => {
                         <input
                             type="text"
                             id="title"
-                            placeholder=""
+                            placeholder="Nhập tiêu đề bản ghi"
                             {...field}
                             className={cx({ error: errors.title })}
                         />
