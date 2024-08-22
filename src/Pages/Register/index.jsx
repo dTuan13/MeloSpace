@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Form from './Form/Form';
 import FormButton from './FormButton/FormButton';
 import styles from './Register.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import lg from './img/lg.png';
 import fb from './img/fb.svg';
 import gg from './img/gg.svg';
-
+import instance from '../../api';
 const Register = () => {
     const initialValues = {
         email: '',
@@ -19,22 +19,41 @@ const Register = () => {
     const [formValues, setFormValues] = useState(initialValues);
     const [formError, setFormError] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
+    let navigate = useNavigate()
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormValues({ ...formValues, [name]: value });
     };
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setFormError(validate(formValues));
         setIsSubmit(true);
-        console.log(e.target.value);
+        handleRegister()
+        
     };
+    const handleRegister = async () => {
+        try {
+            const formData = new FormData();
+            formData.append('username', formValues.usename);
+            formData.append('password', formValues.password);
+            formData.append('fullname', formValues.fullname);
+            formData.append('phonenumber', formValues.phone);
+            formData.append('email', formValues.email);
 
+            const data = await instance.post('/user/register', formData, {
+                headers: { 'Content-Type ': 'multipart/form-data' },
+            });
+            if (data.status === 200) {
+                navigate('/login')
+            }
+        } catch (error) {
+            setFormValues(initialValues);
+        }
+    }
     useEffect(() => {
         console.log(formError);
         if (Object.keys(formError).length === 0 && isSubmit) {
-            console.log(formValues);
         }
     }, [formError]);
     const validate = (values) => {
@@ -97,7 +116,7 @@ const Register = () => {
             <div className={styles['register-container']}>
                 <img className={styles.logo} src={lg} alt="" width="100%" />
                 <h2 className={styles['title']}>Đăng ký để thưởng thức giai điệu</h2>
-                <form>
+                <form onSubmit={(e) => handleSubmit(e)}>
                     {formArr.map((item) => {
                         return (
                             <Form
@@ -112,7 +131,7 @@ const Register = () => {
                         );
                     })}
 
-                    <FormButton type="submit" name="Đăng ký" other={false} handleClick={handleSubmit} />
+                    <button type="submit" name="Đăng ký" other={false} >Đăng kí</button>
 
                     <div className={styles.separatorLine}></div>
 

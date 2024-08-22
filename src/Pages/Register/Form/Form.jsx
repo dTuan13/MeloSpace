@@ -13,6 +13,7 @@ const Form = ({ label, placeholder, required, isPassword, handelChange, error, n
                 placeholder={placeholder}
                 required={required}
                 onChange={(e) => handelChange(e)}
+                name={name}
             />
             <div className={styles.error}>
                 <span>{error[name]}</span>

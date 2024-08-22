@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-
+import AddPlaylist from '../../AddPlaylist/AddPlaylist';
+import { GlobalContext } from '../../../Context';
 const DropdownContainer = styled.ul`
     display: ${({ showDropdown }) => (showDropdown ? 'block' : 'none')};
     position: absolute;
@@ -31,15 +32,29 @@ const DropdownItem = styled.li`
     }
 `;
 
-const DropdownMenu = ({ showDropdown }) => (
-    <DropdownContainer showDropdown={showDropdown}>
-        <DropdownItem>
-            <a href="/#">Tạo danh sách phát mới</a>
-        </DropdownItem>
-        <DropdownItem>
-            <a href="/#">Tạo thư mục danh sách phát</a>
-        </DropdownItem>
-    </DropdownContainer>
-);
+const DropdownMenu = ({ showDropdown }) => {
+    const getContext = useContext(GlobalContext)
+     return (
+        <DropdownContainer showDropdown={showDropdown}>
+            <DropdownItem
+               onClick={() => {
+                // e.preventDefault()
 
-export default DropdownMenu;
+               getContext.setHidden(true)
+            }} 
+            >
+                <a href="/#">Tạo danh sách phát mới</a>
+            </DropdownItem>
+            <DropdownItem
+                onClick={() => {
+                    // e.preventDefault()
+
+                getContext.setHiddenAlbum(true)
+                }} >
+                <a href="/#">Tạo album mới</a>
+            </DropdownItem>
+        </DropdownContainer>
+)}
+
+
+export default DropdownMenu

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import AddIcon from './AddIcon';
-
 const MenuContainer = styled.div`
     display: flex;
     align-items: center;
@@ -52,7 +51,6 @@ const MenuContainer = styled.div`
 const MenuItem = ({ title, url, icon, isActive, index }) => {
     const [showDropdown, setShowDropdown] = useState(false);
     const [hovering, setHovering] = useState(false);
-
     const toggleDropdown = () => {
         setShowDropdown((prev) => !prev);
     };

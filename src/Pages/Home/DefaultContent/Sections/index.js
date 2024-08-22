@@ -17,32 +17,41 @@ function Sections() {
         (async () => {
             try {
                 const { data } = await instance.get(`/section`);
-                if (localStorage.getItem('sections')) {
-                    localStorage.removeItem('sections');
-                }
                 localStorage.setItem('sections', JSON.stringify(data));
                 setSections(data);
                 setKey(true);
             } catch {}
         })();
-        console.log(sections);
+       
     }, [key]);
-
+    useEffect(() => {
+        for(let i = 1; i <=4 ; i++){
+            (async () => {
+                try {
+                    const { data } = await instance.get(`/section/list?id=${i}`);
+                    localStorage.setItem('sections', JSON.stringify(data));
+                  
+                } catch {}
+            })();
+        }
+    },[])
     return (
         <div>
-            {sections.map((section) => (
-                <div key={section.id} className={cx('section')}>
-                    <div className={cx('section-header')}>
-                        <h1>{section.name}</h1>
-                        <Link className={cx('readAll')} to={section.url}>
-                            Xem tất cả
-                        </Link>
-                    </div>
-                    <div className={cx('section-item')}>
-                        <SectionItem sectionId={section.id} />
-                    </div>
-                </div>
-            ))}
+            {
+            // sections.map((section) => (
+            //     <div key={section.id} className={cx('section')}>
+            //         <div className={cx('section-header')}>
+            //             <h1>{section.name}</h1>
+            //             <Link className={cx('readAll')} to={section.url}>
+            //                 Xem tất cả
+            //             </Link>
+            //         </div>
+            //         <div className={cx('section-item')}>
+            //             <SectionItem sectionId={section.id} />
+            //         </div>
+            //     </div>
+            // ))
+            }
         </div>
     );
 }
