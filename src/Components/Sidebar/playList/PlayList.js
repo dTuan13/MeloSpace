@@ -67,6 +67,7 @@ const PlayList = ({ url = '', title = '', date = '' }) => {
                     <span className="playList_date">{`${date}`}</span>
                 </div>
             </li>
+            
         </PlayListContainer>
     );
 };

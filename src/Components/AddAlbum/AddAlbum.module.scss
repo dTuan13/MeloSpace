@@ -1,0 +1,109 @@
+.AddItem{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    flex-direction: row;
+    .AddContainer{
+        border-radius: 5px;
+        height: 450px;
+        width: 800px;
+        background-color: #fff;
+        z-index: 10000;
+        padding: 10px 0;
+        .firstRow{
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            border-bottom: 1px solid #ccc;
+            margin: 20px;
+            span{
+                font-size: 22px;
+                font-weight: 500;
+            }
+            .closeBtn{
+                font-size: 25px;
+            
+                &:hover{
+                    cursor: pointer;
+                    transition: 0.1s ease;
+                    transform: rotate(180deg);
+                }
+            }
+        }
+        .mainContainer{
+            display: flex;
+            padding: 0 20px;
+            .leftContainer{
+                margin-right: 50px;
+                .thumb{
+                    height: 250px;
+                    width: 250px;
+                    border-radius: 5px;
+                    object-fit: cover;
+                }
+                input{
+                    display: none;
+                }
+            }
+            .rightContainer{
+                display: flex;
+                flex-direction: column;
+                .formInput{
+                    position: relative;
+                    margin-bottom: 20px;
+                    transform: translateY(10px);
+                    label{
+                        position: absolute;
+                        top: 0;
+                        transform: translate(10px, -50%);
+                        background-color: #fff;
+                        z-index: 1000px;
+                        padding: 0 10px;
+                        font-size: 14px;
+                        font-weight: 400;
+                    }
+                    input{
+                        height: 57px;
+                        width: 423px;
+                        border-radius: 5px;
+                        outline: none;
+                        border: 1px solid #ccc; 
+                        padding: 10px
+                    }
+                    
+                    .des{
+                        width: 423px;
+                        border-radius: 5px;
+                        outline: none;
+                        border: 1px solid #ccc; 
+                        height: 160px;
+                        padding: 10px
+
+                    }
+                }
+            }
+        }
+        .btn{
+            display: flex;
+            justify-content: end;
+            padding: 0 60px;
+            button{
+                height: 40px;
+                width: 80px;
+                background-color: #FC5050;
+                color: #fff;
+                font-weight: 500;
+                outline: none;
+                border: none;
+                border-radius: 5px;
+            }
+        }
+    }
+}

@@ -9,7 +9,6 @@ const Profile = () => {
         <div className={styles.ProfileWrapper}>
             <ProfileInfo />
             <ProfileNavigation />
-            <EditProfile/>
             <Outlet />
         </div>
     );
