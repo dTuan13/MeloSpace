@@ -1,7 +1,71 @@
 .ImgBackground {
+    position: relative;
+
     img {
         width: 100%;
         object-fit: cover;
         border-radius: 5px;
+        
+    }
+
+    .container {
+        border-radius: 50%;
+        position: absolute;
+        top: 16%;
+        left: 5%;
+        display: flex;
+        justify-content: space-between;
+        width: 92%;
+
+        .container-left{
+            display: flex;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+
+        }
+
+        .usernamecontain {
+            color: #fff;
+            margin-left: 40px;
+            display: flex;
+            flex-direction: column;
+            
+            .name {
+                font-weight: bold;
+                font-size: 60px;
+            }
+
+            .username {
+                font-size: 20px;    
+                margin-top: -10px;
+                margin-left: 2px;
+            }
+        }
+
+        .follow {
+            color: #fff;
+            align-items: end;
+            display: flex;
+            transform: translateY(8px);
+
+            
+            div {
+                margin-right: 25px;
+                flex-direction: column;
+                display: flex;
+                align-items: center;
+                font-size: 14px;
+            }
+
+            span {
+                font-size: 20px;
+                font-weight: bold;
+            }
+
+        }
     }
 }

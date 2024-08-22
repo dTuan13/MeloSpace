@@ -1,0 +1,26 @@
+.type {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    select {
+        width: 112px;
+        height: 30px;
+        border: none;
+        outline: none;
+        // background: transparent;
+        cursor: pointer;
+        padding-left: 10px;
+        font-size: 14px;
+    }
+    div {
+        display: flex;
+        justify-content: center;
+        border: 1px solid #676262;
+        width: 112px;
+        height: 30px;
+        padding: 0 10px 0 0px;
+        border-radius: 6px;
+        overflow: hidden;
+        cursor: pointer;
+    }   
+}

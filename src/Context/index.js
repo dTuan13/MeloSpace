@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react'
+import React, { useState, createContext, useEffect, useContext } from 'react'
 import instance from '../api'
 import { json } from 'react-router-dom'
 export const GlobalContext = createContext()
@@ -8,6 +8,14 @@ export const Providers = ({children}) => {
     const [playlist, setPlaylist] = useState()
     const [userPlaylist, setUserPlaylist] = useState()
     const [currentSong, setCurrentSong] = useState({})
+    const getContext = useContext(GlobalContext)
+    const [hiddenAddPlaylist, setHidden] = useState(false)
+    const [hiddenAddAlbum, setHiddenAlbum] = useState(false)
+
+
+    const set  = (value) => {
+        setHidden(set)
+    }
     const values = {
         auth,
         setAuth,
@@ -16,7 +24,11 @@ export const Providers = ({children}) => {
         playlist,
         setPlaylist,
         userPlaylist,
-        setUserPlaylist
+        setUserPlaylist,
+        hiddenAddPlaylist,
+        setHidden,
+        hiddenAddAlbum,
+        setHiddenAlbum
     }
    
     return (

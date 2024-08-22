@@ -3,6 +3,10 @@ import styles from './MainContainer.module.scss';
 import { PlayArrow, Favorite, Comment, MoreHoriz, Preview } from '@mui/icons-material';
 import ProfileItem from '../ProfileItem/ProfileItem';
 import { GlobalContext } from '../../../Context';
+import instance from '../../../api';
+import { useFetcher } from 'react-router-dom';
+import TypeSelector from './type/TypeSelect';
+import { useForm } from 'react-hook-form';
 
 const initRecord = () => {
     const re = localStorage.getItem('user-record');
@@ -22,9 +26,30 @@ const MainContainer = ({ url }) => {
     const [album, setAlbum] = useState(initAlbum);
     const [playlist, setPlaylist] = useState(initPlaylsit);
     const [data, setData] = useState();
+    const [key, setKey] = useState(true);  
+    const {
+        control,
+    } = useForm();
 
-    const getContext = useContext(GlobalContext);
-
+    useEffect(() => {
+        (async () => {
+            try {
+                const userID = localStorage.getItem('userID');
+                const { data } = await instance.get(`/record?user=${userID}`);
+                localStorage.setItem('user-record', JSON.stringify(data));
+                setRecord(data);
+                setKey(!key);
+            } catch {}
+        })();
+        (async () => {
+            try {
+                const userID = localStorage.getItem('userID');
+                const { data } = await instance.get(`/album?userid=${userID}`);
+                localStorage.setItem('user-album', JSON.stringify(data));
+                setAlbum(data);
+            } catch {}
+        })();
+    }, []);
     useEffect(() => {
         if (url === 'apiToRecord') {
             if (record) {
@@ -50,7 +75,7 @@ const MainContainer = ({ url }) => {
             } else {
                 setData();
             }
-        } else if (url === 'apiToPlaylis') {
+        } else if (url === 'apiToPlaylist') {
             if (playlist) {
                 const new_data = playlist.map((item) => {
                     return {
@@ -65,9 +90,14 @@ const MainContainer = ({ url }) => {
         } else if (url === 'apiToRePost') {
             setData();
         }
-    }, [url]);
+    }, [url, key]);
     return (
         <div className={styles.MainContainer}>
+            <div className={styles.header}>
+                <TypeSelector control={control} name="type" />
+                <a href="#">Xem tất cả</a>
+            </div>
+            
             {data ? (
                 <div className={styles.MainContent}>
                     {data.map((item, index) => (

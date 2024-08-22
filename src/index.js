@@ -7,12 +7,12 @@ import { Providers } from '../src/Context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
-        <GlobalStyles>
-            <BrowserRouter>
-                <Providers>
-                    <App />
-                </Providers>
-            </BrowserRouter>
-        </GlobalStyles>
-    </React.StrictMode>,
+    <GlobalStyles>
+        <BrowserRouter>
+            <Providers>
+                <App />
+            </Providers>
+        </BrowserRouter>
+    </GlobalStyles>,
+     </React.StrictMode>
 );

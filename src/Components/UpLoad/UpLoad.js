@@ -40,13 +40,15 @@ const UpLoad = () => {
             <Img src="ns2.jpg" />
             <div className={cx('upLoadContain')}>
                 <Title control={control} errors={errors} />
-                <FileInput
-                    control={control}
-                    name="file"
-                    label="Chọn file tải lên"
-                    rules={{ required: 'Vui lòng chọn bản ghi' }}
-                />
-                <TypeSelector control={control} name="type" />
+                <div className={cx('up')}>
+                    <FileInput
+                        control={control}
+                        name="file"
+                        label="Chọn file tải lên"
+                        rules={{ required: 'Vui lòng chọn bản ghi' }}
+                    />
+                    <TypeSelector control={control} name="type" />
+                </div>
                 <TagsInput control={control} name="tags" />
                 <DescriptionInput type="text" name="description" placeholder="Nhập mô tả chi tiết" control={control} />
                 <ModeSelector control={control} name="mode" />

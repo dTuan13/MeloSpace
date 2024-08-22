@@ -26,7 +26,7 @@ function UserProfile() {
                 <div className={cx('userProfile')}>
                     <img src={avatar} alt="User Profile" />
 
-                    <div className={cx('userBlock')}>
+                <div className={cx('userBlock')}>
                         <ul>
                             <li onClick={() => navigate('/profile')}>Hồ sơ</li>
                             <li onClick={handleLogOut}>Đăng xuất</li>

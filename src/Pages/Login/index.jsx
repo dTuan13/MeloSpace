@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
 import styles from './Login.module.scss';
 import instance from '../../api';
@@ -93,15 +93,16 @@ const Login = () => {
                             .join(''),
                     );
                 const userInfo = JSON.parse(decode(data.data.token));
-                getContext.setAuth(userInfo);
+                localStorage.setItem('userID', userInfo.payload.guid);
                 localStorage.setItem('access_token', data.data.token);
                 localStorage.setItem('avatar', userInfo.payload.avatar);
                 navigate('/');
-            } else {
-                setLoginError('Tên người dùng hoặc mật khẩu không chính xác.');
-                setFormValues(initialValues);
             }
-        } catch (error) {}
+        } catch (error) {
+            setLoginError('Tên người dùng hoặc mật khẩu không chính xác.');
+            setFormValues(initialValues);
+            navigate('#');
+        }
     };
 
     return (
@@ -183,9 +184,9 @@ const Login = () => {
 
                 <p className={styles.signupText}>
                     Bạn chưa có tài khoản?
-                    <Link to="/register" className={styles.register}>
+                    <a href="/register" className={styles.register}>
                         Đăng ký MeloSpace
-                    </Link>
+                    </a>
                 </p>
             </div>
         </div>
