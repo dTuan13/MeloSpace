@@ -23,6 +23,18 @@ const FileInput = ({ control, name, label, rules }) => {
         fileInputRef.current.click();
     };
 
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const fileType = file.type;
+            if (fileType !== 'audio/mpeg' && fileType !== 'audio/mp4') {
+                field.onChange(null);
+                return;
+            }
+            field.onChange(e.target.files);
+        }
+    };
+
     return (
         <div className={cx('upLoadContain')}>
             <label htmlFor={name}>{label}</label>
@@ -31,12 +43,15 @@ const FileInput = ({ control, name, label, rules }) => {
                 id={name}
                 ref={fileInputRef}
                 style={{ display: 'none' }}
-                onChange={(e) => field.onChange(e.target.files)}
+                onChange={handleFileChange}
+                accept="audio/mpeg, audio/mp4"
             />
 
             <button type="button" className={cx('customFileButton', { error: error })} onClick={handleClick}>
+                <p>
+                    Chọn File<span className={cx('text-red')}>*</span>
+                </p>
                 <CreateIcon />
-                Chọn File<span className={cx('text-red')}>*</span>
             </button>
             {field.value && <p>{field.value[0]?.name}</p>}
             {error && <p className={cx('error')}>{error.message}</p>}

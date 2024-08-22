@@ -2,36 +2,25 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
-    width: 190px;
-
     select {
-        width: 190px;
-        height: 100%;
+        width: 112px;
+        height: 30px;
         border: none;
         outline: none;
-        background: transparent;
+        // background: transparent;
         cursor: pointer;
-        padding-left: 20px;
-        // padding-top: 5px;
+        padding-left: 10px;
+        font-size: 14px;
     }
     div {
         display: flex;
         justify-content: center;
         border: 1px solid #676262;
-        width: 190px;
-        height: 35px;
+        width: 112px;
+        height: 30px;
         padding: 0 10px 0 0px;
         border-radius: 6px;
         overflow: hidden;
         cursor: pointer;
-    }
-    label {
-        font-size: 16px;
-        font-weight: bold;
-        color: #242424;
-    }
-    option {
-        font-size: 14px;
-        cursor: pointer;
-    }
+    }   
 }

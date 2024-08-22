@@ -7,7 +7,7 @@
         font-weight: bold;
         color: #242424;
     }
-    input {
+    textarea {
         width: 400px;
         height: 80px;
         // padding: 5px 20px;
@@ -16,5 +16,6 @@
         border: 1px solid #000000;
         font-weight: 500;
         font-size: 14px;
+        padding: 10px;
     }
 }

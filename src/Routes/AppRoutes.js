@@ -40,7 +40,7 @@ const index = () => {
                     <Route path="/section/playlist" element={<Section section_id="4" />} />
                     <Route path="/section/popular" element={<Section section_id="5" />} />
                 </Route>
-                <Route path="/upload" element={<UpLoad />} />
+                {/* <Route path="/upload" element={<UpLoad />} /> */}
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
