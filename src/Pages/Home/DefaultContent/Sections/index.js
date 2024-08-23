@@ -31,6 +31,7 @@ function Sections() {
             } catch {}
         })();
     }, [key]);
+
     return (
         <div>
             {isLoaded ? (
