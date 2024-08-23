@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import MusicControl from '../MusicController';
 import styles from './AllItem.module.scss';
-import { PlayArrow, Favorite, Comment, MoreHoriz } from '@mui/icons-material';
+import { PlayArrow, Favorite, Comment, MoreHoriz, LocationSearching } from '@mui/icons-material';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
 import PlayButton from './PlayButton/PlayItem';
 import instance from '../../api';
-
+import { GlobalContext } from '../../Context';
 const cx = classNames.bind(styles);
 
 const initListRecord = () => {
@@ -21,11 +21,11 @@ const AllItem = () => {
     const albumId = queryParams.get('album');
     const userId = queryParams.get('userid');
 
-    const [dataItem, setDataItem] = useState(initListRecord);
+const [dataItem, setDataItem] = useState(initListRecord);
     const title = localStorage.getItem('titleItem');
     const [hoveredItemId, setHoveredItemId] = useState(null);
     const [key, setKey] = useState(false);
-
+    const getContext = useContext(GlobalContext)
     useEffect(() => {
         if (playlistId) {
             (async () => {
@@ -33,6 +33,7 @@ const AllItem = () => {
                     const { data } = await instance.get(`record?playlist=${playlistId}`);
                     localStorage.setItem('listRecord', JSON.stringify(data));
                     setDataItem(data);
+                    getContext.setPlaylist(data)
                     setKey(true);
                 } catch {}
             })();
@@ -42,6 +43,8 @@ const AllItem = () => {
                     const { data } = await instance.get(`record?album=${albumId}`);
                     localStorage.setItem('listRecord', JSON.stringify(data));
                     setDataItem(data);
+                    getContext.setPlaylist(data)
+
                     setKey(true);
                 } catch {}
             })();
@@ -51,16 +54,19 @@ const AllItem = () => {
                     const { data } = await instance.get(`record/userid=${userId}`);
                     localStorage.setItem('listRecord', JSON.stringify(data));
                     setDataItem(data);
+                    getContext.setPlaylist(data)
+
                     setKey(true);
                 } catch {}
             })();
         }
     }, [key]);
 
-    const getUrl = (url) => {
-        console.log(url);
-    };
-
+    const handleOnclick = (item) => {
+        getContext.setCurrentSong(item)
+        getContext.setChangeSong(!getContext.changeSong)
+        localStorage.setItem('current-song', JSON.stringify(item))
+    }
     return (
         <div className={cx('Container')}>
             <h1>{title}</h1>
@@ -68,10 +74,10 @@ const AllItem = () => {
                 {dataItem.length > 0 ? (
                     dataItem.map((item) => (
                         <div
-                            onClick={() => getUrl(item.RecordURL)}
                             style={{ backgroundImage: `url(${item.AlbumThumb})` }}
                             className={cx('RecordItem')}
                             key={item.RecordID}
+                            onClick={ () => handleOnclick(item)}
                             onMouseEnter={() => setHoveredItemId(item.RecordID)} // Đặt id của phần tử đang hover
                             onMouseLeave={() => setHoveredItemId(null)} // Xóa id khi không còn hover
                         >

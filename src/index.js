@@ -13,6 +13,6 @@ root.render(
                 <App />
             </Providers>
         </BrowserRouter>
-    </GlobalStyles>,
+    </GlobalStyles>
     //  </React.StrictMode>
 );
