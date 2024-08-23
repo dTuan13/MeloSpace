@@ -19,7 +19,7 @@ const Register = () => {
     const [formValues, setFormValues] = useState(initialValues);
     const [formError, setFormError] = useState({});
     const [isSubmit, setIsSubmit] = useState(false);
-    let navigate = useNavigate()
+    let navigate = useNavigate();
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -29,8 +29,7 @@ const Register = () => {
         e.preventDefault();
         setFormError(validate(formValues));
         setIsSubmit(true);
-        handleRegister()
-        
+        handleRegister();
     };
     const handleRegister = async () => {
         try {
@@ -45,12 +44,12 @@ const Register = () => {
                 headers: { 'Content-Type ': 'multipart/form-data' },
             });
             if (data.status === 200) {
-                navigate('/login')
+                navigate('/login');
             }
         } catch (error) {
             setFormValues(initialValues);
         }
-    }
+    };
     useEffect(() => {
         console.log(formError);
         if (Object.keys(formError).length === 0 && isSubmit) {
@@ -131,7 +130,9 @@ const Register = () => {
                         );
                     })}
 
-                    <button type="submit" name="Đăng ký" other={false} >Đăng kí</button>
+                    <button type="submit" name="Đăng ký" other={false}>
+                        Đăng kí
+                    </button>
 
                     <div className={styles.separatorLine}></div>
 
