@@ -4,6 +4,7 @@ import styles from './ItemOfUser.module.scss';
 import { PlayArrow, Favorite, Comment, MoreHoriz } from '@mui/icons-material';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
+import PlayButton from './PlayButton/PlayItem';
 
 const cx = classNames.bind(styles);
 
@@ -16,6 +17,7 @@ const ItemOfUser = (url) => {
     const [data, setData] = useState(initData(url.url));
     const [dataItem, setDataItem] = useState([]);
     const [title, setTitle] = useState('');
+    const [hoveredItemId, setHoveredItemId] = useState(null); // State để lưu id của phần tử đang được hover
 
     const user = localStorage.getItem('fullName') ? localStorage.getItem('fullName') : '';
 
@@ -54,13 +56,20 @@ const ItemOfUser = (url) => {
             setDataItem();
         }
     }, [url]);
+
     return (
         <div className={cx('Container')}>
             <h1>{title}</h1>
             <div>
                 {dataItem.length > 0 ? (
                     dataItem.map((item) => (
-                        <div className={cx('RecordItem')}>
+                        <div
+                            className={cx('RecordItem')}
+                            key={item.id}
+                            onMouseEnter={() => setHoveredItemId(item.id)} // Đặt id của phần tử đang hover
+                            onMouseLeave={() => setHoveredItemId(null)} // Xóa id khi không còn hover
+                        >
+                            {hoveredItemId === item.id && <PlayButton />} {/* Chỉ hiển thị PlayButton khi hover */}
                             <div className={cx('RecordDes')}>
                                 <div className={cx('RecordInfo')}>
                                     <img src={item.thumb} alt="" />
@@ -90,7 +99,6 @@ const ItemOfUser = (url) => {
                 ) : (
                     <div></div>
                 )}
-                {}
             </div>
         </div>
     );
