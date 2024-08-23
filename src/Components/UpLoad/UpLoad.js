@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './UpLoad.module.scss';
 
 import classNames from 'classnames/bind';
@@ -16,6 +16,8 @@ const cx = classNames.bind(styles);
 
 const UpLoad = () => {
     const navigate = useNavigate();
+    const [imageSrc, setImageSrc] = useState({ file: null, src: 'ns2.jpg' });
+
     const {
         // register,
         handleSubmit,
@@ -31,13 +33,15 @@ const UpLoad = () => {
         console.log(values.type);
     };
 
+    console.log(imageSrc);
+
     const Skip = () => {
         navigate('/');
     };
 
     return (
         <form onSubmit={handleSubmit(handleOnSubmit)} action="" className={cx('upLoadForm')}>
-            <Img src="ns2.jpg" />
+            <Img imageSrc={imageSrc} setImageSrc={setImageSrc} />
             <div className={cx('upLoadContain')}>
                 <Title control={control} errors={errors} />
                 <div className={cx('up')}>

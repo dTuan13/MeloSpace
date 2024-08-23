@@ -1,6 +1,6 @@
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import Auth from './Components/Auth';
-import AppRoutes from './Routes/AppRoutes'
+import AppRoutes from './Routes/AppRoutes';
 import AddPlaylist from './Components/AddPlaylist/AddPlaylist';
 import AddAlbum from './Components/AddAlbum/AddAlbum';
 function App() {

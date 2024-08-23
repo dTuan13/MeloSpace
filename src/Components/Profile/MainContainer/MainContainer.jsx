@@ -26,10 +26,8 @@ const MainContainer = ({ url }) => {
     const [album, setAlbum] = useState(initAlbum);
     const [playlist, setPlaylist] = useState(initPlaylsit);
     const [data, setData] = useState();
-    const [key, setKey] = useState(true);  
-    const {
-        control,
-    } = useForm();
+    const [key, setKey] = useState(true);
+    const { control } = useForm();
 
     useEffect(() => {
         (async () => {
@@ -95,9 +93,9 @@ const MainContainer = ({ url }) => {
         <div className={styles.MainContainer}>
             <div className={styles.header}>
                 <TypeSelector control={control} name="type" />
-                <a href="#">Xem tất cả</a>
+                <a href="/record/phuoc">Xem tất cả</a>
             </div>
-            
+
             {data ? (
                 <div className={styles.MainContent}>
                     {data.map((item, index) => (
