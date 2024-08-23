@@ -53,6 +53,8 @@ const AddPlaylist = () => {
                   <input
                     value={name}
                     onChange={(e) => {
+                      e.preventDefault()
+                                    e.stopPropagation()
                       setName(e.target.value)
                     }}
                     type="text" />

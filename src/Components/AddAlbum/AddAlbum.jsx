@@ -67,6 +67,8 @@ const AddAlbum = () => {
                             <textarea
                                 value={des}
                                 onChange={(e) => {
+                                    e.preventDefault()
+                                    e.stopPropagation()
                                     setDes(e.target.value);
                                 }}
                                 className={styles.des}
@@ -86,7 +88,6 @@ const AddAlbum = () => {
                                 formData.append('description', des);
                                 formData.append('userid', userID);
                                 formData.append('thumb', thumb);
-                                console.log(thumb);
                                 const data = await instance.post('/album/add', formData, {
                                     headers: { 'Content-Type': 'multipart/form-data' },
                                 });

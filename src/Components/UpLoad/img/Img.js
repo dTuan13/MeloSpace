@@ -10,6 +10,7 @@ const DescriptionInput = ({ imageSrc, setImageSrc }) => {
     const fileInputRef = useRef(null);
 
     const handleButtonClick = () => {
+        event.preventDefault();
         fileInputRef.current.click();
     };
 
