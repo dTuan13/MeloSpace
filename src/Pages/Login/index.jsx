@@ -22,7 +22,7 @@ const Button = ({ label, logo, require }) =>
             {logo && <img src={logo} alt={label} className={styles.btnLogo} />}
             <span>{label}</span>
         </button>
-    );
+);
 
 const Login = () => {
     const initialValues = { username: '', password: '' };
@@ -175,7 +175,7 @@ const Login = () => {
                     <button type="submit" className={styles.btnPrimary}>
                         Đăng nhập
                     </button>
-                    <a href="#" className={styles.forgotPass}>
+                    <a href="/forgotpassword" className={styles.forgotPass}>
                         Quên mật khẩu của bạn?
                     </a>
                 </form>
