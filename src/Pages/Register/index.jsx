@@ -3,7 +3,7 @@ import Form from './Form/Form';
 import FormButton from './FormButton/FormButton';
 import styles from './Register.module.scss';
 import { Link, useNavigate } from 'react-router-dom';
-import lg from './img/lg.png';
+import lg from './img/meloospace.png';
 import fb from './img/fb.svg';
 import gg from './img/gg.svg';
 import instance from '../../api';
@@ -131,7 +131,7 @@ const Register = () => {
                         );
                     })}
 
-                    <button type="submit" name="Đăng ký" other={false} >Đăng kí</button>
+                    <button type="submit" name="Đăng ký" other={false} className={styles.btnRegis}>Đăng kí</button>
 
                     <div className={styles.separatorLine}></div>
 

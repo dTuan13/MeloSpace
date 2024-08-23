@@ -1,16 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-
+import img from './meloospace.png';
 const LogoContainer = styled.div`
     width: 100%;
     height: 70px;
-    background-color: #f0aae7;
 `;
 
 const Logo = () => {
     return (
         <div>
-            <LogoContainer>{/* <img src="" alt="" /> */}</LogoContainer>
+            <LogoContainer><img src={img} alt="" /></LogoContainer>
         </div>
     );
 };

@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './ForgotPassword.module.scss';
-import forgotForm from './ForgotForm/ForgotForm';
 import Auth from '../../Components/Auth';
 import classNames from 'classnames/bind';
 const cx = classNames.bind(styles);

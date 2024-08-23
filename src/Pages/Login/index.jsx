@@ -7,7 +7,7 @@ import Auth from '../../Components/Auth';
 import { GlobalContext } from '../../Context';
 import gg from './images/gg.svg';
 import fb from './images/fb.svg';
-import lg from './images/lg.png';
+import melo from './images/meloospace.png';
 
 const Button = ({ label, logo, require }) =>
     require === true ? (
@@ -108,7 +108,7 @@ const Login = () => {
     return (
         <div className={styles.loginPage}>
             <div className={styles.loginFormContainer}>
-                <img src={lg} alt="Header" className={styles.headerImage} />
+                <img src={melo} alt="Header" className={styles.headerImage} />
 
                 <h1 className={styles.title}>Đăng nhập vào MeloSpace</h1>
 
