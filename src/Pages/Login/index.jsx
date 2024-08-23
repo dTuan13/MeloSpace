@@ -113,7 +113,6 @@ const Login = () => {
                 localStorage.setItem('avatar', userInfo.payload.avatar);
                 localStorage.setItem('fullName', userInfo.payload.fullname);
                 localStorage.setItem('userName', userInfo.payload.username);
-                console.log(userInfo.payload);
                 navigate('/');
             }
         } catch (error) {
