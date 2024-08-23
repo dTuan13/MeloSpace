@@ -15,9 +15,22 @@ export default function Auth({ children }) {
             try {
                 var loginDetails = await getUserInfo(codeResponse);
                 localStorage.setItem('access_token', loginDetails.access_token);
-                const userInfo = JSON.parse(atob(loginDetails.access_token.split('.')[1]));
-                getContext.setAuth(userInfo);
+                const decode = (token) =>
+                    decodeURIComponent(
+                        atob(token.split('.')[1].replace('-', '+').replace('_', '/'))
+                            .split('')
+                            .map((c) => `%${('00' + c.charCodeAt(0).toString(16)).slice(-2)}`)
+                            .join(''),
+                    );
+                const userInfo = JSON.parse(decode(loginDetails.access_token));
+
+                console.log(userInfo.payload)
+                localStorage.setItem('userID', userInfo.payload.guid);
+                localStorage.setItem('avatar', userInfo.payload.avatar);
+                localStorage.setItem('fullName', userInfo.payload.fullname);
+                localStorage.setItem('userName','');
                 navigate('/');
+                
             } catch (error) {}
         },
         onError: () => {

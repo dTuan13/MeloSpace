@@ -94,6 +94,7 @@ const Login = () => {
             formData.append('username', formValues.username);
             formData.append('password', encryptedData);
 
+
             const data = await instance.post('/user/login', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });

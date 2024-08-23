@@ -54,7 +54,7 @@ const AddPlaylist = () => {
                     value={name}
                     onChange={(e) => {
                       e.preventDefault()
-                                    e.stopPropagation()
+                      e.stopPropagation()
                       setName(e.target.value)
                     }}
                     type="text" />
@@ -72,7 +72,6 @@ const AddPlaylist = () => {
             </div>
             <div className={styles.btn}>
                 <button
-
                   onClick={async () => {
                     console.log(name, des)
                     try {
@@ -97,7 +96,7 @@ const AddPlaylist = () => {
                             const { data } = await instance.get(`/playlist?userid=${userID}`);
                             localStorage.setItem('playlist', JSON.stringify(data));
                         } catch {}
-                    })();
+                      })();
                       navigate('/')
                      }
                      else{
