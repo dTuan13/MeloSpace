@@ -7,6 +7,7 @@ import instance from '../../../api';
 import { useFetcher } from 'react-router-dom';
 import TypeSelector from './type/TypeSelect';
 import { useForm } from 'react-hook-form';
+import { Link } from 'react-router-dom';
 
 const initRecord = () => {
     const re = localStorage.getItem('user-record');
@@ -22,17 +23,18 @@ const initPlaylsit = () => {
     return playlist ? JSON.parse(playlist) : '';
 };
 const MainContainer = ({ url }) => {
+    const userID = localStorage.getItem('userID');
     const [record, setRecord] = useState(initRecord);
     const [album, setAlbum] = useState(initAlbum);
     const [playlist, setPlaylist] = useState(initPlaylsit);
     const [data, setData] = useState();
     const [key, setKey] = useState(true);
     const { control } = useForm();
+    const [linkApi, setLinkApi] = useState('');
 
     useEffect(() => {
         (async () => {
             try {
-                const userID = localStorage.getItem('userID');
                 const { data } = await instance.get(`/record?user=${userID}`);
                 localStorage.setItem('user-record', JSON.stringify(data));
                 setRecord(data);
@@ -41,7 +43,6 @@ const MainContainer = ({ url }) => {
         })();
         (async () => {
             try {
-                const userID = localStorage.getItem('userID');
                 const { data } = await instance.get(`/album?userid=${userID}`);
                 localStorage.setItem('user-album', JSON.stringify(data));
                 setAlbum(data);
@@ -58,6 +59,7 @@ const MainContainer = ({ url }) => {
                     };
                 });
                 setData(new_data);
+                setLinkApi('/records');
             } else {
                 setData();
             }
@@ -65,11 +67,12 @@ const MainContainer = ({ url }) => {
             if (album) {
                 const new_data = album.map((item) => {
                     return {
-                        name: item.albumname,
-                        thumb: item.albumthumb,
+                        name: item.name,
+                        thumb: item.thumb,
                     };
                 });
                 setData(new_data);
+                setLinkApi('/albums');
             } else {
                 setData();
             }
@@ -82,6 +85,7 @@ const MainContainer = ({ url }) => {
                     };
                 });
                 setData(new_data);
+                setLinkApi('/playlists');
             } else {
                 setData();
             }
@@ -93,7 +97,7 @@ const MainContainer = ({ url }) => {
         <div className={styles.MainContainer}>
             <div className={styles.header}>
                 <TypeSelector control={control} name="type" />
-                <a href="/record/phuoc">Xem tất cả</a>
+                <Link to={linkApi}>Xem tất cả</Link>
             </div>
 
             {data ? (
