@@ -10,12 +10,11 @@ import ModeSelector from './mode/ModeSelector';
 import TypeSelector from './type/TypeSelect';
 import TagsInput from './tags/Tags';
 import Img from './img/Img';
-import { useNavigate } from 'react-router-dom';
 import instance from '../../api';
+import { useNavigate } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 const UpLoad = () => {
-    const navigate = useNavigate();
     const img = localStorage.getItem('avatar');
     const [imageSrc, setImageSrc] = useState({ file: null, src: img });
 
@@ -26,29 +25,34 @@ const UpLoad = () => {
         control,
     } = useForm();
 
-    const handleOnSubmit = async (values) => {
-        event.preventDefault();
-        (async () => {
+    const handleOnSubmit = async (value) => {
             try {
+
                 const formData = new FormData();
                 const userID = localStorage.getItem('userID');
 
-                formData.append('record', values.file[0]);
+                formData.append('record', value.file[0]);
                 formData.append('image', imageSrc.file);
-                formData.append('recordname', values.title);
-                formData.append('modeid', values.mode);
+                formData.append('recordname', value.title);
+                formData.append('modeid', value.mode);
                 formData.append('authid', userID);
 
                 const data = await instance.post('/record/add', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
 
-                console.log(data);
+               
                 if (data.status === 200) {
-                    navigate('/');
+                    alert('Upload thành công')
+                    const navigate = useNavigate()
+                    navigate('/')
                 }
-            } catch (error) {}
-        })();
+
+            } catch (error) {
+                alert('Upload không thành công')
+
+            }
+     
     };
 
     const Skip = () => {
@@ -56,7 +60,7 @@ const UpLoad = () => {
     };
 
     return (
-        <form action="" onSubmit={handleSubmit(handleOnSubmit)} className={cx('upLoadForm')}>
+        <form className={cx('upLoadForm')}>
             <Img imageSrc={imageSrc} setImageSrc={setImageSrc} />
             <div className={cx('upLoadContain')}>
                 <Title control={control} errors={errors} />
@@ -76,7 +80,12 @@ const UpLoad = () => {
                     <button onClick={Skip} className={cx('btn1')}>
                         Bỏ qua
                     </button>
-                    <button className={cx('btn2')}>Đăng</button>
+                    <button
+                        onClick={async (e) => {
+                            e.preventDefault()
+                            handleOnSubmit(control._formValues)
+                        }}
+                         className={cx('btn2')}>Đăng</button>
                 </div>
             </div>
         </form>
