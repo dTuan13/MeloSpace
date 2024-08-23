@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: flex-start;
     gap: 10px;
+    width: 190px;
     .text-red {
         color: #f21c1c;
     }
@@ -20,22 +21,26 @@
         border-radius: 6px;
         transition: background-color 0.3s ease;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         gap: 10px;
-        height: 30px;
-        width: 130px;
+        height: 35px;
+        width: 190px;
         margin: 0;
         padding: 0;
         color: #484747;
         font-size: 14px;
         font-weight: 500;
         line-height: 30px;
-        border: 1px solid #000000;
+        border: 1px solid #000000 !important;
         background: #ffffff;
         svg {
             // margin-top: 5px;
-            height: 28px;
+            height: 35px;
             font-size: 20px;
+        }
+        p {
+            margin: 0;
+            line-height: 35px;
         }
     }
 }

@@ -12,6 +12,7 @@ import RecentIcon from './recent/RecentIcon';
 import PlayList from './playList/PlayList';
 import { GlobalContext } from '../../Context';
 import instance from '../../api';
+import AddPlaylist from '../AddPlaylist/AddPlaylist';
 
 const initialNavBar = [
     {
@@ -38,23 +39,12 @@ const initPlaylist = () => {
     return playlist ? JSON.parse(playlist) : [];
 };
 const SideBar = () => {
-    useEffect(() => {
-        (async () => {
-            try {
-                const userID = localStorage.getItem('userID');
-                const { data } = await instance.get(`/playlist?userid=${userID}`);
-                localStorage.setItem('playlist', JSON.stringify(data));
-            } catch (error) {
-                console.error('Error fetching user playlist:', error);
-            }
-        })();
-    }, []);
-
     const [navBar, setNavBar] = useState(initialNavBar);
     const [showInput, setShowInput] = useState(false);
     const inputRef = useRef(null);
     const location = useLocation();
-    const [userPlaylist, setUserPlaylist] = useState(initPlaylist);
+    const [key, setKey] = useState(false);
+    const [userPlaylist, setUserPlaylist] = useState([]);
     const getContext = useContext(GlobalContext);
     const updateNavBar = useCallback(() => {
         setNavBar((prevNavBar) =>
@@ -66,18 +56,22 @@ const SideBar = () => {
     }, [location.pathname]);
 
     useEffect(() => {
+        (async () => {
+            try {
+                const userID = localStorage.getItem('userID');
+                const { data } = await instance.get(`/playlist?userid=${userID}`);
+                // setUserPlaylist(data);
+                localStorage.setItem('playlist', JSON.stringify(data));
+                setKey(true);
+            } catch (error) {
+                console.error('Error fetching user playlist:', error);
+            }
+        })();
+    }, [key]);
+    useEffect(() => {
         updateNavBar();
     }, [updateNavBar]);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const userID = getContext.auth.payload.guid;
-                const { data } = await instance.get(`/playlist?userid=${userID}`);
-                localStorage.setItem('playlist', JSON.stringify(data));
-            } catch {}
-        })();
-    }, [userPlaylist]);
     const handleInput = () => {
         setShowInput((prevShowInput) => !prevShowInput);
     };
@@ -112,7 +106,7 @@ const SideBar = () => {
             <div className="playList">
                 <div className="play_list">
                     <ul className="listItem">
-                        {userPlaylist
+                        {userPlaylist.length > 0
                             ? userPlaylist.map((item) => (
                                   <PlayList
                                       url={item.thumb}

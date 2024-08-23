@@ -11,38 +11,43 @@ const initSection = () => {
     return sec ? JSON.parse(sec) : [];
 };
 function Sections() {
-    const [sections, setSections] = useState(initSection);
-    const [key, setKey] = useState(false);
+    const [sections, setSections] = useState([]);
+    const [isLoaded, setLoaded] = useState(false);
     useEffect(() => {
         (async () => {
             try {
-                const { data } = await instance.get(`/section`);
-                if (localStorage.getItem('sections')) {
-                    localStorage.removeItem('sections');
+                const storedSections = localStorage.getItem('sections');
+                if (storedSections) {
+                    setSections(JSON.parse(storedSections));
+                    setLoaded(true);
+                } else {
+                    const { data } = await instance.get(`/section`);
+                    localStorage.setItem('sections', JSON.stringify(data));
+                    setSections(data);
+                    setLoaded(true);
                 }
-                localStorage.setItem('sections', JSON.stringify(data));
-                setSections(data);
-                setKey(true);
             } catch {}
         })();
-        console.log(sections);
-    }, [key]);
-
+    }, []);
     return (
         <div>
-            {sections.map((section) => (
-                <div key={section.id} className={cx('section')}>
-                    <div className={cx('section-header')}>
-                        <h1>{section.name}</h1>
-                        <Link className={cx('readAll')} to={section.url}>
-                            Xem tất cả
-                        </Link>
+            {isLoaded ? (
+                sections.map((section) => (
+                    <div key={section.id} className={cx('section')}>
+                        <div className={cx('section-header')}>
+                            <h1>{section.name}</h1>
+                            <Link className={cx('readAll')} to={section.url}>
+                                Xem tất cả
+                            </Link>
+                        </div>
+                        <div className={cx('section-item')}>
+                            <SectionItem sectionId={section.id} />
+                        </div>
                     </div>
-                    <div className={cx('section-item')}>
-                        <SectionItem sectionId={section.id} />
-                    </div>
-                </div>
-            ))}
+                ))
+            ) : (
+                <div></div>
+            )}
         </div>
     );
 }
