@@ -7,8 +7,10 @@ import Auth from '../../Components/Auth';
 import { GlobalContext } from '../../Context';
 import gg from './images/gg.svg';
 import fb from './images/fb.svg';
+import melo from './images/meloospace.png';
 import lg from './images/lg.png';
-import forge from 'node-forge'
+import forge from 'node-forge';
+
 const Button = ({ label, logo, require }) =>
     require === true ? (
         <Auth>
@@ -22,7 +24,7 @@ const Button = ({ label, logo, require }) =>
             {logo && <img src={logo} alt={label} className={styles.btnLogo} />}
             <span>{label}</span>
         </button>
-    );
+);
 
 const Login = () => {
     const initialValues = { username: '', password: '' };
@@ -56,7 +58,6 @@ const Login = () => {
         const errors = validate(formValues);
         setFormErrors(errors);
         setIsSubmit(true);
-        
     };
 
     useEffect(() => {
@@ -88,11 +89,11 @@ const Login = () => {
     const handleLogin = async () => {
         try {
             const formData = new FormData();
-            const timestamp = new Date().toISOString();
-            const enData = `${formValues.password}|${timestamp}`
-            const encryptedData  = encryptData(enData);
+            // const timestamp = new Date().toISOString();
+            // const enData = `${formValues.password}|${timestamp}`
+            // const encryptedData  = encryptData(enData);
             formData.append('username', formValues.username);
-            formData.append('password', encryptedData);
+            formData.append('password', formValues.password);
 
             const data = await instance.post('/user/login', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
@@ -110,6 +111,9 @@ const Login = () => {
                 localStorage.setItem('userID', userInfo.payload.guid);
                 localStorage.setItem('access_token', data.data.token);
                 localStorage.setItem('avatar', userInfo.payload.avatar);
+                localStorage.setItem('fullName', userInfo.payload.fullname);
+                localStorage.setItem('userName', 'sontung@2003');
+                console.log(userInfo.payload);
                 navigate('/');
             }
         } catch (error) {
@@ -122,7 +126,7 @@ const Login = () => {
     return (
         <div className={styles.loginPage}>
             <div className={styles.loginFormContainer}>
-                <img src={lg} alt="Header" className={styles.headerImage} />
+                <img src={melo} alt="Header" className={styles.headerImage} />
 
                 <h1 className={styles.title}>Đăng nhập vào MeloSpace</h1>
 
@@ -189,7 +193,7 @@ const Login = () => {
                     <button type="submit" className={styles.btnPrimary}>
                         Đăng nhập
                     </button>
-                    <a href="#" className={styles.forgotPass}>
+                    <a href="/forgotpassword" className={styles.forgotPass}>
                         Quên mật khẩu của bạn?
                     </a>
                 </form>

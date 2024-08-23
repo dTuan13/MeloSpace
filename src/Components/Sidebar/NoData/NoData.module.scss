@@ -1,0 +1,21 @@
+.contain {
+    background: #cccccc;
+    padding: 20px;
+    height: 100%;
+    margin: 1px;
+    border-radius: 5px;
+    h4 {
+        font-weight: 600;
+        font-size: 16px;
+    }
+    p {
+        opacity: 0.8;
+        font-weight: 400;
+    }
+    button {
+        width: 100% !important;
+        padding: 10px;
+        background: #ffffff !important;
+        border-radius: 20px;
+    }
+}

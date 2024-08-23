@@ -53,7 +53,7 @@ function Section() {
                     </div>
                 </div>
             ) : (
-                <div>K</div>
+                <div></div>
             )}
         </div>
     );

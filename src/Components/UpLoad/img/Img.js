@@ -9,7 +9,7 @@ const DescriptionInput = ({ imageSrc, setImageSrc }) => {
     const [error, setError] = useState('');
     const fileInputRef = useRef(null);
 
-    const handleButtonClick = () => {
+    const handleButtonClick = (event) => {
         event.preventDefault();
         fileInputRef.current.click();
     };
