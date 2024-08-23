@@ -11,8 +11,9 @@ const initSection = () => {
     return sec ? JSON.parse(sec) : [];
 };
 function Sections() {
-    const [sections, setSections] = useState([]);
+    const [sections, setSections] = useState(initSection);
     const [isLoaded, setLoaded] = useState(false);
+    const [key, setKey] = useState(false);
     useEffect(() => {
         (async () => {
             try {
@@ -25,10 +26,12 @@ function Sections() {
                     localStorage.setItem('sections', JSON.stringify(data));
                     setSections(data);
                     setLoaded(true);
+                    setKey(true);
                 }
             } catch {}
         })();
-    }, []);
+    }, [key]);
+
     return (
         <div>
             {isLoaded ? (
@@ -36,7 +39,7 @@ function Sections() {
                     <div key={section.id} className={cx('section')}>
                         <div className={cx('section-header')}>
                             <h1>{section.name}</h1>
-                            <Link className={cx('readAll')} to={section.url}>
+                            <Link className={cx('readAll')} to={`/section/list?id=${section.id}`}>
                                 Xem tất cả
                             </Link>
                         </div>

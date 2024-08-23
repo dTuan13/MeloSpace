@@ -1,52 +1,60 @@
-import SectionAlbumItem from './SectionAlbum';
-import SectionPlaylistItem from './SectionPlaylist';
-import SectionUserItem from './SectionUser';
+import SectionItem from './SectionItem';
 import styles from './Section.module.scss';
 import classNames from 'classnames/bind';
+import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function Section(section_id) {
-    const sections = [
-        {
-            id: 1,
-            name: 'Dành cho bạn',
-            url: 'section/danhchoban',
-        },
-        {
-            id: 2,
-            name: 'Album nổi bật',
-            url: 'section/album',
-        },
-        {
-            id: 3,
-            name: 'Người dùng nổi bật',
-            url: 'section/user',
-        },
-        {
-            id: 4,
-            name: 'Danh sách phát nổi bật',
-            url: 'section/playlist',
-        },
-        {
-            id: 5,
-            name: 'Tập thịnh hành',
-            url: 'section/popular',
-        },
-    ];
+function initItem(id) {
+    const dataSectionItem = localStorage.getItem(`section-Item_${id}`);
+    return dataSectionItem ? dataSectionItem : [];
+}
 
-    const numerSectionId = Number(section_id.section_id);
+const initSection = () => {
+    const sec = localStorage.getItem('sections');
+    return sec ? JSON.parse(sec) : [];
+};
 
-    const title = sections.find((section) => section.id === numerSectionId).name;
+function Section() {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const id = queryParams.get('id');
+
+    const [isLoaded, setLoaded] = useState(false);
+    const [sectionItem, setSectionItem] = useState(initItem(id));
+    const [sections, setSections] = useState(initSection);
+
+    let title = sections.find((item) => item.id == id).name;
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const storedSectionItem = localStorage.getItem(`section-Item_${id}`);
+                if (storedSectionItem) {
+                    setSectionItem(JSON.parse(storedSectionItem));
+                } else {
+                    const { data } = await instance.get(`/section/list?id=${id}`);
+                    localStorage.setItem(`section-Item_${id}`, JSON.stringify(data));
+                    setSectionItem(data);
+                }
+                setLoaded(true);
+            } catch {}
+        })();
+    }, [id]);
 
     return (
         <div className={cx('section')}>
-            <h2>{title}</h2>
-            <div className={cx('section-item')}>
-                <SectionPlaylistItem sectionId={numerSectionId} />
-                <SectionUserItem sectionId={numerSectionId} />
-                <SectionAlbumItem sectionId={numerSectionId} />
-            </div>
+            {isLoaded ? (
+                <div>
+                    <h2>{title}</h2>
+                    <div className={cx('section-item')}>
+                        <SectionItem sectionId={id} />
+                    </div>
+                </div>
+            ) : (
+                <div></div>
+            )}
         </div>
     );
 }

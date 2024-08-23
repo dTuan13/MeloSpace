@@ -13,6 +13,7 @@ import PlayList from './playList/PlayList';
 import { GlobalContext } from '../../Context';
 import instance from '../../api';
 import AddPlaylist from '../AddPlaylist/AddPlaylist';
+import NoData from './NoData/NoData';
 
 const initialNavBar = [
     {
@@ -106,16 +107,18 @@ const SideBar = () => {
             <div className="playList">
                 <div className="play_list">
                     <ul className="listItem">
-                        {userPlaylist.length > 0
-                            ? userPlaylist.map((item) => (
-                                  <PlayList
-                                      url={item.thumb}
-                                      key={item.id}
-                                      title={item.playlistname}
-                                      date={item.description}
-                                  ></PlayList>
-                              ))
-                            : ''}
+                        {userPlaylist.length > 0 ? (
+                            userPlaylist.map((item) => (
+                                <PlayList
+                                    url={item.thumb}
+                                    key={item.id}
+                                    title={item.playlistname}
+                                    date={item.description}
+                                ></PlayList>
+                            ))
+                        ) : (
+                            <NoData></NoData>
+                        )}
                     </ul>
                 </div>
             </div>
@@ -226,7 +229,5 @@ const Container = styled.div`
         position: fixed;
         top: 0;
         left: calc(var(--limit-width) - 2px);
-    }
-`;
-
+    }`;
 export default SideBar;

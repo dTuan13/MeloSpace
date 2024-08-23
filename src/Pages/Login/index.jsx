@@ -8,6 +8,8 @@ import { GlobalContext } from '../../Context';
 import gg from './images/gg.svg';
 import fb from './images/fb.svg';
 import melo from './images/meloospace.png';
+import lg from './images/lg.png';
+import forge from 'node-forge';
 
 const Button = ({ label, logo, require }) =>
     require === true ? (
@@ -75,15 +77,28 @@ const Login = () => {
         return errors;
     };
 
+    const publicKeyPem = `
+    -----BEGIN PUBLIC KEY-----
+    MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDFK+bSBk70XG+gAFtcSC7Wyncm8BoELvnqQNQrVkVtiuHvFYTwGEQnwklT8cpIqJMjqo+0ef48MXiZWr2gxEEyOUKPuOSKa+xq9DfHDjC6rptsKMcDtY6YeZiaxioND1+kVEtY4XtNDpsTv98f6A9zvzg9dOg0vECc9eHFlTYR+QIDAQAB
+    -----END PUBLIC KEY-----`;
+
+    const encryptData = (data) => {
+        const publicKey = forge.pki.publicKeyFromPem(publicKeyPem);
+        return forge.util.encode64(publicKey.encrypt(data, 'RSA-OAEP'));
+    };
     const handleLogin = async () => {
         try {
             const formData = new FormData();
+            // const timestamp = new Date().toISOString();
+            // const enData = `${formValues.password}|${timestamp}`
+            // const encryptedData  = encryptData(enData);
             formData.append('username', formValues.username);
             formData.append('password', formValues.password);
 
             const data = await instance.post('/user/login', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
+
             if (data.status === 200) {
                 const decode = (token) =>
                     decodeURIComponent(
@@ -96,6 +111,9 @@ const Login = () => {
                 localStorage.setItem('userID', userInfo.payload.guid);
                 localStorage.setItem('access_token', data.data.token);
                 localStorage.setItem('avatar', userInfo.payload.avatar);
+                localStorage.setItem('fullName', userInfo.payload.fullname);
+                localStorage.setItem('userName', 'sontung@2003');
+                console.log(userInfo.payload);
                 navigate('/');
             }
         } catch (error) {
