@@ -10,6 +10,7 @@ import MainContainer from '../Components/Profile/MainContainer/MainContainer';
 import UpLoad from '../Components/UpLoad/UpLoad';
 import Auth from '../Components/Auth';
 import Section from '../Components/Section';
+import RecordOfUser from '../Components/AllRecordOfUser/RecordOfUser';
 
 const index = () => {
     const PublicRoutes = [];
@@ -17,6 +18,7 @@ const index = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />}>
+                <Route path="/record/phuoc" element={<RecordOfUser />} />
                 <Route index element={<DefaultContent />} />
                 <Route path="/home" element={<DefaultContent />} />
                 <Route path="/profile" element={<PrivateRoutes />}>
