@@ -8,7 +8,6 @@ import { GlobalContext } from '../../Context';
 import gg from './images/gg.svg';
 import fb from './images/fb.svg';
 import melo from './images/meloospace.png';
-import lg from './images/lg.png';
 import forge from 'node-forge';
 
 const Button = ({ label, logo, require }) =>
@@ -89,10 +88,10 @@ const Login = () => {
     const handleLogin = async () => {
         try {
             const formData = new FormData();
-            // const timestamp = new Date().toISOString();
-            // const enData = `${formValues.password}|${timestamp}`
-            // const encryptedData  = encryptData(enData);
-            formData.append('username', formValues.username);
+            const timestamp = new Date().toISOString();
+            const enData = `${formValues.password}|${timestamp}`
+            const encryptedData  = encryptData(enData);
+            formData.append('username', encryptedData);
             formData.append('password', formValues.password);
 
             const data = await instance.post('/user/login', formData, {
