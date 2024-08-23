@@ -1,69 +1,25 @@
 import React, { useState, useEffect } from 'react';
 import MusicControl from '../MusicController';
-import styles from './AllItem.module.scss';
+import styles from './ItemsSearch.module.scss';
 import { PlayArrow, Favorite, Comment, MoreHoriz } from '@mui/icons-material';
 import classNames from 'classnames/bind';
 import { useLocation } from 'react-router-dom';
 import PlayButton from './PlayButton/PlayItem';
-import instance from '../../api';
 
 const cx = classNames.bind(styles);
 
-const initListRecord = () => {
-    const list = localStorage.getItem('listRecord');
-    return list ? JSON.parse(list) : [];
-};
-
-const AllItem = () => {
+const ItemsSearch = () => {
+    const [hoveredItemId, setHoveredItemId] = useState(null);
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const playlistId = queryParams.get('playlist');
-    const albumId = queryParams.get('album');
-    const userId = queryParams.get('userid');
+    const name = queryParams.get('recodename');
 
-    const [dataItem, setDataItem] = useState(initListRecord);
-    const title = localStorage.getItem('titleItem');
-    const [hoveredItemId, setHoveredItemId] = useState(null);
-    const [key, setKey] = useState(false);
-
-    useEffect(() => {
-        if (playlistId) {
-            (async () => {
-                try {
-                    const { data } = await instance.get(`record?playlist=${playlistId}`);
-                    localStorage.setItem('listRecord', JSON.stringify(data));
-                    setDataItem(data);
-                    setKey(true);
-                } catch {}
-            })();
-        } else if (albumId) {
-            (async () => {
-                try {
-                    const { data } = await instance.get(`record?album=${albumId}`);
-                    localStorage.setItem('listRecord', JSON.stringify(data));
-                    setDataItem(data);
-                    setKey(true);
-                } catch {}
-            })();
-        } else if (userId) {
-            (async () => {
-                try {
-                    const { data } = await instance.get(`record/userid=${userId}`);
-                    localStorage.setItem('listRecord', JSON.stringify(data));
-                    setDataItem(data);
-                    setKey(true);
-                } catch {}
-            })();
-        }
-    }, [key]);
-
-    const getUrl = (url) => {
-        console.log(url);
-    };
-
+    const dataItem = JSON.parse(localStorage.getItem('searchResult'))
+        ? JSON.parse(localStorage.getItem('searchResult'))
+        : [];
     return (
         <div className={cx('Container')}>
-            <h1>{title}</h1>
+            <h1>Kết quả tìm kiếm "{name}"</h1>
             <div>
                 {dataItem.length > 0 ? (
                     dataItem.map((item) => (
@@ -111,4 +67,4 @@ const AllItem = () => {
     );
 };
 
-export default AllItem;
+export default ItemsSearch;
