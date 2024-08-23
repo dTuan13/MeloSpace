@@ -43,19 +43,35 @@ function SectionItem(sectionId) {
                         const dataPlaylist = await instance.get(`systemPl?id=${e.playlistid}`);
                         const playlistItem = dataPlaylist.data[0];
                         if (!listData.includes(playlistItem)) {
-                            setListData((prevData) => [...prevData, dataPlaylist.data[0]]);
+                            const new_data = {
+                                name: playlistItem.name,
+                                thumb: playlistItem.thumb,
+                                description: playlistItem.description,
+                            };
+                            setListData((prevData) => [...prevData, new_data]);
                         }
                     } else if (e.albumid) {
                         const dataAlbum = await instance.get(`album?albumid=${e.albumid}`);
                         const albumItem = dataAlbum.data[0];
                         if (!listData.includes(albumItem)) {
-                            setListData((prevData) => [...prevData, dataAlbum.data[0]]);
+                            const new_data = {
+                                name: albumItem.albumname,
+                                thumb: albumItem.albumthumb,
+                                description: albumItem.description,
+                            };
+                            setListData((prevData) => [...prevData, new_data]);
                         }
                     } else if (e.userid) {
                         const dataUser = await instance.get(`user?id=${e.userid}`);
                         const userItem = dataUser.data[0];
                         if (!listData.includes(userItem)) {
-                            setListData((prevData) => [...prevData, dataUser.data[0]]);
+                            const new_data = {
+                                name: userItem.Fullname,
+                                thumb: userItem.avatar,
+                                description: '',
+                                user: true,
+                            };
+                            setListData((prevData) => [...prevData, new_data]);
                         }
                     }
                 } catch (error) {}
@@ -73,12 +89,12 @@ function SectionItem(sectionId) {
             {isLoaded ? (
                 listData.map((item) => (
                     <Link key={item.id} className={cx('sectionPlaylistItem-item')}>
-                        <div className={cx('sectionPlaylistItem-item_img', { [styles.borderAvt]: !item.thumb })}>
-                            <img src={item.thumb ? item.thumb : item.avatar} />
+                        <div className={cx('sectionPlaylistItem-item_img', { [styles.borderAvt]: item.user })}>
+                            <img src={item.thumb} />
                         </div>
                         <div className={cx('sectionPlaylistItem-item__info')}>
-                            <h3>{item.name ? item.name : item.Fullname}</h3>
-                            <h6>{item.description ? item.description : ''}</h6>
+                            <h3>{item.name}</h3>
+                            <h6>{item.description}</h6>
                         </div>
                         <div className={cx('playBtn')} onClick={PlayMusic}>
                             <PlayButton />

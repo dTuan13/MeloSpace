@@ -61,7 +61,7 @@ const SideBar = () => {
             try {
                 const userID = localStorage.getItem('userID');
                 const { data } = await instance.get(`/playlist?userid=${userID}`);
-                // setUserPlaylist(data);
+                setUserPlaylist(data);
                 localStorage.setItem('playlist', JSON.stringify(data));
                 setKey(true);
             } catch (error) {

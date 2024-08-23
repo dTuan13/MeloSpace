@@ -8,7 +8,6 @@ import { GlobalContext } from '../../Context';
 import gg from './images/gg.svg';
 import fb from './images/fb.svg';
 import melo from './images/meloospace.png';
-import lg from './images/lg.png';
 import forge from 'node-forge';
 
 const Button = ({ label, logo, require }) =>
@@ -24,7 +23,7 @@ const Button = ({ label, logo, require }) =>
             {logo && <img src={logo} alt={label} className={styles.btnLogo} />}
             <span>{label}</span>
         </button>
-);
+    );
 
 const Login = () => {
     const initialValues = { username: '', password: '' };
@@ -89,11 +88,11 @@ const Login = () => {
     const handleLogin = async () => {
         try {
             const formData = new FormData();
-            // const timestamp = new Date().toISOString();
-            // const enData = `${formValues.password}|${timestamp}`
-            // const encryptedData  = encryptData(enData);
+            const timestamp = new Date().toISOString();
+            const enData = `${formValues.password}|${timestamp}`;
+            const encryptedData = encryptData(enData);
             formData.append('username', formValues.username);
-            formData.append('password', formValues.password);
+            formData.append('password', encryptedData);
 
             const data = await instance.post('/user/login', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
@@ -112,7 +111,7 @@ const Login = () => {
                 localStorage.setItem('access_token', data.data.token);
                 localStorage.setItem('avatar', userInfo.payload.avatar);
                 localStorage.setItem('fullName', userInfo.payload.fullname);
-                localStorage.setItem('userName', 'sontung@2003');
+                localStorage.setItem('userName', userInfo.payload.username);
                 console.log(userInfo.payload);
                 navigate('/');
             }

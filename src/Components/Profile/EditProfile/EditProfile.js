@@ -14,7 +14,8 @@ import CloseIcon from '@mui/icons-material/Close';
 const cx = classNames.bind(styles);
 
 const EditProfile = () => {
-    const [imageSrc, setImageSrc] = useState({ file: null, src: 'ns2.jpg' });
+    const img = localStorage.getItem('avatar');
+    const [imageSrc, setImageSrc] = useState({ file: null, src: img });
 
     const {
         // register,
