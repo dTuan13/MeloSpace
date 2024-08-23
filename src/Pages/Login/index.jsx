@@ -8,7 +8,7 @@ import { GlobalContext } from '../../Context';
 import gg from './images/gg.svg';
 import fb from './images/fb.svg';
 import lg from './images/lg.png';
-import forge from 'node-forge'
+import forge from 'node-forge';
 const Button = ({ label, logo, require }) =>
     require === true ? (
         <Auth>
@@ -56,7 +56,6 @@ const Login = () => {
         const errors = validate(formValues);
         setFormErrors(errors);
         setIsSubmit(true);
-        
     };
 
     useEffect(() => {
@@ -88,11 +87,11 @@ const Login = () => {
     const handleLogin = async () => {
         try {
             const formData = new FormData();
-            const timestamp = new Date().toISOString();
-            const enData = `${formValues.password}|${timestamp}`
-            const encryptedData  = encryptData(enData);
+            // const timestamp = new Date().toISOString();
+            // const enData = `${formValues.password}|${timestamp}`
+            // const encryptedData  = encryptData(enData);
             formData.append('username', formValues.username);
-            formData.append('password', encryptedData);
+            formData.append('password', formValues.password);
 
             const data = await instance.post('/user/login', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
