@@ -11,7 +11,7 @@ import TypeSelector from './type/TypeSelect';
 import TagsInput from './tags/Tags';
 import Img from './img/Img';
 import { useNavigate } from 'react-router-dom';
-
+import instance from '../../api';
 const cx = classNames.bind(styles);
 
 const UpLoad = () => {
@@ -25,22 +25,41 @@ const UpLoad = () => {
         control,
     } = useForm();
 
-    const handleOnSubmit = (values) => {
-        console.log(values);
-        console.log(values.file[0]);
-        console.log(values.description);
-        console.log(values.mode);
-        console.log(values.type);
+    const handleOnSubmit = async (values) => {
+        event.preventDefault();
+        (async () => {
+            try {
+                const formData = new FormData();
+                const userID = localStorage.getItem('userID')
+
+                formData.append('record', values.file[0]);
+                formData.append('image', imageSrc.file);
+                formData.append('recordname', values.title);
+                formData.append('modeid', values.mode);
+                formData.append('authid', userID);
+    
+                const data = await instance.post('/record/add', formData, {
+                    headers: { 'Content-Type': 'multipart/form-data' },
+                });
+    
+                console.log(data)
+                if(data.status === 200)
+                {
+                    navigate('/')
+                }
+                
+            } catch (error) {
+                
+            }
+        })()
     };
-
-    console.log(imageSrc);
-
+    
     const Skip = () => {
         navigate('/');
     };
 
     return (
-        <form onSubmit={handleSubmit(handleOnSubmit)} action="" className={cx('upLoadForm')}>
+        <form action='' onSubmit={handleSubmit(handleOnSubmit)} className={cx('upLoadForm')}>
             <Img imageSrc={imageSrc} setImageSrc={setImageSrc} />
             <div className={cx('upLoadContain')}>
                 <Title control={control} errors={errors} />
@@ -51,7 +70,7 @@ const UpLoad = () => {
                         label="Chọn file tải lên"
                         rules={{ required: 'Vui lòng chọn bản ghi' }}
                     />
-                    <TypeSelector control={control} name="type" />
+                    {/* <TypeSelector control={control} name="type" /> */}
                 </div>
                 <TagsInput control={control} name="tags" />
                 <DescriptionInput type="text" name="description" placeholder="Nhập mô tả chi tiết" control={control} />
