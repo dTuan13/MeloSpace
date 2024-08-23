@@ -34,11 +34,7 @@ const index = () => {
                 </Route>
                 <Route path="/section">
                     <Route index element={<DefaultContent />} />
-                    <Route path="/section/danhchoban" element={<Section section_id="1" />} />
-                    <Route path="/section/album" element={<Section section_id="2" />} />
-                    <Route path="/section/user" element={<Section section_id="3" />} />
-                    <Route path="/section/playlist" element={<Section section_id="4" />} />
-                    <Route path="/section/popular" element={<Section section_id="5" />} />
+                    <Route path="/section/list" element={<Section />} />
                 </Route>
                 {/* <Route path="/upload" element={<UpLoad />} /> */}
             </Route>

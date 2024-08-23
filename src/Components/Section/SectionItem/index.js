@@ -7,10 +7,15 @@ import instance from '../../../api';
 
 const cx = classNames.bind(styles);
 
+function initItem(id) {
+    const dataSectionItem = localStorage.getItem(`section-Item_${id}`);
+    return dataSectionItem ? dataSectionItem : [];
+}
+
 function SectionItem(sectionId) {
     const id = sectionId.sectionId;
     const [listData, setListData] = useState([]);
-    const [sectionItem, setSectionItem] = useState([]);
+    const [sectionItem, setSectionItem] = useState(initItem(id));
     const [isDataFetch, setDataFetch] = useState(false);
     const [isLoaded, setLoaded] = useState(false);
 
@@ -19,7 +24,7 @@ function SectionItem(sectionId) {
             try {
                 const storedSectionItem = localStorage.getItem(`section-Item_${id}`);
                 if (storedSectionItem) {
-                    sectionItem(JSON.parse(storedSectionItem));
+                    setSectionItem(JSON.parse(storedSectionItem));
                 } else {
                     const { data } = await instance.get(`/section/list?id=${id}`);
                     localStorage.setItem(`section-Item_${id}`, JSON.stringify(data));
@@ -28,7 +33,7 @@ function SectionItem(sectionId) {
                 setDataFetch(true);
             } catch {}
         })();
-    }, []);
+    }, [sectionId]);
 
     useEffect(() => {
         (async () => {
