@@ -56,6 +56,7 @@ const MainContainer = ({ url }) => {
                     return {
                         name: item.RecordName,
                         thumb: item.RecordThumb,
+                        url: item.RecordURL
                     };
                 });
                 setData(new_data);

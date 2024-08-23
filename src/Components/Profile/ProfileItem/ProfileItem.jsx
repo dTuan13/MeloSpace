@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styles from './ProfileItem.module.scss';
 import { PlayArrow, Favorite, Comment, MoreHoriz } from '@mui/icons-material';
-
+import { GlobalContext } from '../../../Context';
 const ProfileItem = ({ item }) => {
+    const getContext = useContext(GlobalContext)
     return (
-        <div className={styles.RecordItem}>
+        <div
+            onClick = {() =>{
+                if(item.url){
+                    const song = {
+                        RecordName: item.name,
+                        RecordURL: item.url,
+                        RecordThumb: item.thumb,
+                    }
+                    getContext.setCurrentSong(song)
+                    getContext.setChangeSong(!getContext.changeSong)
+                    localStorage.setItem('current-song', JSON.stringify(song))
+                }
+                
+            }}
+             className={styles.RecordItem}>
             <div className={styles.RecordDes}>
                 <div className={styles.RecordInfo}>
                     <img src={item.thumb} alt="" />

@@ -18,7 +18,6 @@ function SectionItem(sectionId) {
     const [sectionItem, setSectionItem] = useState(initItem(id));
     const [isDataFetch, setDataFetch] = useState(false);
     const [isLoaded, setLoaded] = useState(false);
-    // const [url, setUrl] = useState('');
 
     useEffect(() => {
         (async () => {
