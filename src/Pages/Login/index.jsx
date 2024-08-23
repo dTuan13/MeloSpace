@@ -96,6 +96,9 @@ const Login = () => {
                 localStorage.setItem('userID', userInfo.payload.guid);
                 localStorage.setItem('access_token', data.data.token);
                 localStorage.setItem('avatar', userInfo.payload.avatar);
+                localStorage.setItem('fullName', userInfo.payload.fullname);
+                localStorage.setItem('userName', 'sontung@2003');
+                console.log(userInfo.payload);
                 navigate('/');
             }
         } catch (error) {

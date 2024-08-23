@@ -5,6 +5,8 @@
 .MainContent {
     display: flex;
     flex-wrap: wrap;
+    max-height: 282px;
+    overflow: hidden;
 }
 
 .noDataFound {
@@ -46,13 +48,13 @@
     align-items: center;
     margin-bottom: 20px;
 
-    a{
+    a {
         text-decoration: none;
         font-size: 14px;
         color: #000;
     }
 
     a:hover {
-        color: #E94040;
+        color: #e94040;
     }
 }
