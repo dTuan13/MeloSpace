@@ -27,8 +27,9 @@ const AddAlbum = () => {
                         <img
                             id="uploadArea"
                             className={styles.thumb}
-                            onClick={() => {
+                            onClick={(e) => {
                                 document.querySelector('#input').click();
+                                e.preventDefault()
                             }}
                         />
                         <input
@@ -95,7 +96,8 @@ const AddAlbum = () => {
                                     setThumb();
                                     setName('');
                                     setDes('');
-                                    const navigate = useNavigate()(async () => {
+                                    const navigate = useNavigate()
+                                    (async () => {
                                         try {
                                             const userID = getContext.auth.payload.guid;
                                             const { data } = await instance.get(`/playlist?userid=${userID}`);

@@ -12,7 +12,7 @@ const AddPlaylist = () => {
    return (
     getContext.hiddenAddPlaylist === true ? 
       <div className={styles.AddItem}>
-          <form className = {styles.AddContainer}>
+          <form action='' className = {styles.AddContainer}>
             <div className={styles.firstRow}>
               <span>Tạo mới Playlist </span>
               <div 
@@ -26,15 +26,16 @@ const AddPlaylist = () => {
             <div className={styles.mainContainer}>
               <div className = {styles.leftContainer}>
                   <img id='uploadArea' className={styles.thumb} 
-                    onClick={() => {
+                    onClick={(e) => {
                       document.querySelector('#input').click()
+                      e.preventDefault()
                     }}/>
                   <input id = 'input' type="file"
                     onChange={(event) => {
+                      event.preventDefault()
                       const file = event.target.files[0];
                       if (file) {
                           setThumb(file)
-
                           const reader = new FileReader();
                           reader.onload = function(e) {
                               const img = document.createElement('img');
