@@ -18,6 +18,7 @@ function SectionItem(sectionId) {
     const [sectionItem, setSectionItem] = useState(initItem(id));
     const [isDataFetch, setDataFetch] = useState(false);
     const [isLoaded, setLoaded] = useState(false);
+    // const [url, setUrl] = useState('');
 
     useEffect(() => {
         (async () => {
@@ -47,6 +48,7 @@ function SectionItem(sectionId) {
                                 name: playlistItem.name,
                                 thumb: playlistItem.thumb,
                                 description: playlistItem.description,
+                                url: `record?playlist=${playlistItem.guid}`,
                             };
                             setListData((prevData) => [...prevData, new_data]);
                         }
@@ -58,6 +60,7 @@ function SectionItem(sectionId) {
                                 name: albumItem.albumname,
                                 thumb: albumItem.albumthumb,
                                 description: albumItem.description,
+                                url: `record?album=${albumItem.guid}`,
                             };
                             setListData((prevData) => [...prevData, new_data]);
                         }
@@ -69,6 +72,7 @@ function SectionItem(sectionId) {
                                 name: userItem.Fullname,
                                 thumb: userItem.avatar,
                                 description: '',
+                                url: `record?userid=${userItem.guid}`,
                                 user: true,
                             };
                             setListData((prevData) => [...prevData, new_data]);
@@ -84,11 +88,20 @@ function SectionItem(sectionId) {
         // play music
     };
 
+    const SaveTitle = (title) => {
+        localStorage.setItem('titleItem', title);
+    };
+
     return (
         <div className={cx('sectionPlaylistItem')}>
             {isLoaded ? (
                 listData.map((item) => (
-                    <Link key={item.id} className={cx('sectionPlaylistItem-item')}>
+                    <Link
+                        key={item.id}
+                        onClick={() => SaveTitle(item.name)}
+                        className={cx('sectionPlaylistItem-item')}
+                        to={item.url}
+                    >
                         <div className={cx('sectionPlaylistItem-item_img', { [styles.borderAvt]: item.user })}>
                             <img src={item.thumb} />
                         </div>

@@ -1,0 +1,25 @@
+.playButton {
+    width: 35px !important;
+    height: 35px;
+    border-radius: 50%;
+    background-color: #f84343;
+    position: absolute;
+    top: 44%;
+    left: 58%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 37px;
+    top: 18px;
+    .icon {
+        color: #fff;
+        font-size: 20px;
+        margin-left: 4px;
+        height: 15px;
+        width: 15px;
+    }
+}
+
+.playButton:hover {
+    background-color: #f84d4d;
+}

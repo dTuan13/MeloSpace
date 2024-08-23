@@ -12,6 +12,7 @@ import Auth from '../Components/Auth';
 import Section from '../Components/Section';
 import ForgotPassword from '../Pages/ForgotPassword';
 import ItemOfUser from '../Components/AllItemOfUser/ItemOfUser';
+import AllItem from '../Components/AllItem/AllItem';
 
 const index = () => {
     const PublicRoutes = [];
@@ -42,6 +43,8 @@ const index = () => {
                 <Route path="/albums" element={<ItemOfUser url="user-album" />} />
                 <Route path="/playlists" element={<ItemOfUser url="playlist" />} />
                 {/* <Route path="/upload" element={<UpLoad />} /> */}
+
+                <Route path="/record" element={<AllItem />} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
