@@ -56,7 +56,7 @@ const UpLoad = () => {
                     <button onClick={Skip} className={cx('btn1')}>
                         Bỏ qua
                     </button>
-                    <button className={cx('btn2')}>Lưu</button>
+                    <button className={cx('btn2')}>Đăng</button>
                 </div>
             </div>
         </form>

@@ -13,7 +13,6 @@ const MusicControl = () => {
     const [change, setChange] = useState(false)
     const getContext = useContext(GlobalContext)
     const [volumeValue, setVolume] = useState(50)
-    const au = useRef()
     const records = [
         {
             AlbumID: null,
@@ -261,6 +260,8 @@ const MusicControl = () => {
             guid: 'd1f90b107266fe20cec98185f9eb6e844be7713fbb8372155e51d1fbcf206f50',
         },
     ];
+    const [currentSong, setCurrentSong] = useState(records[0])
+    const au = useRef()
     const convertToMinutes = (seconds) => {
         if (seconds) {
             let result = '';
@@ -274,53 +275,33 @@ const MusicControl = () => {
     };
     const handleNextSong = () => {
         try{
-            const crs = getContext.currentSong
-            const index = getContext.playlist.findIndex(item => item.RecordURL === crs.RecordURL)
-            getContext.setCurrentSong(getContext.playlist[index+1])
+            const index = records.findIndex(item => item.RecordURL === currentSong.RecordURL)
+            setCurrentSong(records[index+1])
             
         }
         catch{
-            setChange(true)
         }
     };
     const handlePrevSong = () => {
         try{
-            const crs = getContext.currentSong
-            const index = getContext.playlist.findIndex(item => item.RecordURL === crs.RecordURL)
-            getContext.setCurrentSong(getContext.playlist[index-1])
-            
-           
+            const index = records.findIndex(item => item.RecordURL === currentSong.RecordURL)
+            setCurrentSong(records[index-1])
+
         }
         catch {
-            setChange(true)
         }
     };
 
     useEffect(() => {
-        // isPlaying === true ? au.current.play() : au.current.pause()
+        isPlaying === true ? au.current.play() : au.current.pause()
     }, [isPlaying])
 
-    // useEffect(() => {
-    //     (async () => {
-    //         try {
-    //             // const {data} = await instance.get('/record');
-    //             // getContext.setPlaylist(data)
-    //             // getContext.setCurrentSong(data[4])
-    //             getContext.setPlaylist(records)
-    //             getContext.setCurrentSong(records[5])
-    //             setChange(false)
-    //         } catch{
-    //             setChange(true)
-    //         }
-    //     })();
-    // }, [change]);
 
     useEffect(() =>{
         setDuration(au.current.src ? au.current.duration : 0 )
         setCurrentTime(au.current.src ? au.current.currentTime : 0)
         setDurationLeft(duration - currentTime)
         durationLeft < 1 ? handleNextSong() : setValue((currentTime / duration) * 100)
-        
     }, [onUpdate])
     
 
@@ -331,7 +312,7 @@ const MusicControl = () => {
                     <div 
                         className= {`${styles.musicControllThumb} ${isPlaying ? styles.rotating : ''}`}
                         >
-                        <img src={getContext.currentSong.RecordThumb} alt="" />
+                        <img src={currentSong.RecordThumb} alt="" />
 
                     </div>
                     <ul className= {styles.musicControllSub}>
@@ -397,7 +378,8 @@ const MusicControl = () => {
                     <audio
                         ref={au}
                         onTimeUpdate={() => {setUpdate(Math.random())}}
-                        src= {getContext.currentSong.RecordURL ? getContext.currentSong.RecordURL : '' }
+                        autoPlay = 'true'
+                        src= { currentSong.RecordURL }
                         id="myAudio" 
                         type="audio/mp3">
                     </audio>
@@ -427,4 +409,4 @@ const MusicControl = () => {
     );
 };
 
-export default MusicControl;
+export default MusicControl;    

@@ -13,28 +13,28 @@ const initSection = () => {
 function Sections() {
     const [sections, setSections] = useState(initSection);
     const [key, setKey] = useState(false);
-    useEffect(() => {
-        (async () => {
-            try {
-                const { data } = await instance.get(`/section`);
-                localStorage.setItem('sections', JSON.stringify(data));
-                setSections(data);
-                setKey(true);
-            } catch {}
-        })();
+    // useEffect(() => {
+    //     (async () => {
+    //         try {
+    //             const { data } = await instance.get(`/section`);
+    //             localStorage.setItem('sections', JSON.stringify(data));
+    //             setSections(data);
+    //             setKey(true);
+    //         } catch {}
+    //     })();
        
-    }, [key]);
-    useEffect(() => {
-        for(let i = 1; i <=4 ; i++){
-            (async () => {
-                try {
-                    const { data } = await instance.get(`/section/list?id=${i}`);
-                    localStorage.setItem('sections', JSON.stringify(data));
+    // }, [key]);
+    // useEffect(() => {
+    //     for(let i = 1; i <=4 ; i++){
+    //         (async () => {
+    //             try {
+    //                 const { data } = await instance.get(`/section/list?id=${i}`);
+    //                 localStorage.setItem('sections', JSON.stringify(data));
                   
-                } catch {}
-            })();
-        }
-    },[])
+    //             } catch {}
+    //         })();
+    //     }
+    // },[])
     return (
         <div>
             {
