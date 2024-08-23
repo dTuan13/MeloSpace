@@ -5,57 +5,34 @@ import { faMagnifyingGlass, faX } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from 'react';
 import UserDetails from '../UserDetails';
 import { useNavigate } from 'react-router-dom';
+import instance from '../../../../api';
 
 const cx = classNames.bind(styles);
+
+function initRecord() {
+    const dataSectionItem = localStorage.getItem('listAllRecord');
+    return dataSectionItem ? dataSectionItem : [];
+}
 
 function Search() {
     const [showResult, setShowResult] = useState(false);
     const [searchResult, setSearchResult] = useState([]);
-    const [dataUsers, setDataUsers] = useState([]);
+    const [dataRecord, setDataRecord] = useState(initRecord);
     const [searchValue, setSearchValue] = useState('');
+    const [key, setKey] = useState(false);
 
     const navigate = useNavigate();
 
     useEffect(() => {
-        setDataUsers([
-            {
-                id: 1,
-                name: 'Trần Văn Toản',
-                image: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
-                des: 'Sky',
-            },
-            {
-                id: 2,
-                name: 'Hoàng Thị Ngọc Ánh',
-                image: 'https://i.scdn.co/image/ab676161000051742bcb72091c46d935e195aa87',
-                des: 'Đom Đóm',
-            },
-            {
-                id: 3,
-                name: 'Trần Linh Đan',
-                image: 'https://i.scdn.co/image/ab67616100005174e1cbc9e7ba8fbc5d7738ea51',
-                des: 'Bầu Trời',
-            },
-            {
-                id: 4,
-                name: 'Nguyễn Anh Linh',
-                image: 'https://i.scdn.co/image/ab676161000051745a79a6ca8c60e4ec1440be53',
-                des: 'Yêu màu hồng',
-            },
-            {
-                id: 5,
-                name: 'Trần Ngọc Châu',
-                image: 'https://i.scdn.co/image/ab676161000051742bcb72091c46d935e195aa87',
-                des: 'Chú mèo nhỏ',
-            },
-            {
-                id: 6,
-                name: 'Trần Cao Trung',
-                image: 'https://i.scdn.co/image/ab67616100005174e1cbc9e7ba8fbc5d7738ea51',
-                des: 'Bạch Dương',
-            },
-        ]);
-    }, []);
+        (async () => {
+            try {
+                const { data } = await instance.get(`record`);
+                localStorage.setItem('listAllRecord', JSON.stringify(data));
+                setDataRecord(data);
+                setKey(true);
+            } catch {}
+        })();
+    }, [key]);
 
     const removeDiacritics = (str) => {
         return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
@@ -67,12 +44,13 @@ function Search() {
 
         const normalizedSearchValue = removeDiacritics(value.trim().toLowerCase());
 
-        const filteredUsers = dataUsers.filter((user) => {
-            const normalizedUserName = removeDiacritics(user.name.toLowerCase());
+        const filteredUsers = dataRecord.filter((item) => {
+            const normalizedUserName = removeDiacritics(item.RecordName.toLowerCase());
             return normalizedUserName.includes(normalizedSearchValue);
         });
 
         setSearchResult(filteredUsers);
+        localStorage.setItem('searchResult', JSON.stringify(filteredUsers));
     };
 
     const handleRemove = () => {
@@ -81,7 +59,7 @@ function Search() {
     };
 
     const handleSearch = () => {
-        navigate(`/search/name=${searchValue}`);
+        navigate(`/search?recodename=${searchValue}`);
     };
 
     return (
@@ -101,7 +79,7 @@ function Search() {
                 <div className={cx('searchResult')}>
                     <div className={cx('userResult')}>
                         {searchResult.map((item) => (
-                            <UserDetails key={item.id} user={item} />
+                            <UserDetails key={item.id} record={item} />
                         ))}
                     </div>
                     <div className={cx('inputBg')}></div>

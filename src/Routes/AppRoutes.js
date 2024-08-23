@@ -13,6 +13,7 @@ import Section from '../Components/Section';
 import ForgotPassword from '../Pages/ForgotPassword';
 import ItemOfUser from '../Components/AllItemOfUser/ItemOfUser';
 import AllItem from '../Components/AllItem/AllItem';
+import ItemsSearch from '../Components/ItemsSearch/ItemsSearch';
 
 const index = () => {
     const PublicRoutes = [];
@@ -45,6 +46,8 @@ const index = () => {
                 {/* <Route path="/upload" element={<UpLoad />} /> */}
 
                 <Route path="/record" element={<AllItem />} />
+
+                <Route path="/search" element={<ItemsSearch />} />
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />

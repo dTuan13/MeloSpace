@@ -4,14 +4,14 @@ import { Link } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
-function UserDetails({ user }) {
-    const linkSearch = `/search/id=${user.id}`;
+function UserDetails({ record }) {
+    const linkSearch = `/search/id=${record.guid}`;
     return (
         <Link to={linkSearch} className={cx('item')}>
-            <img src={user.image} />
+            <img src={record.RecordThumb} />
             <div>
-                <h5>{user.name}</h5>
-                <span>{user.des}</span>
+                <h5>{record.RecordName}</h5>
+                {/* <span>Tuan</span> */}
             </div>
         </Link>
     );
