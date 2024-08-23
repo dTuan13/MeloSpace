@@ -23,7 +23,7 @@ const Button = ({ label, logo, require }) =>
             {logo && <img src={logo} alt={label} className={styles.btnLogo} />}
             <span>{label}</span>
         </button>
-);
+    );
 
 const Login = () => {
     const initialValues = { username: '', password: '' };
@@ -89,10 +89,11 @@ const Login = () => {
         try {
             const formData = new FormData();
             const timestamp = new Date().toISOString();
-            const enData = `${formValues.password}|${timestamp}`
-            const encryptedData  = encryptData(enData);
-            formData.append('username', encryptedData);
-            formData.append('password', formValues.password);
+            const enData = `${formValues.password}|${timestamp}`;
+            const encryptedData = encryptData(enData);
+            formData.append('username', formValues.username);
+            formData.append('password', encryptedData);
+
 
             const data = await instance.post('/user/login', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
@@ -111,7 +112,7 @@ const Login = () => {
                 localStorage.setItem('access_token', data.data.token);
                 localStorage.setItem('avatar', userInfo.payload.avatar);
                 localStorage.setItem('fullName', userInfo.payload.fullname);
-                localStorage.setItem('userName', 'sontung@2003');
+                localStorage.setItem('userName', userInfo.payload.username);
                 console.log(userInfo.payload);
                 navigate('/');
             }
