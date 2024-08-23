@@ -10,7 +10,7 @@ import MainContainer from '../Components/Profile/MainContainer/MainContainer';
 import UpLoad from '../Components/UpLoad/UpLoad';
 import Auth from '../Components/Auth';
 import Section from '../Components/Section';
-import RecordOfUser from '../Components/AllRecordOfUser/RecordOfUser';
+import ItemOfUser from '../Components/AllItemOfUser/ItemOfUser';
 
 const index = () => {
     const PublicRoutes = [];
@@ -18,7 +18,6 @@ const index = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />}>
-                <Route path="/record/phuoc" element={<RecordOfUser />} />
                 <Route index element={<DefaultContent />} />
                 <Route path="/home" element={<DefaultContent />} />
                 <Route path="/profile" element={<PrivateRoutes />}>
@@ -38,6 +37,9 @@ const index = () => {
                     <Route index element={<DefaultContent />} />
                     <Route path="/section/list" element={<Section />} />
                 </Route>
+                <Route path="/records" element={<ItemOfUser url="user-record" />} />
+                <Route path="/albums" element={<ItemOfUser url="user-album" />} />
+                <Route path="/playlists" element={<ItemOfUser url="playlist" />} />
                 {/* <Route path="/upload" element={<UpLoad />} /> */}
             </Route>
             <Route path="login" element={<Login />} />
