@@ -16,7 +16,8 @@ const cx = classNames.bind(styles);
 
 const UpLoad = () => {
     const navigate = useNavigate();
-    const [imageSrc, setImageSrc] = useState({ file: null, src: 'ns2.jpg' });
+    const img = localStorage.getItem('avatar');
+    const [imageSrc, setImageSrc] = useState({ file: null, src: img });
 
     const {
         // register,
@@ -30,36 +31,32 @@ const UpLoad = () => {
         (async () => {
             try {
                 const formData = new FormData();
-                const userID = localStorage.getItem('userID')
+                const userID = localStorage.getItem('userID');
 
                 formData.append('record', values.file[0]);
                 formData.append('image', imageSrc.file);
                 formData.append('recordname', values.title);
                 formData.append('modeid', values.mode);
                 formData.append('authid', userID);
-    
+
                 const data = await instance.post('/record/add', formData, {
                     headers: { 'Content-Type': 'multipart/form-data' },
                 });
-    
-                console.log(data)
-                if(data.status === 200)
-                {
-                    navigate('/')
+
+                console.log(data);
+                if (data.status === 200) {
+                    navigate('/');
                 }
-                
-            } catch (error) {
-                
-            }
-        })()
+            } catch (error) {}
+        })();
     };
-    
+
     const Skip = () => {
         navigate('/');
     };
 
     return (
-        <form action='' onSubmit={handleSubmit(handleOnSubmit)} className={cx('upLoadForm')}>
+        <form action="" onSubmit={handleSubmit(handleOnSubmit)} className={cx('upLoadForm')}>
             <Img imageSrc={imageSrc} setImageSrc={setImageSrc} />
             <div className={cx('upLoadContain')}>
                 <Title control={control} errors={errors} />

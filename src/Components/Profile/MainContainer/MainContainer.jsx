@@ -67,8 +67,9 @@ const MainContainer = ({ url }) => {
             if (album) {
                 const new_data = album.map((item) => {
                     return {
-                        name: item.name,
-                        thumb: item.thumb,
+                        name: item.albumname,
+                        thumb: item.albumthumb,
+                        id: item.guid,
                     };
                 });
                 setData(new_data);
