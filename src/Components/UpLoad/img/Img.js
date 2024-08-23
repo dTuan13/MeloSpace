@@ -5,8 +5,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
 const cx = classNames.bind(styles);
 
-const DescriptionInput = ({ src }) => {
-    const [imageSrc, setImageSrc] = useState(src);
+const DescriptionInput = ({ imageSrc, setImageSrc }) => {
     const [error, setError] = useState('');
     const fileInputRef = useRef(null);
 
@@ -23,7 +22,7 @@ const DescriptionInput = ({ src }) => {
             }
             const reader = new FileReader();
             reader.onloadend = () => {
-                setImageSrc(reader.result);
+                setImageSrc({ file, src: reader.result });
                 setError('');
             };
             reader.readAsDataURL(file);
@@ -33,7 +32,7 @@ const DescriptionInput = ({ src }) => {
     return (
         <div className={cx('container')}>
             <div className={cx('img')}>
-                <img src={imageSrc} alt="Uploaded" />
+                <img src={imageSrc.src} alt="Uploaded" />
             </div>
             <button className={cx('btn_icon')} onClick={handleButtonClick}>
                 <div className={cx('icon')}>
@@ -48,7 +47,7 @@ const DescriptionInput = ({ src }) => {
                 onChange={handleFileChange}
                 accept="image/jpeg,image/png"
             />
-            {error && <p className={cx('error')}>{error}</p>}
+            {/* {error && <p className={cx('error')}>{error}</p>} */}
         </div>
     );
 };

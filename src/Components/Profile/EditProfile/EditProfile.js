@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './EditProfile.module.scss';
 import { useNavigate } from 'react-router-dom';
 import classNames from 'classnames/bind';
@@ -14,7 +14,8 @@ import CloseIcon from '@mui/icons-material/Close';
 const cx = classNames.bind(styles);
 
 const EditProfile = () => {
-    // const navigate = useNavigate();
+    const [imageSrc, setImageSrc] = useState({ file: null, src: 'ns2.jpg' });
+
     const {
         // register,
         handleSubmit,
@@ -34,12 +35,12 @@ const EditProfile = () => {
 
     const handleOnSubmit = (values) => {
         console.log(values);
-        console.log(values.file[0]);
+        // console.log(values.file[0]);
         console.log(values.description);
         console.log(values.mode);
         console.log(values.type);
     };
-
+    console.log(imageSrc);
     const Skip = () => {
         // navigate(-1);
     };
@@ -47,7 +48,7 @@ const EditProfile = () => {
     return (
         <form onSubmit={handleSubmit(handleOnSubmit)} action="" className={cx('editForm')}>
             <div className={cx('editContain')}>
-                <Img src="ns2.jpg" />
+                <Img imageSrc={imageSrc} setImageSrc={setImageSrc} />
 
                 <div className={cx('edit-1')}>
                     <DisplayName control={control} errors={errors} />
