@@ -39,13 +39,12 @@ const initPlaylist = () => {
     return playlist ? JSON.parse(playlist) : [];
 };
 const SideBar = () => {
-    
     const [navBar, setNavBar] = useState(initialNavBar);
     const [showInput, setShowInput] = useState(false);
     const inputRef = useRef(null);
     const location = useLocation();
-    const [key, setKey] = useState(false)
-    const [userPlaylist, setUserPlaylist] = useState(initPlaylist);
+    const [key, setKey] = useState(false);
+    const [userPlaylist, setUserPlaylist] = useState([]);
     const getContext = useContext(GlobalContext);
     const updateNavBar = useCallback(() => {
         setNavBar((prevNavBar) =>
@@ -61,9 +60,9 @@ const SideBar = () => {
             try {
                 const userID = localStorage.getItem('userID');
                 const { data } = await instance.get(`/playlist?userid=${userID}`);
-                setUserPlaylist(data)
+                // setUserPlaylist(data);
                 localStorage.setItem('playlist', JSON.stringify(data));
-                setKey(true)
+                setKey(true);
             } catch (error) {
                 console.error('Error fetching user playlist:', error);
             }
@@ -107,7 +106,7 @@ const SideBar = () => {
             <div className="playList">
                 <div className="play_list">
                     <ul className="listItem">
-                        {userPlaylist
+                        {userPlaylist.length > 0
                             ? userPlaylist.map((item) => (
                                   <PlayList
                                       url={item.thumb}
