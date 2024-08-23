@@ -12,8 +12,9 @@ $border-color: #545252;
     height: $button-height;
     width: $button-width;
     display: flex;
-    margin-bottom: 15px;
-    border: 1px solid $border-color;
+    // margin-bottom: 15px;
+    // border: 1px solid $border-color;
+    border: none;
     border-radius: 40px;
     box-sizing: border-box;
     background: $bg-color;
@@ -40,7 +41,7 @@ $border-color: #545252;
 }
 .register-container {
     width: 735px;
-    padding: 0px 205px 48px;
+    padding: 20px 205px 48px;
     box-shadow: $box-shadow;
     background: #fff;
     border-radius: $border-radius;
@@ -52,6 +53,13 @@ $border-color: #545252;
         height: 67px;
         margin-bottom: 21px;
         align-items: center;
+    }
+
+    .btnRegis {
+        margin-top: 30px;
+        @include button-style($primary-color, #fff);
+        @include hover-scale(1.06);
+        font-size: 17px;
     }
 }
 
@@ -67,7 +75,7 @@ $border-color: #545252;
     width: 325px;
     border-top: 0.4px solid #aba6a6;
     margin-left: 0%;
-    margin-top: 40px;
+    margin-top: 30px;
     margin-bottom: 32px;
 }
 

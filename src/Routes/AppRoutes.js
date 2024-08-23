@@ -10,6 +10,7 @@ import MainContainer from '../Components/Profile/MainContainer/MainContainer';
 import UpLoad from '../Components/UpLoad/UpLoad';
 import Auth from '../Components/Auth';
 import Section from '../Components/Section';
+import ForgotPassword from '../Pages/ForgotPassword';
 import ItemOfUser from '../Components/AllItemOfUser/ItemOfUser';
 
 const index = () => {
@@ -44,6 +45,7 @@ const index = () => {
             </Route>
             <Route path="login" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route path="forgotpassword" element={<ForgotPassword />} />
             <Route path="/loginGoogle" element={<Auth />} />
         </Routes>
     );

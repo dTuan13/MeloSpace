@@ -7,8 +7,10 @@ import Auth from '../../Components/Auth';
 import { GlobalContext } from '../../Context';
 import gg from './images/gg.svg';
 import fb from './images/fb.svg';
+import melo from './images/meloospace.png';
 import lg from './images/lg.png';
 import forge from 'node-forge';
+
 const Button = ({ label, logo, require }) =>
     require === true ? (
         <Auth>
@@ -22,7 +24,7 @@ const Button = ({ label, logo, require }) =>
             {logo && <img src={logo} alt={label} className={styles.btnLogo} />}
             <span>{label}</span>
         </button>
-    );
+);
 
 const Login = () => {
     const initialValues = { username: '', password: '' };
@@ -124,7 +126,7 @@ const Login = () => {
     return (
         <div className={styles.loginPage}>
             <div className={styles.loginFormContainer}>
-                <img src={lg} alt="Header" className={styles.headerImage} />
+                <img src={melo} alt="Header" className={styles.headerImage} />
 
                 <h1 className={styles.title}>Đăng nhập vào MeloSpace</h1>
 
@@ -191,7 +193,7 @@ const Login = () => {
                     <button type="submit" className={styles.btnPrimary}>
                         Đăng nhập
                     </button>
-                    <a href="#" className={styles.forgotPass}>
+                    <a href="/forgotpassword" className={styles.forgotPass}>
                         Quên mật khẩu của bạn?
                     </a>
                 </form>
